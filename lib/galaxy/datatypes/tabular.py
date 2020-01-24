@@ -1024,7 +1024,7 @@ class BaseCSV(TabularData):
         data_row = []
         data_lines = 0
         if dataset.has_data():
-            with open(dataset.file_name, 'r') as csvfile:
+            with open(dataset.file_name, 'rU') as csvfile:
                 # Parse file with the correct dialect
                 reader = csv.reader(csvfile, self.dialect)
                 try:

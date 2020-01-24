@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<tool id="qiime_sample-classifier_scatterplot" name="qiime sample-classifier scatterplot" version="2019.7">
+	<description> - Make 2D scatterplot and linear regression of regressor predictions.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime sample-classifier scatterplot
+
+--i-predictions=$ipredictions
+--m-truth-column="$mtruthcolumn"
+
+--m-truth-file="$mtruthfile"
+
+#if str($pmissingsamples) != 'None':
+ --p-missing-samples=$pmissingsamples
+#end if
+
+--o-visualization=ovisualization
+;
+qiime tools export --input-path ovisualization.qzv --output-path out   && mkdir -p '$ovisualization.files_path'
+&& cp -r out/* '$ovisualization.files_path'
+&& mv '$ovisualization.files_path/index.html' '$ovisualization';
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-predictions: ARTIFACT SampleData[RegressorPredictions] Predicted values to plot on y axis. Must be predictions of numeric data produced by a sample regressor.                                   [required]" name="ipredictions" optional="False" type="data"/>
+		<param label="--m-truth-column: COLUMN  MetadataColumn[Numeric] Metadata column (true values) to plot on x axis. [required]" name="mtruthcolumn" optional="False" type="text"/>
+		<param label="--p-missing-samples: " name="pmissingsamples" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="error">error</option>
+			<option value="ignore">ignore</option>
+		</param>
+
+		<param label="--m-truth-file: Metadata file or artifact viewable as metadata." name="mtruthfile" type="data" format="tabular,qza,no_unzip.zip" />
+
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: visualization.qzv" name="ovisualization"/>
+	</outputs>
+	<help><![CDATA[
+Make 2D scatterplot and linear regression of regressor predictions.
+###################################################################
+
+Make a 2D scatterplot and linear regression of predicted vs. true values
+for a set of samples predicted using a sample regressor.
+
+Parameters
+----------
+predictions : SampleData[RegressorPredictions]
+    Predicted values to plot on y axis. Must be predictions of numeric data
+    produced by a sample regressor.
+truth : MetadataColumn[Numeric]
+    Metadata column (true values) to plot on x axis.
+missing_samples : Str % Choices('error', 'ignore'), optional
+    How to handle missing samples in metadata. "error" will fail if missing
+    samples are detected. "ignore" will cause the feature table and
+    metadata to be filtered, so that only samples found in both files are
+    retained.
+
+Returns
+-------
+visualization : Visualization
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

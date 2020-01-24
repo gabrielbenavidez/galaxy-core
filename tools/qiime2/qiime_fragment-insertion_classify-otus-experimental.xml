@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<tool id="qiime_fragment-insertion_classify-otus-experimental" name="qiime fragment-insertion classify-otus-experimental" version="2019.7">
+	<description> - Experimental: Obtain taxonomic lineages, by finding closest OTU in reference phylogeny.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime fragment-insertion classify-otus-experimental
+
+--i-representative-sequences=$irepresentativesequences
+--i-tree=$itree --o-classification=oclassification
+
+
+#if str( $id_to_taxonomy_fp.selector ) == 'history'
+#set $tax = $id_to_taxonomy_fp.taxonomy_fp
+--i-reference-taxonomy '$tax'
+#else:
+#set $tax = $id_to_taxonomy_fp.taxonomy_fp.fields.path
+--i-reference-taxonomy '$tax'
+#end if
+
+
+;
+cp oclassification.qza $oclassification
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-representative-sequences: ARTIFACT FeatureData[Sequence] The sequences used for a 'sepp' run to produce the 'tree'.                                      [required]" name="irepresentativesequences" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-tree: ARTIFACT    The tree resulting from inserting fragments into a Phylogeny[Rooted]  reference phylogeny, i.e. the output of function 'sepp' [required]" name="itree" optional="False" type="data"/>
+
+		<conditional name="id_to_taxonomy_fp" optional="True">
+		   <param name="selector" type="select" label="Reference taxonomy to query">
+			  <option value="cached">Public databases</option>
+			  <option value="history">Databases from your history</option>
+		   </param>
+		   <when value="cached">
+			  <param argument="--taxonomy_fp" label="Reference taxonomy" type="select" optional="True">
+				 <options from_data_table="qiime_taxonomy" />
+			  </param>
+		   </when>
+		   <when value="history">
+			  <param argument="--taxonomy_fp" type="data" format="qza,no_unzip.zip" label="Reference databases" optional="True" />
+		   </when>
+		</conditional>
+
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: classification.qza" name="oclassification"/>
+	</outputs>
+	<help><![CDATA[
+Experimental: Obtain taxonomic lineages, by finding closest OTU in reference phylogeny.
+#######################################################################################
+
+Experimental: Use the resulting tree from 'sepp' and find closest OTU-ID
+for every inserted fragment. Then, look up the reference lineage string in
+the reference taxonomy.
+
+Parameters
+----------
+representative_sequences : FeatureData[Sequence]
+    The sequences used for a 'sepp' run to produce the 'tree'.
+tree : Phylogeny[Rooted]
+    The tree resulting from inserting fragments into a reference phylogeny,
+    i.e. the output of function 'sepp'
+reference_taxonomy : FeatureData[Taxonomy], optional
+    Reference taxonomic table that maps every OTU-ID into a taxonomic
+    lineage string.
+
+Returns
+-------
+classification : FeatureData[Taxonomy]
+    Taxonomic lineages for inserted fragments.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

@@ -1,0 +1,250 @@
+<?xml version="1.0" ?>
+<tool id="qiime_dada2_denoise-paired" name="qiime dada2 denoise-paired" version="2019.7">
+	<description> - Denoise and dereplicate paired-end sequences</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+
+#def parse_file(file):
+	#import csv
+	#set $read = csv.reader(open($file, "r"))
+	#set $qc = 0
+	#for l in $read:
+	#if "50%" in l:
+	#set $num = 0.0
+	#for i in l[1:]:
+	#if float(i) <= 25.0
+	#set $num = i
+	#set $qc = l.index($num) - 1
+	#break
+	#end if
+	#end for
+	#end if
+#end for
+#return $qc
+#end def
+
+#def find_QC(file):
+	#set $f_file_path=str(file).split(".dat")[0] + '_files/forward-seven-number-summaries.csv'
+	#set $r_file_path=str(file).split(".dat")[0] + '_files/reverse-seven-number-summaries.csv'
+	#set $qc_f = $parse_file($f_file_path)
+	#set $qc_r = $parse_file($r_file_path)
+	#return $qc_f, $qc_r
+#end def
+
+#def find_adapters(mapping_fp):
+	#import csv
+	#set $forward = 0
+	#set $reversed = 0
+	#set $reader = csv.reader(open(str(mapping_fp)), delimiter='\t')
+	#for row in $reader:
+	#if "#" not in str(row[0]):
+	#set $forward = len(row[2])
+	#set $reversed = len(row[3])
+	#break
+	#end if
+	#end for
+#return int($forward), int($reversed)
+#end def
+
+#if str($mapping_fp) != 'None' and (int($ptrimleftf) == -1 or int($ptrimleftr) == -1):
+	#set $both_adapters = $find_adapters($mapping_fp)
+	#set $ptrimleftf=$both_adapters[0]
+	#set $ptrimleftr=$both_adapters[1]
+#end if
+
+#if str($sum_fp) != 'None' and (int($ptrunclenf) == -1 or int($ptrunclenr) == -1):
+	#set $both_qc = $find_QC($sum_fp)
+	#set $ptrunclenf=$both_qc[0]
+	#set $ptrunclenr=$both_qc[1]
+#end if
+
+
+qiime dada2 denoise-paired
+
+--i-demultiplexed-seqs=$idemultiplexedseqs
+
+
+#if str($ptrunclenf):
+ --p-trunc-len-f="$ptrunclenf"
+#end if
+
+#if str($ptrunclenf):
+ --p-trunc-len-r="$ptrunclenr"
+#end if
+
+#if str($ptrimleftf):
+ --p-trim-left-f=$ptrimleftf
+#end if
+
+#if str($ptrimleftr):
+ --p-trim-left-r=$ptrimleftr
+#end if
+
+
+
+
+#if str($pmaxeef):
+ --p-max-ee-f=$pmaxeef
+#end if
+
+#if str($pmaxeer):
+ --p-max-ee-r=$pmaxeer
+#end if
+
+
+
+
+#if str($ptruncq):
+ --p-trunc-q=$ptruncq
+#end if
+
+#if str($pchimeramethod) != 'None':
+ --p-chimera-method=$pchimeramethod
+#end if
+
+#if str($pminfoldparentoverabundance):
+ --p-min-fold-parent-over-abundance=$pminfoldparentoverabundance
+#end if
+
+#set $pnthreads = '${GALAXY_SLOTS:-4}'
+
+#if str($pnthreads):
+ --p-n-threads="$pnthreads"
+#end if
+
+
+#if str($pnreadslearn):
+ --p-n-reads-learn=$pnreadslearn
+#end if
+
+#if $pnohashedfeatureids:
+ --p-no-hashed-feature-ids
+#end if
+
+--o-table=otable
+--o-representative-sequences=orepresentativesequences
+--o-denoising-stats=odenoisingstats
+;
+cp otable.qza $otable;
+cp orepresentativesequences.qza $orepresentativesequences;
+cp odenoisingstats.qza $odenoisingstats
+	]]></command>
+	<inputs>
+		<param format="tabular" label="Mapping file where 3rd and 4th columns must be forward and reverse primers respectively" name="mapping_fp" optional="True" type="data"/>
+		<param format="html" label="Summary file" name="sum_fp" optional="True" type="data"/>
+
+		<param format="qza,no_unzip.zip" label="--i-demultiplexed-seqs: ARTIFACT SampleData[PairedEndSequencesWithQuality] The paired-end demultiplexed sequences to be denoised.                                  [required]" name="idemultiplexedseqs" optional="False" type="data"/>
+		<param label="--p-trunc-len-f: INTEGER Position at which forward read sequences should be truncated due to decrease in quality. This truncates the 3' end of the of the input sequences, which will be the bases that were sequenced in the last cycles. Reads that are shorter than this value will be discarded. After this parameter is applied there must still be at least a 20 nucleotide overlap between the forward and reverse reads. If 0 is provided, no truncation or length filtering will be performed [required]" name="ptrunclenf" optional="False" value="" type="integer"/>
+		<param label="--p-trunc-len-r: INTEGER Position at which reverse read sequences should be truncated due to decrease in quality. This truncates the 3' end of the of the input sequences, which will be the bases that were sequenced in the last cycles. Reads that are shorter than this value will be discarded. After this parameter is applied there must still be at least a 20 nucleotide overlap between the forward and reverse reads. If 0 is provided, no truncation or length filtering will be performed [required]" name="ptrunclenr" optional="False" value="" type="integer"/>
+		<param label="--p-trim-left-f: INTEGER Position at which forward read sequences should be trimmed due to low quality. This trims the 5' end of the input sequences, which will be the bases that were sequenced in the first cycles.      [default: 0]" name="ptrimleftf" optional="True" type="integer" value="0"/>
+		<param label="--p-trim-left-r: INTEGER Position at which reverse read sequences should be trimmed due to low quality. This trims the 5' end of the input sequences, which will be the bases that were sequenced in the first cycles.      [default: 0]" name="ptrimleftr" optional="True" type="integer" value="0"/>
+
+
+
+		<param label="--p-max-ee-f: NUMBER      Forward reads with number of expected errors higher than this value will be discarded.     [default: 2.0]" name="pmaxeef" optional="True" type="float" value="2.0"/>
+		<param label="--p-max-ee-r: NUMBER      Reverse reads with number of expected errors higher than this value will be discarded.     [default: 2.0]" name="pmaxeer" optional="True" type="float" value="2.0"/>
+
+
+
+		<param label="--p-trunc-q: INTEGER    Reads are truncated at the first instance of a quality score less than or equal to this value. If the resulting read is then shorter than `trunc-len-f` or `trunc-len-r` (depending on the direction of the read) it is discarded.                   [default: 2]" name="ptruncq" optional="True" type="integer" value="2"/>
+		<param label="--p-chimera-method: " name="pchimeramethod" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="consensus">consensus</option>
+			<option value="pooled">pooled</option>
+			<option value="none">none</option>
+		</param>
+		<param label="--p-min-fold-parent-over-abundance: NUMBER The minimum abundance of potential parents of a sequence being tested as chimeric, expressed as a fold-change versus the abundance of the sequence being tested. Values should be greater than or equal to 1 (i.e. parents should be more abundant than the sequence being tested). This parameter has no effect if chimera-method is 'none'.           [default: 1.0]" name="pminfoldparentoverabundance" optional="True" type="float" value="1.0"/>
+		<param label="--p-n-reads-learn: INTEGER The number of reads to use when training the error model. Smaller numbers will result in a shorter run time but a less reliable error model. [default: 1000000]" name="pnreadslearn" optional="True" type="integer" value="1000000"/>
+		<param label="--p-no-hashed-feature-ids: If false, the feature ids in the resulting table will be presented as hashes of the sequences defining each feature. The hash will always be the same for the same sequence so this allows feature tables to be merged across runs of this method. You should only merge tables if the exact same parameters are used for each run.                         [default: False]" name="pnohashedfeatureids" selected="False" type="boolean"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: table.qza" name="otable"/>
+		<data format="qza" label="${tool.name} on ${on_string}: representativesequences.qza" name="orepresentativesequences"/>
+		<data format="qza" label="${tool.name} on ${on_string}: denoisingstats.qza" name="odenoisingstats"/>
+	</outputs>
+	<help><![CDATA[
+Denoise and dereplicate paired-end sequences
+#############################################
+
+This method denoises paired-end sequences, dereplicates them, and filters
+chimeras.
+
+Parameters
+----------
+demultiplexed_seqs : SampleData[PairedEndSequencesWithQuality]
+    The paired-end demultiplexed sequences to be denoised.
+trunc_len_f : Int
+    Position at which forward read sequences should be truncated due to
+    decrease in quality. This truncates the 3' end of the of the input
+    sequences, which will be the bases that were sequenced in the last
+    cycles. Reads that are shorter than this value will be discarded. After
+    this parameter is applied there must still be at least a 20 nucleotide
+    overlap between the forward and reverse reads. If 0 is provided, no
+    truncation or length filtering will be performed
+trunc_len_r : Int
+    Position at which reverse read sequences should be truncated due to
+    decrease in quality. This truncates the 3' end of the of the input
+    sequences, which will be the bases that were sequenced in the last
+    cycles. Reads that are shorter than this value will be discarded. After
+    this parameter is applied there must still be at least a 20 nucleotide
+    overlap between the forward and reverse reads. If 0 is provided, no
+    truncation or length filtering will be performed
+trim_left_f : Int, optional
+    Position at which forward read sequences should be trimmed due to low
+    quality. This trims the 5' end of the input sequences, which will be
+    the bases that were sequenced in the first cycles.
+trim_left_r : Int, optional
+    Position at which reverse read sequences should be trimmed due to low
+    quality. This trims the 5' end of the input sequences, which will be
+    the bases that were sequenced in the first cycles.
+max_ee_f : Float, optional
+    Forward reads with number of expected errors higher than this value
+    will be discarded.
+max_ee_r : Float, optional
+    Reverse reads with number of expected errors higher than this value
+    will be discarded.
+trunc_q : Int, optional
+    Reads are truncated at the first instance of a quality score less than
+    or equal to this value. If the resulting read is then shorter than
+    `trunc_len_f` or `trunc_len_r` (depending on the direction of the read)
+    it is discarded.
+chimera_method : Str % Choices('consensus', 'none', 'pooled'), optional
+    The method used to remove chimeras. "none": No chimera removal is
+    performed. "pooled": All reads are pooled prior to chimera detection.
+    "consensus": Chimeras are detected in samples individually, and
+    sequences found chimeric in a sufficient fraction of samples are
+    removed.
+min_fold_parent_over_abundance : Float, optional
+    The minimum abundance of potential parents of a sequence being tested
+    as chimeric, expressed as a fold-change versus the abundance of the
+    sequence being tested. Values should be greater than or equal to 1
+    (i.e. parents should be more abundant than the sequence being tested).
+    This parameter has no effect if chimera_method is "none".
+n_reads_learn : Int, optional
+    The number of reads to use when training the error model. Smaller
+    numbers will result in a shorter run time but a less reliable error
+    model.
+hashed_feature_ids : Bool, optional
+    If true, the feature ids in the resulting table will be presented as
+    hashes of the sequences defining each feature. The hash will always be
+    the same for the same sequence so this allows feature tables to be
+    merged across runs of this method. You should only merge tables if the
+    exact same parameters are used for each run.
+
+Returns
+-------
+table : FeatureTable[Frequency]
+    The resulting feature table.
+representative_sequences : FeatureData[Sequence]
+    The resulting feature sequences. Each feature in the feature table will
+    be represented by exactly one sequence, and these sequences will be the
+    joined paired-end sequences.
+denoising_stats : SampleData[DADA2Stats]
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

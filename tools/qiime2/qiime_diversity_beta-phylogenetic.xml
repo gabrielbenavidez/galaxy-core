@@ -1,0 +1,97 @@
+<?xml version="1.0" ?>
+<tool id="qiime_diversity_beta-phylogenetic" name="qiime diversity beta-phylogenetic" version="2019.7">
+	<description> - Beta diversity (phylogenetic)</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime diversity beta-phylogenetic
+
+--i-table=$itable
+--i-phylogeny=$iphylogeny
+--p-metric=$pmetric
+
+#set $pnjobs = '${GALAXY_SLOTS:-4}'
+#if str($pnjobs):
+ --p-n-jobs="$pnjobs"
+#end if
+
+
+#if $pvarianceadjusted:
+ --p-variance-adjusted
+#end if
+
+#if str($palpha):
+ --p-alpha="$palpha"
+#end if
+
+#if $pbypasstips:
+ --p-bypass-tips
+#end if
+
+--o-distance-matrix=odistancematrix
+;
+cp odistancematrix.qza $odistancematrix
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] The feature table containing the samples over which beta diversity should be computed.        [required]" name="itable" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-phylogeny: ARTIFACT  Phylogenetic tree containing tip identifiers that Phylogeny[Rooted]     correspond to the feature identifiers in the table. This tree can contain tip ids that are not present in the table, but all feature ids in the table must be present in this tree.                  [required]" name="iphylogeny" optional="False" type="data"/>
+		<param label="--p-metric: " name="pmetric" optional="False" type="select">
+			<option value="generalized_unifrac">generalized_unifrac</option>
+			<option value="unweighted_unifrac">unweighted_unifrac</option>
+			<option value="weighted_normalized_unifrac">weighted_normalized_unifrac</option>
+			<option value="weighted_unifrac">weighted_unifrac</option>
+		</param>
+		<param label="--p-variance-adjusted: --p-no-variance-adjusted Perform variance adjustment based on Chang et al. BMC Bioinformatics 2011. Weights distances based on the proportion of the relative abundance represented between the samples at a given node under evaluation.                         [default: False]" name="pvarianceadjusted" selected="False" type="boolean"/>
+		<param label="--p-alpha: PROPORTION Range(0, 1, inclusive_end=True) This parameter is only used when the choice of metric is generalized_unifrac. The value of alpha controls importance of sample proportions. 1.0 is weighted normalized UniFrac. 0.0 is close to unweighted UniFrac, but only if the sample proportions are dichotomized.             [optional]" name="palpha" optional="True" min="0" max="1" exclude_max="False"  type="float"/>
+		<param label="--p-bypass-tips: --p-no-bypass-tips In a bifurcating tree, the tips make up about 50% of the nodes in a tree. By ignoring them, specificity can be traded for reduced compute time. This has the effect of collapsing the phylogeny, and is analogous (in concept) to moving from 99% to 97% OTUs                                [default: False]" name="pbypasstips" selected="False" type="boolean"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: distancematrix.qza" name="odistancematrix"/>
+	</outputs>
+	<help><![CDATA[
+Beta diversity (phylogenetic)
+#############################
+
+Computes a user-specified phylogenetic beta diversity metric for all pairs
+of samples in a feature table.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    The feature table containing the samples over which beta diversity
+    should be computed.
+phylogeny : Phylogeny[Rooted]
+    Phylogenetic tree containing tip identifiers that correspond to the
+    feature identifiers in the table. This tree can contain tip ids that
+    are not present in the table, but all feature ids in the table must be
+    present in this tree.
+metric : Str % Choices('weighted_unifrac', 'generalized_unifrac', 'weighted_normalized_unifrac', 'unweighted_unifrac')
+    The beta diversity metric to be computed.
+variance_adjusted : Bool, optional
+    Perform variance adjustment based on Chang et al. BMC Bioinformatics
+    2011. Weights distances based on the proportion of the relative
+    abundance represented between the samples at a given node under
+    evaluation.
+alpha : Float % Range(0, 1, inclusive_end=True), optional
+    This parameter is only used when the choice of metric is
+    generalized_unifrac. The value of alpha controls importance of sample
+    proportions. 1.0 is weighted normalized UniFrac. 0.0 is close to
+    unweighted UniFrac, but only if the sample proportions are
+    dichotomized.
+bypass_tips : Bool, optional
+    In a bifurcating tree, the tips make up about 50% of the nodes in a
+    tree. By ignoring them, specificity can be traded for reduced compute
+    time. This has the effect of collapsing the phylogeny, and is analogous
+    (in concept) to moving from 99% to 97% OTUs
+
+Returns
+-------
+distance_matrix : DistanceMatrix % Properties('phylogenetic')
+    The resulting distance matrix.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

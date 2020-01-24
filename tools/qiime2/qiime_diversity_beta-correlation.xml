@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<tool id="qiime_diversity_beta-correlation" name="qiime diversity beta-correlation" version="2019.7">
+	<description> - Beta diversity correlation</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime diversity beta-correlation
+
+--i-distance-matrix=$idistancematrix
+
+
+
+#if '__sq__' in str($mmetadatacolumn):
+  #set $mmetadatacolumn_temp = $mmetadatacolumn.replace('__sq__', "'")
+  #set $mmetadatacolumn = $mmetadatacolumn_temp
+#end if
+
+--m-metadata-column="$mmetadatacolumn"
+
+
+
+#if str($pmethod) != 'None':
+ --p-method=$pmethod
+#end if
+
+#if str($ppermutations):
+ --p-permutations=$ppermutations
+#end if
+
+#if str($pintersectids):
+ --p-intersect-ids
+#end if
+
+
+
+
+#if '__sq__' in str($plabel1):
+  #set $plabel1_temp = $plabel1.replace('__sq__', "'")
+  #set $plabel1 = $plabel1_temp
+#end if
+
+#if str($plabel1):
+ --p-label1="$plabel1"
+#end if
+
+
+
+#if '__sq__' in str($plabel2):
+  #set $plabel2_temp = $plabel2.replace('__sq__', "'")
+  #set $plabel2 = $plabel2_temp
+#end if
+
+#if str($plabel2):
+ --p-label2="$plabel2"
+#end if
+
+
+
+#if $metadatafile:
+ --m-metadata-file=$metadatafile
+#end if
+
+
+
+
+--o-metadata-distance-matrix=ometadatadistancematrix
+--o-mantel-scatter-visualization=omantelscattervisualization
+;
+cp ometadatadistancematrix.qza $ometadatadistancematrix;
+qiime tools export --input-path omantelscattervisualization.qzv --output-path out   && mkdir -p '$omantelscattervisualization.files_path'
+&& cp -r out/* '$omantelscattervisualization.files_path'
+&& mv '$omantelscattervisualization.files_path/index.html' '$omantelscattervisualization'
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-distance-matrix: ARTIFACT DistanceMatrix     Matrix of distances between pairs of samples. [required]" name="idistancematrix" optional="False" type="data"/>
+		<param label="--m-metadata-column: COLUMN  MetadataColumn[Numeric] Numeric metadata column from which to compute pairwise Euclidean distances                          [required]" name="mmetadatacolumn" optional="False" type="text"/>
+		<param label="--p-method: " name="pmethod" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="spearman">spearman</option>
+			<option value="pearson">pearson</option>
+		</param>
+		<param label="--p-permutations: INTEGER Range(0, None)     The number of permutations to be run when computing p-values. Supplying a value of zero will disable permutation testing and p-values will not be calculated (this results in *much* quicker execution time if p-values are not desired).               [default: 999]" name="ppermutations" optional="True" type="integer" min="0" value="999"/>
+		<param label="--p-intersect-ids: --p-no-intersect-ids If supplied, IDs that are not found in both distance matrices will be discarded before applying the Mantel test. Default behavior is to error on any mismatched IDs.                                   [default: False]" name="pintersectids" selected="False" type="boolean"/>
+		<param label="--p-label1: TEXT      Label for `distance-matrix` in the output visualization.                    [default: 'Metadata']" name="plabel1" optional="True" type="text" value="Metadata"/>
+		<param label="--p-label2: TEXT      Label for `metadata-distance-matrix` in the output visualization.             [default: 'Distance Matrix']" name="plabel2" optional="True" type="text" value="Distance Matrix"/>
+
+		<param label="--m-metadata-file METADATA" name="metadatafile" type="data" format="tabular,qza,no_unzip.zip" optional="True" />
+
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: metadatadistancematrix.qza" name="ometadatadistancematrix"/>
+		<data format="html" label="${tool.name} on ${on_string}: mantelscattervisualization.qzv" name="omantelscattervisualization"/>
+	</outputs>
+	<help><![CDATA[
+Beta diversity correlation
+##########################
+
+Create a distance matrix from a numeric metadata column and apply a two-
+sided Mantel test to identify correlation between two distance matrices.
+Actions used internally: `distance-matrix` from q2-metadata and `mantel`
+from q2-diversity.
+
+Parameters
+----------
+metadata : MetadataColumn[Numeric]
+    Numeric metadata column from which to compute pairwise Euclidean
+    distances
+distance_matrix : DistanceMatrix
+    Matrix of distances between pairs of samples.
+method : Str % Choices('spearman', 'pearson'), optional
+    The correlation test to be applied in the Mantel test.
+permutations : Int % Range(0, None), optional
+    The number of permutations to be run when computing p-values. Supplying
+    a value of zero will disable permutation testing and p-values will not
+    be calculated (this results in *much* quicker execution time if
+    p-values are not desired).
+intersect_ids : Bool, optional
+    If supplied, IDs that are not found in both distance matrices will be
+    discarded before applying the Mantel test. Default behavior is to error
+    on any mismatched IDs.
+label1 : Str, optional
+    Label for `distance_matrix` in the output visualization.
+label2 : Str, optional
+    Label for `metadata_distance_matrix` in the output visualization.
+
+Returns
+-------
+metadata_distance_matrix : DistanceMatrix
+    The Distance Matrix produced from the metadata column and used in the
+    mantel test
+mantel_scatter_visualization : Visualization
+    Scatter plot rendering of the manteltest results
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

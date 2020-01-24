@@ -1,0 +1,357 @@
+<?xml version="1.0" ?>
+<tool id="qiime_sample-classifier_heatmap" name="qiime sample-classifier heatmap" version="2019.7">
+	<description> - Generate heatmap of important features.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime sample-classifier heatmap
+
+--i-table=$itable
+--i-importance=$iimportance
+
+
+
+
+#if $metadatafile:
+ --m-metadata-file=$metadatafile
+#end if
+
+
+
+
+
+#if str($mmetadatacolumn):
+ --m-metadata-column="$mmetadatacolumn"
+#end if
+
+#if str($pfeaturecount):
+ --p-feature-count=$pfeaturecount
+#end if
+
+#if str($pimportancethreshold):
+ --p-importance-threshold=$pimportancethreshold
+#end if
+
+#if $pgroupsamples:
+ --p-group-samples
+#end if
+
+#if $pnonormalize:
+ --p-no-normalize
+#end if
+
+#if str($pmetric) != 'None':
+ --p-metric=$pmetric
+#end if
+
+#if str($pmethod) != 'None':
+ --p-method=$pmethod
+#end if
+
+#if str($pcluster) != 'None':
+ --p-cluster=$pcluster
+#end if
+
+#if str($pcolorscheme) != 'None':
+ --p-color-scheme=$pcolorscheme
+#end if
+
+--o-heatmap=oheatmap
+--o-filtered-table=ofilteredtable
+;
+qiime tools export --input-path oheatmap.qzv --output-path out   && mkdir -p '$oheatmap.files_path'
+&& cp -r out/* '$oheatmap.files_path'
+&& mv '$oheatmap.files_path/index.html' '$oheatmap';
+cp ofilteredtable.qza $ofilteredtable
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] Feature table containing all features that should be used for target prediction.                [required]" name="itable" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-importance: ARTIFACT FeatureData[Importance] Feature importances.                       [required]" name="iimportance" optional="False" type="data"/>
+		<param label="--m-metadata-column: COLUMN  MetadataColumn[Categorical] Metadata file to convert to feature table. [optional]" name="mmetadatacolumn" optional="True" type="text"/>
+		<param label="--p-feature-count: INTEGER Range(0, None)       Filter feature table to include top N most important features. Set to zero to include all features. [default: 50]" name="pfeaturecount" optional="True" type="integer" value="50" min="0"/>
+		<param label="--p-importance-threshold: NUMBER Range(0, None)       Filter feature table to exclude any features with an importance score less than this threshold. Set to zero to include all features.            [default: 0]" name="pimportancethreshold" optional="True" type="float" value="0" min="0"/>
+		<param label="--p-group-samples: --p-no-group-samples Group samples by metadata.           [default: False]" name="pgroupsamples" selected="False" type="boolean"/>
+		<param label="--p-no-normalize: Normalize the feature table by adding a psuedocount of 1 and then taking the log10 of the table. [default: False]" name="pnonormalize" selected="False" type="boolean"/>
+		<param label="--p-metric: " name="pmetric" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="kulsinski">kulsinski</option>
+			<option value="correlation">correlation</option>
+			<option value="hamming">hamming</option>
+			<option value="canberra">canberra</option>
+			<option value="sqeuclidean">sqeuclidean</option>
+			<option value="sokalmichener">sokalmichener</option>
+			<option value="cityblock">cityblock</option>
+			<option value="braycurtis">braycurtis</option>
+			<option value="matching">matching</option>
+			<option value="russellrao">russellrao</option>
+			<option value="cosine">cosine</option>
+			<option value="yule">yule</option>
+			<option value="minkowski">minkowski</option>
+			<option value="euclidean">euclidean</option>
+			<option value="rogerstanimoto">rogerstanimoto</option>
+			<option value="seuclidean">seuclidean</option>
+			<option value="jaccard">jaccard</option>
+			<option value="sokalsneath">sokalsneath</option>
+			<option value="chebyshev">chebyshev</option>
+			<option value="dice">dice</option>
+			<option value="mahalanobis">mahalanobis</option>
+		</param>
+		<param label="--p-method: " name="pmethod" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="complete">complete</option>
+			<option value="centroid">centroid</option>
+			<option value="weighted">weighted</option>
+			<option value="single">single</option>
+			<option value="ward">ward</option>
+			<option value="average">average</option>
+			<option value="median">median</option>
+		</param>
+		<param label="--p-cluster: " name="pcluster" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="features">features</option>
+			<option value="both">both</option>
+			<option value="samples">samples</option>
+			<option value="none">none</option>
+		</param>
+		<param label="--p-color-scheme: " name="pcolorscheme" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="bone">bone</option>
+			<option value="PRGn_r">PRGn_r</option>
+			<option value="Vega10_r">Vega10_r</option>
+			<option value="GnBu">GnBu</option>
+			<option value="hsv">hsv</option>
+			<option value="binary_r">binary_r</option>
+			<option value="GnBu_r">GnBu_r</option>
+			<option value="icefire">icefire</option>
+			<option value="winter">winter</option>
+			<option value="BuGn_r">BuGn_r</option>
+			<option value="plasma_r">plasma_r</option>
+			<option value="Vega20_r">Vega20_r</option>
+			<option value="summer_r">summer_r</option>
+			<option value="cool_r">cool_r</option>
+			<option value="Spectral">Spectral</option>
+			<option value="gist_heat_r">gist_heat_r</option>
+			<option value="Vega20b_r">Vega20b_r</option>
+			<option value="mako_r">mako_r</option>
+			<option value="RdBu_r">RdBu_r</option>
+			<option value="cubehelix">cubehelix</option>
+			<option value="tab20b_r">tab20b_r</option>
+			<option value="CMRmap">CMRmap</option>
+			<option value="Greys">Greys</option>
+			<option value="PuOr">PuOr</option>
+			<option value="cubehelix_r">cubehelix_r</option>
+			<option value="Wistia">Wistia</option>
+			<option value="gnuplot2">gnuplot2</option>
+			<option value="bwr">bwr</option>
+			<option value="gnuplot_r">gnuplot_r</option>
+			<option value="viridis">viridis</option>
+			<option value="gist_ncar_r">gist_ncar_r</option>
+			<option value="gist_ncar">gist_ncar</option>
+			<option value="plasma">plasma</option>
+			<option value="PuRd">PuRd</option>
+			<option value="afmhot">afmhot</option>
+			<option value="icefire_r">icefire_r</option>
+			<option value="tab20b">tab20b</option>
+			<option value="gist_yarg_r">gist_yarg_r</option>
+			<option value="hot">hot</option>
+			<option value="YlOrRd_r">YlOrRd_r</option>
+			<option value="Vega20c">Vega20c</option>
+			<option value="Dark2_r">Dark2_r</option>
+			<option value="Set3">Set3</option>
+			<option value="PuBu">PuBu</option>
+			<option value="magma">magma</option>
+			<option value="Pastel2">Pastel2</option>
+			<option value="terrain">terrain</option>
+			<option value="autumn_r">autumn_r</option>
+			<option value="spectral">spectral</option>
+			<option value="brg">brg</option>
+			<option value="Set3_r">Set3_r</option>
+			<option value="coolwarm">coolwarm</option>
+			<option value="Set2_r">Set2_r</option>
+			<option value="Paired_r">Paired_r</option>
+			<option value="tab20c_r">tab20c_r</option>
+			<option value="mako">mako</option>
+			<option value="gist_rainbow_r">gist_rainbow_r</option>
+			<option value="RdBu">RdBu</option>
+			<option value="PuBu_r">PuBu_r</option>
+			<option value="jet_r">jet_r</option>
+			<option value="gist_earth_r">gist_earth_r</option>
+			<option value="Greys_r">Greys_r</option>
+			<option value="gray">gray</option>
+			<option value="winter_r">winter_r</option>
+			<option value="rocket">rocket</option>
+			<option value="Set2">Set2</option>
+			<option value="seismic_r">seismic_r</option>
+			<option value="Pastel1">Pastel1</option>
+			<option value="RdYlGn_r">RdYlGn_r</option>
+			<option value="copper">copper</option>
+			<option value="spring_r">spring_r</option>
+			<option value="BuGn">BuGn</option>
+			<option value="Greens">Greens</option>
+			<option value="Blues">Blues</option>
+			<option value="PiYG_r">PiYG_r</option>
+			<option value="YlGnBu">YlGnBu</option>
+			<option value="Paired">Paired</option>
+			<option value="YlGn_r">YlGn_r</option>
+			<option value="RdPu_r">RdPu_r</option>
+			<option value="BrBG_r">BrBG_r</option>
+			<option value="bone_r">bone_r</option>
+			<option value="RdYlBu">RdYlBu</option>
+			<option value="gist_rainbow">gist_rainbow</option>
+			<option value="bwr_r">bwr_r</option>
+			<option value="inferno_r">inferno_r</option>
+			<option value="inferno">inferno</option>
+			<option value="gist_stern_r">gist_stern_r</option>
+			<option value="gray_r">gray_r</option>
+			<option value="Purples">Purples</option>
+			<option value="RdGy">RdGy</option>
+			<option value="hot_r">hot_r</option>
+			<option value="YlOrBr_r">YlOrBr_r</option>
+			<option value="nipy_spectral">nipy_spectral</option>
+			<option value="nipy_spectral_r">nipy_spectral_r</option>
+			<option value="ocean">ocean</option>
+			<option value="Set1">Set1</option>
+			<option value="Dark2">Dark2</option>
+			<option value="Oranges">Oranges</option>
+			<option value="Pastel1_r">Pastel1_r</option>
+			<option value="Oranges_r">Oranges_r</option>
+			<option value="Pastel2_r">Pastel2_r</option>
+			<option value="YlGn">YlGn</option>
+			<option value="Vega20b">Vega20b</option>
+			<option value="PuRd_r">PuRd_r</option>
+			<option value="PuBuGn_r">PuBuGn_r</option>
+			<option value="afmhot_r">afmhot_r</option>
+			<option value="spring">spring</option>
+			<option value="tab20_r">tab20_r</option>
+			<option value="PuBuGn">PuBuGn</option>
+			<option value="gist_yarg">gist_yarg</option>
+			<option value="PiYG">PiYG</option>
+			<option value="flag">flag</option>
+			<option value="rainbow_r">rainbow_r</option>
+			<option value="hsv_r">hsv_r</option>
+			<option value="prism_r">prism_r</option>
+			<option value="ocean_r">ocean_r</option>
+			<option value="magma_r">magma_r</option>
+			<option value="flag_r">flag_r</option>
+			<option value="Blues_r">Blues_r</option>
+			<option value="gnuplot2_r">gnuplot2_r</option>
+			<option value="gist_gray">gist_gray</option>
+			<option value="spectral_r">spectral_r</option>
+			<option value="CMRmap_r">CMRmap_r</option>
+			<option value="rainbow">rainbow</option>
+			<option value="gnuplot">gnuplot</option>
+			<option value="vlag">vlag</option>
+			<option value="Set1_r">Set1_r</option>
+			<option value="Accent">Accent</option>
+			<option value="coolwarm_r">coolwarm_r</option>
+			<option value="brg_r">brg_r</option>
+			<option value="pink_r">pink_r</option>
+			<option value="YlOrBr">YlOrBr</option>
+			<option value="Vega20c_r">Vega20c_r</option>
+			<option value="Wistia_r">Wistia_r</option>
+			<option value="RdGy_r">RdGy_r</option>
+			<option value="tab20">tab20</option>
+			<option value="BrBG">BrBG</option>
+			<option value="rocket_r">rocket_r</option>
+			<option value="OrRd_r">OrRd_r</option>
+			<option value="YlGnBu_r">YlGnBu_r</option>
+			<option value="viridis_r">viridis_r</option>
+			<option value="copper_r">copper_r</option>
+			<option value="gist_heat">gist_heat</option>
+			<option value="Vega10">Vega10</option>
+			<option value="PuOr_r">PuOr_r</option>
+			<option value="binary">binary</option>
+			<option value="pink">pink</option>
+			<option value="Reds">Reds</option>
+			<option value="Purples_r">Purples_r</option>
+			<option value="cool">cool</option>
+			<option value="prism">prism</option>
+			<option value="terrain_r">terrain_r</option>
+			<option value="BuPu_r">BuPu_r</option>
+			<option value="Spectral_r">Spectral_r</option>
+			<option value="Greens_r">Greens_r</option>
+			<option value="gist_gray_r">gist_gray_r</option>
+			<option value="RdYlGn">RdYlGn</option>
+			<option value="tab20c">tab20c</option>
+			<option value="Reds_r">Reds_r</option>
+			<option value="tab10">tab10</option>
+			<option value="summer">summer</option>
+			<option value="gist_stern">gist_stern</option>
+			<option value="tab10_r">tab10_r</option>
+			<option value="YlOrRd">YlOrRd</option>
+			<option value="jet">jet</option>
+			<option value="Vega20">Vega20</option>
+			<option value="vlag_r">vlag_r</option>
+			<option value="RdPu">RdPu</option>
+			<option value="OrRd">OrRd</option>
+			<option value="Accent_r">Accent_r</option>
+			<option value="autumn">autumn</option>
+			<option value="BuPu">BuPu</option>
+			<option value="RdYlBu_r">RdYlBu_r</option>
+			<option value="gist_earth">gist_earth</option>
+			<option value="seismic">seismic</option>
+			<option value="PRGn">PRGn</option>
+		</param>
+
+
+		<param label="--m-metadata-file METADATA" name="metadatafile" type="data" format="tabular,qza,no_unzip.zip" />
+
+
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: heatmap.qzv" name="oheatmap"/>
+		<data format="qza" label="${tool.name} on ${on_string}: filteredtable.qza" name="ofilteredtable"/>
+	</outputs>
+	<help><![CDATA[
+Generate heatmap of important features.
+#######################################
+
+Generate a heatmap of important features. Features are filtered based on
+importance scores; samples are optionally grouped by metadata; and a
+heatmap is generated that displays (normalized) feature abundances per
+sample.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    Feature table containing all features that should be used for target
+    prediction.
+importance : FeatureData[Importance]
+    Feature importances.
+metadata : MetadataColumn[Categorical], optional
+    Metadata file to convert to feature table.
+feature_count : Int % Range(0, None), optional
+    Filter feature table to include top N most important features. Set to
+    zero to include all features.
+importance_threshold : Float % Range(0, None), optional
+    Filter feature table to exclude any features with an importance score
+    less than this threshold. Set to zero to include all features.
+group_samples : Bool, optional
+    Group samples by metadata.
+normalize : Bool, optional
+    Normalize the feature table by adding a psuedocount of 1 and then
+    taking the log10 of the table.
+metric : Str % Choices('sokalmichener', 'yule', 'russellrao', 'rogerstanimoto', 'minkowski', 'correlation', 'jaccard', 'cosine', 'chebyshev', 'euclidean', 'sqeuclidean', 'cityblock', 'matching', 'dice', 'mahalanobis', 'kulsinski', 'seuclidean', 'sokalsneath', 'canberra', 'hamming', 'braycurtis'), optional
+    Metrics exposed by seaborn (see http://seaborn.pydata.org/generated/sea
+    born.clustermap.html#seaborn.clustermap for more detail).
+method : Str % Choices('average', 'complete', 'median', 'centroid', 'single', 'ward', 'weighted'), optional
+    Clustering methods exposed by seaborn (see http://seaborn.pydata.org/ge
+    nerated/seaborn.clustermap.html#seaborn.clustermap for more detail).
+cluster : Str % Choices('features', 'samples', 'none', 'both'), optional
+    Specify which axes to cluster.
+color_scheme : Str % Choices('rocket', 'RdYlBu_r', 'winter', 'viridis', 'BrBG', 'magma_r', 'YlOrBr', 'seismic', 'Set1', 'gist_yarg_r', 'gist_rainbow', 'autumn_r', 'Wistia_r', 'cool_r', 'hsv_r', 'flag', 'Vega20b_r', 'mako_r', 'coolwarm', 'Vega20_r', 'jet', 'cubehelix_r', 'bwr_r', 'brg', 'RdPu', 'gist_ncar', 'RdPu_r', 'cool', 'gnuplot_r', 'Set3', 'ocean_r', 'tab20b', 'tab20b_r', 'OrRd_r', 'Spectral_r', 'gray', 'OrRd', 'prism_r', 'Wistia', 'hot', 'icefire', 'plasma', 'Purples_r', 'viridis_r', 'gnuplot2_r', 'CMRmap', 'YlGnBu_r', 'Set3_r', 'PuRd_r', 'Reds_r', 'gray_r', 'Dark2', 'Vega20b', 'Paired', 'gist_yarg', 'RdYlGn_r', 'Greens', 'YlGnBu', 'tab20', 'gnuplot', 'PuBuGn_r', 'spectral_r', 'tab20c_r', 'gist_rainbow_r', 'hot_r', 'spring_r', 'gist_gray', 'Blues_r', 'Spectral', 'magma', 'GnBu_r', 'inferno_r', 'tab10', 'gist_gray_r', 'seismic_r', 'spring', 'BuPu_r', 'spectral', 'BrBG_r', 'PiYG', 'inferno', 'YlOrBr_r', 'Set1_r', 'YlOrRd_r', 'summer', 'vlag', 'Oranges_r', 'Dark2_r', 'binary_r', 'icefire_r', 'RdYlGn', 'hsv', 'gist_heat', 'PRGn_r', 'pink_r', 'Pastel2_r', 'copper_r', 'BuGn', 'gist_stern_r', 'PuRd', 'gist_earth_r', 'YlOrRd', 'Reds', 'gist_earth', 'Greens_r', 'Vega10', 'ocean', 'brg_r', 'rainbow_r', 'tab20_r', 'Purples', 'Blues', 'Accent', 'afmhot_r', 'Set2_r', 'RdBu', 'Vega20c', 'Pastel1', 'RdGy_r', 'PuBuGn', 'copper', 'PuOr', 'jet_r', 'YlGn_r', 'gist_heat_r', 'PuOr_r', 'bone', 'BuGn_r', 'terrain_r', 'mako', 'Vega20c_r', 'Paired_r', 'PuBu_r', 'tab20c', 'Pastel1_r', 'flag_r', 'plasma_r', 'Oranges', 'autumn', 'bone_r', 'GnBu', 'bwr', 'Greys', 'RdBu_r', 'RdGy', 'winter_r', 'gnuplot2', 'coolwarm_r', 'pink', 'nipy_spectral', 'Greys_r', 'summer_r', 'Vega20', 'BuPu', 'afmhot', 'gist_stern', 'binary', 'PiYG_r', 'YlGn', 'rocket_r', 'cubehelix', 'rainbow', 'Accent_r', 'CMRmap_r', 'PRGn', 'PuBu', 'tab10_r', 'prism', 'vlag_r', 'Set2', 'gist_ncar_r', 'nipy_spectral_r', 'Pastel2', 'terrain', 'RdYlBu', 'Vega10_r'), optional
+    Color scheme for heatmap.
+
+Returns
+-------
+heatmap : Visualization
+    Heatmap of important features.
+filtered_table : FeatureTable[Frequency]
+    Filtered feature table containing data displayed in heatmap.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

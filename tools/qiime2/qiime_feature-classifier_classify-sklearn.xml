@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<tool id="qiime_feature-classifier_classify-sklearn" name="qiime feature-classifier classify-sklearn" version="2019.7">
+	<description> - Pre-fitted sklearn-based taxonomy classifier</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime feature-classifier classify-sklearn
+
+
+#if str( $id_to_classifier_fp.selector ) == 'history'
+#set $classifier = $id_to_classifier_fp.classifier_fp
+--i-classifier '$classifier'
+#else:
+#set $classifier = $id_to_classifier_fp.classifier_fp.fields.path
+--i-classifier '$classifier'
+#end if
+
+
+--i-reads=$ireads
+
+#set $pnjobs = '${GALAXY_SLOTS:-4}'
+
+#if str($pnjobs):
+ --p-n-jobs="$pnjobs"
+#end if
+
+
+#if str($pconfidence) != '':
+  #if float($pconfidence) >= 0.0:
+	--p-confidence=$pconfidence
+  #end if
+#end if
+
+#if str($preadorientation) != 'None':
+ --p-read-orientation=$preadorientation
+#end if
+
+--o-classification=oclassification
+;
+cp oclassification.qza $oclassification
+	]]></command>
+	<inputs>
+		<conditional name="id_to_classifier_fp" optional="True">
+		   <param name="selector" type="select" label="Reference classifier to query">
+			  <option value="cached">Public classifiers</option>
+			  <option value="history">Classifiers from your history</option>
+		   </param>
+		   <when value="cached">
+			  <param name="classifier_fp" label="Reference classifier" type="select" optional="True">
+				 <options from_data_table="qiime_rep_set" />
+			  </param>
+		   </when>
+		   <when value="history">
+			  <param name="classifier_fp" type="data" format="qza,no_unzip.zip" label="Reference classifier" optional="True" />
+		   </when>
+		</conditional>
+
+		<param format="qza,no_unzip.zip" label="--i-reads: ARTIFACT FeatureData[Sequence] The feature data to be classified.         [required]" name="ireads" optional="False" type="data"/>
+		<param label="--p-confidence: NUMBER  Confidence threshold for limiting taxonomic depth. Provide -1 to disable confidence calculation, or 0 to calculate confidence but not apply it to limit the taxonomic depth of the assignments.    [default: 0.7]" name="pconfidence" optional="True" type="float" value="0.7"/>
+		<param label="--p-read-orientation: " name="preadorientation" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="same">same</option>
+			<option value="reverse-complement">reverse-complement</option>
+		</param>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: classification.qza" name="oclassification"/>
+	</outputs>
+	<help><![CDATA[
+Pre-fitted sklearn-based taxonomy classifier
+############################################
+
+Classify reads by taxon using a fitted classifier.
+
+Parameters
+----------
+reads : FeatureData[Sequence]
+    The feature data to be classified.
+classifier : TaxonomicClassifier
+    The taxonomic classifier for classifying the reads.
+reads_per_batch : Int % Range(0, None), optional
+    Number of reads to process in each batch. If 0, this parameter is
+    autoscaled to min( number of query sequences / n_jobs, 20000).
+pre_dispatch : Str, optional
+    "all" or expression, as in "3*n_jobs". The number of batches (of tasks)
+    to be pre-dispatched.
+confidence : Float, optional
+    Confidence threshold for limiting taxonomic depth. Provide -1 to
+    disable confidence calculation, or 0 to calculate confidence but not
+    apply it to limit the taxonomic depth of the assignments.
+read_orientation : Str % Choices('same', 'reverse-complement'), optional
+    Direction of reads with respect to reference sequences. same will cause
+    reads to be classified unchanged; reverse-complement will cause reads
+    to be reversed and complemented prior to classification. Default is to
+    autodetect based on the confidence estimates for the first 100 reads.
+
+Returns
+-------
+classification : FeatureData[Taxonomy]
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

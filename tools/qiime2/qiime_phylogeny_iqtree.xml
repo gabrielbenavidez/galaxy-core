@@ -1,0 +1,470 @@
+<?xml version="1.0" ?>
+<tool id="qiime_phylogeny_iqtree" name="qiime phylogeny iqtree" version="2019.7">
+	<description> - Construct a phylogenetic tree with IQ-TREE.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime phylogeny iqtree
+
+--i-alignment=$ialignment
+
+#if str($pseed):
+ --p-seed="$pseed"
+#end if
+
+#set $pncores = '${GALAXY_SLOTS:-4}'
+
+#if str($pncores):
+ --p-n-cores="$pncores"
+#end if
+
+#if str($pnruns):
+ --p-n-runs=$pnruns
+#end if
+
+#if str($psubstitutionmodel) != 'None':
+ --p-substitution-model=$psubstitutionmodel
+#end if
+
+#if str($pninitparstrees):
+ --p-n-init-pars-trees="$pninitparstrees"
+#end if
+
+#if str($pntopinittrees):
+ --p-n-top-init-trees="$pntopinittrees"
+#end if
+
+#if str($pnbestretaintrees):
+ --p-n-best-retain-trees="$pnbestretaintrees"
+#end if
+
+#if str($pniter):
+ --p-n-iter="$pniter"
+#end if
+
+#if str($pstopiter):
+ --p-stop-iter="$pstopiter"
+#end if
+
+#if str($pperturbnnistrength):
+ --p-perturb-nni-strength="$pperturbnnistrength"
+#end if
+
+#if str($psprradius):
+ --p-spr-radius="$psprradius"
+#end if
+
+#if $pallnni:
+ --p-allnni
+#end if
+
+#if $pfast:
+ --p-fast
+#end if
+
+#if str($palrt):
+ --p-alrt="$palrt"
+#end if
+
+#if $pabayes:
+ --p-abayes
+#end if
+
+#if str($plbp):
+ --p-lbp="$plbp"
+#end if
+
+#if $psafe:
+ --p-safe
+#end if
+
+--o-tree=otree
+;
+cp otree.qza $otree
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-alignment: ARTIFACT FeatureData[AlignedSequence] Aligned sequences to be used for phylogenetic reconstruction.                           [required]" name="ialignment" optional="False" type="data"/>
+		<param label="--p-seed: INTEGER        Random number seed. If not set, program defaults will be used. See IQ-TREE manual for details. [optional]" name="pseed" optional="True" type="integer"/>
+		<param label="--p-n-runs: INTEGER      Number of indepedent runs. Multiple  independent Range(1, None)        runs (e.g. 10) can outperform a single run in terms of likelihood maximisation.             [default: 1]" name="pnruns" optional="True" type="integer" value="1" min="1"/>
+		<param label="--p-substitution-model: " name="psubstitutionmodel" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="JC">JC</option>
+			<option value="JC+I">JC+I</option>
+			<option value="JC+G">JC+G</option>
+			<option value="JC+I+G">JC+I+G</option>
+			<option value="JC+R2">JC+R2</option>
+			<option value="JC+R3">JC+R3</option>
+			<option value="JC+R4">JC+R4</option>
+			<option value="JC+R5">JC+R5</option>
+			<option value="JC+R6">JC+R6</option>
+			<option value="JC+R7">JC+R7</option>
+			<option value="JC+R8">JC+R8</option>
+			<option value="JC+R9">JC+R9</option>
+			<option value="JC+R10">JC+R10</option>
+			<option value="F81">F81</option>
+			<option value="F81+I">F81+I</option>
+			<option value="F81+G">F81+G</option>
+			<option value="F81+I+G">F81+I+G</option>
+			<option value="F81+R2">F81+R2</option>
+			<option value="F81+R3">F81+R3</option>
+			<option value="F81+R4">F81+R4</option>
+			<option value="F81+R5">F81+R5</option>
+			<option value="F81+R6">F81+R6</option>
+			<option value="F81+R7">F81+R7</option>
+			<option value="F81+R8">F81+R8</option>
+			<option value="F81+R9">F81+R9</option>
+			<option value="F81+R10">F81+R10</option>
+			<option value="K80">K80</option>
+			<option value="K80+I">K80+I</option>
+			<option value="K80+G">K80+G</option>
+			<option value="K80+I+G">K80+I+G</option>
+			<option value="K80+R2">K80+R2</option>
+			<option value="K80+R3">K80+R3</option>
+			<option value="K80+R4">K80+R4</option>
+			<option value="K80+R5">K80+R5</option>
+			<option value="K80+R6">K80+R6</option>
+			<option value="K80+R7">K80+R7</option>
+			<option value="K80+R8">K80+R8</option>
+			<option value="K80+R9">K80+R9</option>
+			<option value="K80+R10">K80+R10</option>
+			<option value="HKY">HKY</option>
+			<option value="HKY+I">HKY+I</option>
+			<option value="HKY+G">HKY+G</option>
+			<option value="HKY+I+G">HKY+I+G</option>
+			<option value="HKY+R2">HKY+R2</option>
+			<option value="HKY+R3">HKY+R3</option>
+			<option value="HKY+R4">HKY+R4</option>
+			<option value="HKY+R5">HKY+R5</option>
+			<option value="HKY+R6">HKY+R6</option>
+			<option value="HKY+R7">HKY+R7</option>
+			<option value="HKY+R8">HKY+R8</option>
+			<option value="HKY+R9">HKY+R9</option>
+			<option value="HKY+R10">HKY+R10</option>
+			<option value="TNe">TNe</option>
+			<option value="TNe+I">TNe+I</option>
+			<option value="TNe+G">TNe+G</option>
+			<option value="TNe+I+G">TNe+I+G</option>
+			<option value="TNe+R2">TNe+R2</option>
+			<option value="TNe+R3">TNe+R3</option>
+			<option value="TNe+R4">TNe+R4</option>
+			<option value="TNe+R5">TNe+R5</option>
+			<option value="TNe+R6">TNe+R6</option>
+			<option value="TNe+R7">TNe+R7</option>
+			<option value="TNe+R8">TNe+R8</option>
+			<option value="TNe+R9">TNe+R9</option>
+			<option value="TNe+R10">TNe+R10</option>
+			<option value="TN">TN</option>
+			<option value="TN+I">TN+I</option>
+			<option value="TN+G">TN+G</option>
+			<option value="TN+I+G">TN+I+G</option>
+			<option value="TN+R2">TN+R2</option>
+			<option value="TN+R3">TN+R3</option>
+			<option value="TN+R4">TN+R4</option>
+			<option value="TN+R5">TN+R5</option>
+			<option value="TN+R6">TN+R6</option>
+			<option value="TN+R7">TN+R7</option>
+			<option value="TN+R8">TN+R8</option>
+			<option value="TN+R9">TN+R9</option>
+			<option value="TN+R10">TN+R10</option>
+			<option value="K81">K81</option>
+			<option value="K81+I">K81+I</option>
+			<option value="K81+G">K81+G</option>
+			<option value="K81+I+G">K81+I+G</option>
+			<option value="K81+R2">K81+R2</option>
+			<option value="K81+R3">K81+R3</option>
+			<option value="K81+R4">K81+R4</option>
+			<option value="K81+R5">K81+R5</option>
+			<option value="K81+R6">K81+R6</option>
+			<option value="K81+R7">K81+R7</option>
+			<option value="K81+R8">K81+R8</option>
+			<option value="K81+R9">K81+R9</option>
+			<option value="K81+R10">K81+R10</option>
+			<option value="K81u">K81u</option>
+			<option value="K81u+I">K81u+I</option>
+			<option value="K81u+G">K81u+G</option>
+			<option value="K81u+I+G">K81u+I+G</option>
+			<option value="K81u+R2">K81u+R2</option>
+			<option value="K81u+R3">K81u+R3</option>
+			<option value="K81u+R4">K81u+R4</option>
+			<option value="K81u+R5">K81u+R5</option>
+			<option value="K81u+R6">K81u+R6</option>
+			<option value="K81u+R7">K81u+R7</option>
+			<option value="K81u+R8">K81u+R8</option>
+			<option value="K81u+R9">K81u+R9</option>
+			<option value="K81u+R10">K81u+R10</option>
+			<option value="TPM2">TPM2</option>
+			<option value="TPM2+I">TPM2+I</option>
+			<option value="TPM2+G">TPM2+G</option>
+			<option value="TPM2+I+G">TPM2+I+G</option>
+			<option value="TPM2+R2">TPM2+R2</option>
+			<option value="TPM2+R3">TPM2+R3</option>
+			<option value="TPM2+R4">TPM2+R4</option>
+			<option value="TPM2+R5">TPM2+R5</option>
+			<option value="TPM2+R6">TPM2+R6</option>
+			<option value="TPM2+R7">TPM2+R7</option>
+			<option value="TPM2+R8">TPM2+R8</option>
+			<option value="TPM2+R9">TPM2+R9</option>
+			<option value="TPM2+R10">TPM2+R10</option>
+			<option value="TPM2u">TPM2u</option>
+			<option value="TPM2u+I">TPM2u+I</option>
+			<option value="TPM2u+G">TPM2u+G</option>
+			<option value="TPM2u+I+G">TPM2u+I+G</option>
+			<option value="TPM2u+R2">TPM2u+R2</option>
+			<option value="TPM2u+R3">TPM2u+R3</option>
+			<option value="TPM2u+R4">TPM2u+R4</option>
+			<option value="TPM2u+R5">TPM2u+R5</option>
+			<option value="TPM2u+R6">TPM2u+R6</option>
+			<option value="TPM2u+R7">TPM2u+R7</option>
+			<option value="TPM2u+R8">TPM2u+R8</option>
+			<option value="TPM2u+R9">TPM2u+R9</option>
+			<option value="TPM2u+R10">TPM2u+R10</option>
+			<option value="TPM3">TPM3</option>
+			<option value="TPM3+I">TPM3+I</option>
+			<option value="TPM3+G">TPM3+G</option>
+			<option value="TPM3+I+G">TPM3+I+G</option>
+			<option value="TPM3+R2">TPM3+R2</option>
+			<option value="TPM3+R3">TPM3+R3</option>
+			<option value="TPM3+R4">TPM3+R4</option>
+			<option value="TPM3+R5">TPM3+R5</option>
+			<option value="TPM3+R6">TPM3+R6</option>
+			<option value="TPM3+R7">TPM3+R7</option>
+			<option value="TPM3+R8">TPM3+R8</option>
+			<option value="TPM3+R9">TPM3+R9</option>
+			<option value="TPM3+R10">TPM3+R10</option>
+			<option value="TPM3u">TPM3u</option>
+			<option value="TPM3u+I">TPM3u+I</option>
+			<option value="TPM3u+G">TPM3u+G</option>
+			<option value="TPM3u+I+G">TPM3u+I+G</option>
+			<option value="TPM3u+R2">TPM3u+R2</option>
+			<option value="TPM3u+R3">TPM3u+R3</option>
+			<option value="TPM3u+R4">TPM3u+R4</option>
+			<option value="TPM3u+R5">TPM3u+R5</option>
+			<option value="TPM3u+R6">TPM3u+R6</option>
+			<option value="TPM3u+R7">TPM3u+R7</option>
+			<option value="TPM3u+R8">TPM3u+R8</option>
+			<option value="TPM3u+R9">TPM3u+R9</option>
+			<option value="TPM3u+R10">TPM3u+R10</option>
+			<option value="TIMe">TIMe</option>
+			<option value="TIMe+I">TIMe+I</option>
+			<option value="TIMe+G">TIMe+G</option>
+			<option value="TIMe+I+G">TIMe+I+G</option>
+			<option value="TIMe+R2">TIMe+R2</option>
+			<option value="TIMe+R3">TIMe+R3</option>
+			<option value="TIMe+R4">TIMe+R4</option>
+			<option value="TIMe+R5">TIMe+R5</option>
+			<option value="TIMe+R6">TIMe+R6</option>
+			<option value="TIMe+R7">TIMe+R7</option>
+			<option value="TIMe+R8">TIMe+R8</option>
+			<option value="TIMe+R9">TIMe+R9</option>
+			<option value="TIMe+R10">TIMe+R10</option>
+			<option value="TIM">TIM</option>
+			<option value="TIM+I">TIM+I</option>
+			<option value="TIM+G">TIM+G</option>
+			<option value="TIM+I+G">TIM+I+G</option>
+			<option value="TIM+R2">TIM+R2</option>
+			<option value="TIM+R3">TIM+R3</option>
+			<option value="TIM+R4">TIM+R4</option>
+			<option value="TIM+R5">TIM+R5</option>
+			<option value="TIM+R6">TIM+R6</option>
+			<option value="TIM+R7">TIM+R7</option>
+			<option value="TIM+R8">TIM+R8</option>
+			<option value="TIM+R9">TIM+R9</option>
+			<option value="TIM+R10">TIM+R10</option>
+			<option value="TIM2e">TIM2e</option>
+			<option value="TIM2e+I">TIM2e+I</option>
+			<option value="TIM2e+G">TIM2e+G</option>
+			<option value="TIM2e+I+G">TIM2e+I+G</option>
+			<option value="TIM2e+R2">TIM2e+R2</option>
+			<option value="TIM2e+R3">TIM2e+R3</option>
+			<option value="TIM2e+R4">TIM2e+R4</option>
+			<option value="TIM2e+R5">TIM2e+R5</option>
+			<option value="TIM2e+R6">TIM2e+R6</option>
+			<option value="TIM2e+R7">TIM2e+R7</option>
+			<option value="TIM2e+R8">TIM2e+R8</option>
+			<option value="TIM2e+R9">TIM2e+R9</option>
+			<option value="TIM2e+R10">TIM2e+R10</option>
+			<option value="TIM2">TIM2</option>
+			<option value="TIM2+I">TIM2+I</option>
+			<option value="TIM2+G">TIM2+G</option>
+			<option value="TIM2+I+G">TIM2+I+G</option>
+			<option value="TIM2+R2">TIM2+R2</option>
+			<option value="TIM2+R3">TIM2+R3</option>
+			<option value="TIM2+R4">TIM2+R4</option>
+			<option value="TIM2+R5">TIM2+R5</option>
+			<option value="TIM2+R6">TIM2+R6</option>
+			<option value="TIM2+R7">TIM2+R7</option>
+			<option value="TIM2+R8">TIM2+R8</option>
+			<option value="TIM2+R9">TIM2+R9</option>
+			<option value="TIM2+R10">TIM2+R10</option>
+			<option value="TIM3e">TIM3e</option>
+			<option value="TIM3e+I">TIM3e+I</option>
+			<option value="TIM3e+G">TIM3e+G</option>
+			<option value="TIM3e+I+G">TIM3e+I+G</option>
+			<option value="TIM3e+R2">TIM3e+R2</option>
+			<option value="TIM3e+R3">TIM3e+R3</option>
+			<option value="TIM3e+R4">TIM3e+R4</option>
+			<option value="TIM3e+R5">TIM3e+R5</option>
+			<option value="TIM3e+R6">TIM3e+R6</option>
+			<option value="TIM3e+R7">TIM3e+R7</option>
+			<option value="TIM3e+R8">TIM3e+R8</option>
+			<option value="TIM3e+R9">TIM3e+R9</option>
+			<option value="TIM3e+R10">TIM3e+R10</option>
+			<option value="TIM3">TIM3</option>
+			<option value="TIM3+I">TIM3+I</option>
+			<option value="TIM3+G">TIM3+G</option>
+			<option value="TIM3+I+G">TIM3+I+G</option>
+			<option value="TIM3+R2">TIM3+R2</option>
+			<option value="TIM3+R3">TIM3+R3</option>
+			<option value="TIM3+R4">TIM3+R4</option>
+			<option value="TIM3+R5">TIM3+R5</option>
+			<option value="TIM3+R6">TIM3+R6</option>
+			<option value="TIM3+R7">TIM3+R7</option>
+			<option value="TIM3+R8">TIM3+R8</option>
+			<option value="TIM3+R9">TIM3+R9</option>
+			<option value="TIM3+R10">TIM3+R10</option>
+			<option value="TVMe">TVMe</option>
+			<option value="TVMe+I">TVMe+I</option>
+			<option value="TVMe+G">TVMe+G</option>
+			<option value="TVMe+I+G">TVMe+I+G</option>
+			<option value="TVMe+R2">TVMe+R2</option>
+			<option value="TVMe+R3">TVMe+R3</option>
+			<option value="TVMe+R4">TVMe+R4</option>
+			<option value="TVMe+R5">TVMe+R5</option>
+			<option value="TVMe+R6">TVMe+R6</option>
+			<option value="TVMe+R7">TVMe+R7</option>
+			<option value="TVMe+R8">TVMe+R8</option>
+			<option value="TVMe+R9">TVMe+R9</option>
+			<option value="TVMe+R10">TVMe+R10</option>
+			<option value="TVM">TVM</option>
+			<option value="TVM+I">TVM+I</option>
+			<option value="TVM+G">TVM+G</option>
+			<option value="TVM+I+G">TVM+I+G</option>
+			<option value="TVM+R2">TVM+R2</option>
+			<option value="TVM+R3">TVM+R3</option>
+			<option value="TVM+R4">TVM+R4</option>
+			<option value="TVM+R5">TVM+R5</option>
+			<option value="TVM+R6">TVM+R6</option>
+			<option value="TVM+R7">TVM+R7</option>
+			<option value="TVM+R8">TVM+R8</option>
+			<option value="TVM+R9">TVM+R9</option>
+			<option value="TVM+R10">TVM+R10</option>
+			<option value="SYM">SYM</option>
+			<option value="SYM+I">SYM+I</option>
+			<option value="SYM+G">SYM+G</option>
+			<option value="SYM+I+G">SYM+I+G</option>
+			<option value="SYM+R2">SYM+R2</option>
+			<option value="SYM+R3">SYM+R3</option>
+			<option value="SYM+R4">SYM+R4</option>
+			<option value="SYM+R5">SYM+R5</option>
+			<option value="SYM+R6">SYM+R6</option>
+			<option value="SYM+R7">SYM+R7</option>
+			<option value="SYM+R8">SYM+R8</option>
+			<option value="SYM+R9">SYM+R9</option>
+			<option value="SYM+R10">SYM+R10</option>
+			<option value="GTR">GTR</option>
+			<option value="GTR+I">GTR+I</option>
+			<option value="GTR+G">GTR+G</option>
+			<option value="GTR+I+G">GTR+I+G</option>
+			<option value="GTR+R2">GTR+R2</option>
+			<option value="GTR+R3">GTR+R3</option>
+			<option value="GTR+R4">GTR+R4</option>
+			<option value="GTR+R5">GTR+R5</option>
+			<option value="GTR+R6">GTR+R6</option>
+			<option value="GTR+R7">GTR+R7</option>
+			<option value="GTR+R8">GTR+R8</option>
+			<option value="GTR+R9">GTR+R9</option>
+			<option value="GTR+R10">GTR+R10</option>
+			<option value="MFP">MFP</option>
+			<option value="TEST">TEST</option>
+		</param>
+		<param label="--p-n-init-pars-trees: INTEGER Range(1, None)        Number of initial parsimony trees. If not set, program defaults will be used. See IQ-TREE manual for details.                              [optional]" name="pninitparstrees" optional="True" type="integer" min="1"/>
+		<param label="--p-n-top-init-trees: INTEGER Range(1, None)        Number of top initial trees. If not set, program defaults will be used. See IQ-TREE manual for details.                                  [optional]" name="pntopinittrees" optional="True" type="integer" min="1"/>
+		<param label="--p-n-best-retain-trees: INTEGER Range(1, None)        Number of best trees retained during search. If not set, program defaults will be used. See IQ-TREE manual for details.                       [optional]" name="pnbestretaintrees" optional="True" type="integer" min="1"/>
+		<param label="--p-n-iter: INTEGER      Fix number of iterations to stop. If not set, Range(1, None)        program defaults will be used. See IQ-TREE manual for details.                              [optional]" name="pniter" optional="True" type="integer" min="1"/>
+		<param label="--p-stop-iter: INTEGER   Number of unsuccessful iterations to stop. If not Range(1, None)        set, program defaults will be used. See IQ-TREE manual for details.                       [optional]" name="pstopiter" optional="True" type="integer" min="1"/>
+		<param label="--p-perturb-nni-strength: NUMBER Range(0.01, 99)       Perturbation strength for randomized NNI. If not set, program defaults will be used. See IQ-TREE manual for details.                       [optional]" name="pperturbnnistrength" optional="True" type="float" min="0.01" max="99"/>
+		<param label="--p-spr-radius: INTEGER  Radius for parsimony SPR search. If not set, Range(1, None)        program defaults will be used. See IQ-TREE manual for details.                              [optional]" name="psprradius" optional="True" type="integer" min="1"/>
+		<param label="--p-allnni: --p-no-allnni Perform more thorough NNI search.   [default: False]" name="pallnni" selected="False" type="boolean"/>
+		<param label="--p-fast: --p-no-fast  Fast search to resemble FastTree.   [default: False]" name="pfast" selected="False" type="boolean"/>
+		<param label="--p-alrt: INTEGER        Single branch test method. Number of bootstrap Range(1000, None)     replicates to perform an SH-like approximate likelihood ratio test (SH-aLRT). Minimum of 1000 replicates is recomended. Set to '0' for parametric aLRT test. Can be used with other 'single branch test methods'. Values reported in the order of: alrt, lbp, abayes.                        [optional]" name="palrt" optional="True" type="integer" min="1000"/>
+		<param label="--p-abayes: --p-no-abayes Single branch test method. Approximate Bayes test. Can be used with other 'single branch test methods'. Values reported in the order of: alrt, lbp, abayes. [default: False]" name="pabayes" selected="False" type="boolean"/>
+		<param label="--p-lbp: INTEGER         Single branch test method. Number of bootstrap Range(1000, None)     replicates to perform a fast local bootstrap probability method. Minimum of 1000 replicates is recomended. Can be used with other 'single branch test methods'. Values reported in the order of: alrt, lbp, abayes.                        [optional]" name="plbp" optional="True" type="integer" min="1000"/>
+		<param label="--p-safe: --p-no-safe  Safe likelihood kernel to avoid numerical underflow.                          [default: False]" name="psafe" selected="False" type="boolean"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: tree.qza" name="otree"/>
+	</outputs>
+	<help><![CDATA[
+Construct a phylogenetic tree with IQ-TREE.
+###########################################
+
+Construct a phylogenetic tree using IQ-TREE (http://www.iqtree.org/) with
+automatic model selection.
+
+Parameters
+----------
+alignment : FeatureData[AlignedSequence]
+    Aligned sequences to be used for phylogenetic reconstruction.
+seed : Int, optional
+    Random number seed. If not set, program defaults will be used. See IQ-
+    TREE manual for details.
+n_runs : Int % Range(1, None), optional
+    Number of indepedent runs. Multiple  independent runs (e.g. 10) can
+    outperform a single run in terms of likelihood maximisation.
+substitution_model : Str % Choices('JC', 'JC+I', 'JC+G', 'JC+I+G', 'JC+R2', 'JC+R3', 'JC+R4', 'JC+R5', 'JC+R6', 'JC+R7', 'JC+R8', 'JC+R9', 'JC+R10', 'F81', 'F81+I', 'F81+G', 'F81+I+G', 'F81+R2', 'F81+R3', 'F81+R4', 'F81+R5', 'F81+R6', 'F81+R7', 'F81+R8', 'F81+R9', 'F81+R10', 'K80', 'K80+I', 'K80+G', 'K80+I+G', 'K80+R2', 'K80+R3', 'K80+R4', 'K80+R5', 'K80+R6', 'K80+R7', 'K80+R8', 'K80+R9', 'K80+R10', 'HKY', 'HKY+I', 'HKY+G', 'HKY+I+G', 'HKY+R2', 'HKY+R3', 'HKY+R4', 'HKY+R5', 'HKY+R6', 'HKY+R7', 'HKY+R8', 'HKY+R9', 'HKY+R10', 'TNe', 'TNe+I', 'TNe+G', 'TNe+I+G', 'TNe+R2', 'TNe+R3', 'TNe+R4', 'TNe+R5', 'TNe+R6', 'TNe+R7', 'TNe+R8', 'TNe+R9', 'TNe+R10', 'TN', 'TN+I', 'TN+G', 'TN+I+G', 'TN+R2', 'TN+R3', 'TN+R4', 'TN+R5', 'TN+R6', 'TN+R7', 'TN+R8', 'TN+R9', 'TN+R10', 'K81', 'K81+I', 'K81+G', 'K81+I+G', 'K81+R2', 'K81+R3', 'K81+R4', 'K81+R5', 'K81+R6', 'K81+R7', 'K81+R8', 'K81+R9', 'K81+R10', 'K81u', 'K81u+I', 'K81u+G', 'K81u+I+G', 'K81u+R2', 'K81u+R3', 'K81u+R4', 'K81u+R5', 'K81u+R6', 'K81u+R7', 'K81u+R8', 'K81u+R9', 'K81u+R10', 'TPM2', 'TPM2+I', 'TPM2+G', 'TPM2+I+G', 'TPM2+R2', 'TPM2+R3', 'TPM2+R4', 'TPM2+R5', 'TPM2+R6', 'TPM2+R7', 'TPM2+R8', 'TPM2+R9', 'TPM2+R10', 'TPM2u', 'TPM2u+I', 'TPM2u+G', 'TPM2u+I+G', 'TPM2u+R2', 'TPM2u+R3', 'TPM2u+R4', 'TPM2u+R5', 'TPM2u+R6', 'TPM2u+R7', 'TPM2u+R8', 'TPM2u+R9', 'TPM2u+R10', 'TPM3', 'TPM3+I', 'TPM3+G', 'TPM3+I+G', 'TPM3+R2', 'TPM3+R3', 'TPM3+R4', 'TPM3+R5', 'TPM3+R6', 'TPM3+R7', 'TPM3+R8', 'TPM3+R9', 'TPM3+R10', 'TPM3u', 'TPM3u+I', 'TPM3u+G', 'TPM3u+I+G', 'TPM3u+R2', 'TPM3u+R3', 'TPM3u+R4', 'TPM3u+R5', 'TPM3u+R6', 'TPM3u+R7', 'TPM3u+R8', 'TPM3u+R9', 'TPM3u+R10', 'TIMe', 'TIMe+I', 'TIMe+G', 'TIMe+I+G', 'TIMe+R2', 'TIMe+R3', 'TIMe+R4', 'TIMe+R5', 'TIMe+R6', 'TIMe+R7', 'TIMe+R8', 'TIMe+R9', 'TIMe+R10', 'TIM', 'TIM+I', 'TIM+G', 'TIM+I+G', 'TIM+R2', 'TIM+R3', 'TIM+R4', 'TIM+R5', 'TIM+R6', 'TIM+R7', 'TIM+R8', 'TIM+R9', 'TIM+R10', 'TIM2e', 'TIM2e+I', 'TIM2e+G', 'TIM2e+I+G', 'TIM2e+R2', 'TIM2e+R3', 'TIM2e+R4', 'TIM2e+R5', 'TIM2e+R6', 'TIM2e+R7', 'TIM2e+R8', 'TIM2e+R9', 'TIM2e+R10', 'TIM2', 'TIM2+I', 'TIM2+G', 'TIM2+I+G', 'TIM2+R2', 'TIM2+R3', 'TIM2+R4', 'TIM2+R5', 'TIM2+R6', 'TIM2+R7', 'TIM2+R8', 'TIM2+R9', 'TIM2+R10', 'TIM3e', 'TIM3e+I', 'TIM3e+G', 'TIM3e+I+G', 'TIM3e+R2', 'TIM3e+R3', 'TIM3e+R4', 'TIM3e+R5', 'TIM3e+R6', 'TIM3e+R7', 'TIM3e+R8', 'TIM3e+R9', 'TIM3e+R10', 'TIM3', 'TIM3+I', 'TIM3+G', 'TIM3+I+G', 'TIM3+R2', 'TIM3+R3', 'TIM3+R4', 'TIM3+R5', 'TIM3+R6', 'TIM3+R7', 'TIM3+R8', 'TIM3+R9', 'TIM3+R10', 'TVMe', 'TVMe+I', 'TVMe+G', 'TVMe+I+G', 'TVMe+R2', 'TVMe+R3', 'TVMe+R4', 'TVMe+R5', 'TVMe+R6', 'TVMe+R7', 'TVMe+R8', 'TVMe+R9', 'TVMe+R10', 'TVM', 'TVM+I', 'TVM+G', 'TVM+I+G', 'TVM+R2', 'TVM+R3', 'TVM+R4', 'TVM+R5', 'TVM+R6', 'TVM+R7', 'TVM+R8', 'TVM+R9', 'TVM+R10', 'SYM', 'SYM+I', 'SYM+G', 'SYM+I+G', 'SYM+R2', 'SYM+R3', 'SYM+R4', 'SYM+R5', 'SYM+R6', 'SYM+R7', 'SYM+R8', 'SYM+R9', 'SYM+R10', 'GTR', 'GTR+I', 'GTR+G', 'GTR+I+G', 'GTR+R2', 'GTR+R3', 'GTR+R4', 'GTR+R5', 'GTR+R6', 'GTR+R7', 'GTR+R8', 'GTR+R9', 'GTR+R10', 'MFP', 'TEST'), optional
+    Model of Nucleotide Substitution. If not provided, IQ-TREE will
+    determine the best fit substitution model automatically.
+n_init_pars_trees : Int % Range(1, None), optional
+    Number of initial parsimony trees. If not set, program defaults will be
+    used. See IQ-TREE manual for details.
+n_top_init_trees : Int % Range(1, None), optional
+    Number of top initial trees. If not set, program defaults will be used.
+    See IQ-TREE manual for details.
+n_best_retain_trees : Int % Range(1, None), optional
+    Number of best trees retained during search. If not set, program
+    defaults will be used. See IQ-TREE manual for details.
+n_iter : Int % Range(1, None), optional
+    Fix number of iterations to stop. If not set, program defaults will be
+    used. See IQ-TREE manual for details.
+stop_iter : Int % Range(1, None), optional
+    Number of unsuccessful iterations to stop. If not set, program defaults
+    will be used. See IQ-TREE manual for details.
+perturb_nni_strength : Float % Range(0.01, 99), optional
+    Perturbation strength for randomized NNI. If not set, program defaults
+    will be used. See IQ-TREE manual for details.
+spr_radius : Int % Range(1, None), optional
+    Radius for parsimony SPR search. If not set, program defaults will be
+    used. See IQ-TREE manual for details.
+allnni : Bool, optional
+    Perform more thorough NNI search.
+fast : Bool, optional
+    Fast search to resemble FastTree.
+alrt : Int % Range(1000, None), optional
+    Single branch test method. Number of bootstrap replicates to perform an
+    SH-like approximate likelihood ratio test (SH-aLRT). Minimum of 1000
+    replicates is recomended. Set to '0' for parametric aLRT test. Can be
+    used with other 'single branch test methods'. Values reported in the
+    order of: alrt, lbp, abayes.
+abayes : Bool, optional
+    Single branch test method. Approximate Bayes test. Can be used with
+    other 'single branch test methods'. Values reported in the order of:
+    alrt, lbp, abayes.
+lbp : Int % Range(1000, None), optional
+    Single branch test method. Number of bootstrap replicates to perform a
+    fast local bootstrap probability method. Minimum of 1000 replicates is
+    recomended. Can be used with other 'single branch test methods'. Values
+    reported in the order of: alrt, lbp, abayes.
+safe : Bool, optional
+    Safe likelihood kernel to avoid numerical underflow.
+
+Returns
+-------
+tree : Phylogeny[Unrooted]
+    The resulting phylogenetic tree.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

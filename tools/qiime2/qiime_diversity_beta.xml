@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<tool id="qiime_diversity_beta" name="qiime diversity beta" version="2019.7">
+	<description> - Beta diversity</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime diversity beta
+
+--i-table=$itable
+
+--p-metric=$pmetric
+
+#if str($ppseudocount):
+ --p-pseudocount=$ppseudocount
+#end if
+
+#set $pnjobs = '${GALAXY_SLOTS:-4}'
+#if str($pnjobs):
+ --p-n-jobs="$pnjobs"
+#end if
+
+--o-distance-matrix=odistancematrix
+;
+cp odistancematrix.qza $odistancematrix
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] The feature table containing the samples over which beta diversity should be computed.           [required]" name="itable" optional="False" type="data"/>
+		<param label="--p-metric: " name="pmetric" optional="False" type="select">
+			<option value="kulsinski">kulsinski</option>
+			<option value="wminkowski">wminkowski</option>
+			<option value="correlation">correlation</option>
+			<option value="hamming">hamming</option>
+			<option value="canberra">canberra</option>
+			<option value="canberra_adkins">canberra_adkins</option>
+			<option value="sqeuclidean">sqeuclidean</option>
+			<option value="sokalmichener">sokalmichener</option>
+			<option value="cityblock">cityblock</option>
+			<option value="braycurtis">braycurtis</option>
+			<option value="matching">matching</option>
+			<option value="russellrao">russellrao</option>
+			<option value="cosine">cosine</option>
+			<option value="yule">yule</option>
+			<option value="euclidean">euclidean</option>
+			<option value="rogerstanimoto">rogerstanimoto</option>
+			<option value="seuclidean">seuclidean</option>
+			<option value="jaccard">jaccard</option>
+			<option value="sokalsneath">sokalsneath</option>
+			<option value="aitchison">aitchison</option>
+			<option value="chebyshev">chebyshev</option>
+			<option value="dice">dice</option>
+			<option value="mahalanobis">mahalanobis</option>
+		</param>
+		<param label="--p-pseudocount: INTEGER Range(1, None)     A pseudocount to handle zeros for compositional metrics.  This is ignored for other metrics. [default: 1]" name="ppseudocount" optional="True" type="integer" min="1" value="1"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: distancematrix.qza" name="odistancematrix"/>
+	</outputs>
+	<help><![CDATA[
+Beta diversity
+##############
+
+Computes a user-specified beta diversity metric for all pairs of samples in
+a feature table.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    The feature table containing the samples over which beta diversity
+    should be computed.
+metric : Str % Choices('sokalmichener', 'yule', 'russellrao', 'rogerstanimoto', 'aitchison', 'correlation', 'jaccard', 'cosine', 'euclidean', 'sqeuclidean', 'chebyshev', 'cityblock', 'matching', 'dice', 'mahalanobis', 'wminkowski', 'kulsinski', 'seuclidean', 'sokalsneath', 'canberra', 'canberra_adkins', 'hamming', 'braycurtis')
+    The beta diversity metric to be computed.
+pseudocount : Int % Range(1, None), optional
+    A pseudocount to handle zeros for compositional metrics.  This is
+    ignored for other metrics.
+
+Returns
+-------
+distance_matrix : DistanceMatrix
+    The resulting distance matrix.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

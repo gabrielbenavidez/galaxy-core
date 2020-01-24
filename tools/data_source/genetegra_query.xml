@@ -1,0 +1,15 @@
+
+<tool name="genetegra query" id="genetegra_query" tool_type="data_source" URL_method="get" version="1.0.0">
+    <description>A tool to run a query from the genetegra webapp and return results</description>
+    <command interpreter="python">data_source.py $output $__app__.config.output_size_limit</command>
+	<inputs action="http://10.0.1.7:4200/query-browser/" check_values="false" method="post" >
+        <param name="GALAXY_URL" type="baseurl" value="/tool_runner" />
+        <param name="tool_id" type="hidden" value="genetegra_query" />
+        <param name="sendToGalaxy" type="hidden" value="1" />
+        <param name="GALAXY_BASE_URL" type="baseurl" value="" />
+    </inputs>
+    <outputs>
+        <data name="output" format="auto" label="genetegra tool output"/>
+    </outputs>
+	<options sanitize="False" refresh="True"/>
+</tool>

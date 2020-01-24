@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<tool id="qiime_vsearch_cluster-features-closed-reference" name="qiime vsearch cluster-features-closed-reference" version="2019.7">
+	<description> -  Closed-reference clustering of features.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime vsearch cluster-features-closed-reference
+--i-sequences=$isequences
+--i-table=$itable
+--i-reference-sequences=$ireferencesequences
+
+#if str($ppercidentity):
+  --p-perc-identity="$ppercidentity"
+#end if
+
+#if str($pstrand) != 'None':
+ --p-strand=$pstrand
+#end if
+
+#set $pthreads = '${GALAXY_SLOTS:-4}'
+
+#if str($pthreads):
+ --p-threads="$pthreads"
+#end if
+
+--o-clustered-table=oclusteredtable
+--o-clustered-sequences=oclusteredsequences
+--o-unmatched-sequences=ounmatchedsequences
+;
+cp oclusteredtable.qza $oclusteredtable;
+cp oclusteredsequences.qza $oclusteredsequences;
+cp ounmatchedsequences.qza $ounmatchedsequences
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-sequences: ARTIFACT FeatureData[Sequence] The sequences corresponding to the features in table.                                    [required]" name="isequences" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] The feature table to be clustered.        [required]" name="itable" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-reference-sequences: ARTIFACT FeatureData[Sequence] The sequences to use as cluster centroids. [required]" name="ireferencesequences" optional="False" type="data"/>
+		<param label="--p-perc-identity: PROPORTION Range(0, 1, inclusive_start=False, inclusive_end=True)   The percent identity at which clustering should be performed. This parameter maps to vsearch's --id parameter.                                [required]" name="ppercidentity" optional="False" type="float" value="" min="0" max="1" exclude_max="False" />
+		<param label="--p-strand: " name="pstrand" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="plus">plus</option>
+			<option value="both">both</option>
+		</param>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: clusteredtable.qza" name="oclusteredtable"/>
+		<data format="qza" label="${tool.name} on ${on_string}: clusteredsequences.qza" name="oclusteredsequences"/>
+		<data format="qza" label="${tool.name} on ${on_string}: unmatchedsequences.qza" name="ounmatchedsequences"/>
+	</outputs>
+	<help><![CDATA[
+Open-reference clustering of features.
+######################################
+
+Given a feature table and the associated feature sequences, cluster the
+features against a reference database based on user-specified percent
+identity threshold of their sequences. Any sequences that don't match are
+then clustered de novo. This is not a general-purpose clustering method,
+but rather is intended to be used for clustering the results of quality-
+filtering/dereplication methods, such as DADA2, or for re-clustering a
+FeatureTable at a lower percent identity than it was originally clustered
+at. When a group of features in the input table are clustered into a single
+feature, the frequency of that single feature in a given sample is the sum
+of the frequencies of the features that were clustered in that sample.
+Feature identifiers will be inherited from the centroid feature of each
+cluster. For features that match a reference sequence, the centroid feature
+is that reference sequence, so its identifier will become the feature
+identifier. The clustered_sequences result will contain feature
+representative sequences that are derived from the sequences input for all
+features in clustered_table. This will always be the most abundant sequence
+in the cluster. The new_reference_sequences result will contain the entire
+reference database, plus feature representative sequences for any de novo
+features. This is intended to be used as a reference database in subsequent
+iterations of cluster_features_open_reference, if applicable. See the
+vsearch documentation for details on how sequence clustering is performed.
+
+Parameters
+----------
+sequences : FeatureData[Sequence]
+    The sequences corresponding to the features in table.
+table : FeatureTable[Frequency]
+    The feature table to be clustered.
+reference_sequences : FeatureData[Sequence]
+    The sequences to use as cluster centroids.
+perc_identity : Float % Range(0, 1, inclusive_start=False, inclusive_end=True)
+    The percent identity at which clustering should be performed. This
+    parameter maps to vsearch's --id parameter.
+strand : Str % Choices('plus', 'both'), optional
+    Search plus (i.e., forward) or both (i.e., forward and reverse
+    complement) strands.
+
+Returns
+-------
+clustered_table : FeatureTable[Frequency]
+    The table following clustering of features.
+clustered_sequences : FeatureData[Sequence]
+    Sequences representing clustered features.
+new_reference_sequences : FeatureData[Sequence]
+    The new reference sequences. This can be used for subsequent runs of
+    open-reference clustering for consistent definitions of features across
+    open-reference feature tables.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

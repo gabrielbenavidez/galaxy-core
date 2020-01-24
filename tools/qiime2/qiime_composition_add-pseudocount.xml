@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<tool id="qiime_composition_add-pseudocount" name="qiime composition add-pseudocount" version="2019.7">
+	<description> - Add pseudocount to table</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime composition add-pseudocount
+
+--i-table=$itable
+--o-composition-table=ocompositiontable
+
+#if str($ppseudocount):
+ --p-pseudocount=$ppseudocount
+#end if
+;
+cp ocompositiontable.qza $ocompositiontable
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] The feature table to which pseudocounts should be added.                                       [required]" name="itable" optional="False" type="data"/>
+		<param label="--p-pseudocount: INTEGER The value to add to all counts in the feature table. [default: 1]" name="ppseudocount" optional="True" type="integer" value="1"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: compositiontable.qza" name="ocompositiontable"/>
+	</outputs>
+	<help><![CDATA[
+Add pseudocount to table
+########################
+
+Increment all counts in table by pseudocount.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    The feature table to which pseudocounts should be added.
+pseudocount : Int, optional
+    The value to add to all counts in the feature table.
+
+Returns
+-------
+composition_table : FeatureTable[Composition]
+    The resulting feature table.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

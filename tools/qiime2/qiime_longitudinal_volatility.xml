@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<tool id="qiime_longitudinal_volatility" name="qiime longitudinal volatility" version="2019.7">
+	<description> - Generate interactive volatility plot</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime longitudinal volatility
+
+--p-state-column="$pstatecolumn"
+
+#if str($itable) != 'None':
+ --i-table=$itable
+#end if
+
+
+
+#if '__sq__' in str($pindividualidcolumn):
+  #set $pindividualidcolumn_temp = $pindividualidcolumn.replace('__sq__', "'")
+  #set $pindividualidcolumn = $pindividualidcolumn_temp
+#end if
+
+#if str($pindividualidcolumn):
+ --p-individual-id-column="$pindividualidcolumn"
+#end if
+
+
+
+#if str($pdefaultgroupcolumn):
+ --p-default-group-column="$pdefaultgroupcolumn"
+#end if
+
+#if str($pdefaultmetric):
+ --p-default-metric="$pdefaultmetric"
+#end if
+
+#if str($pyscale) != 'None':
+ --p-yscale=$pyscale
+#end if
+
+
+#if $input_files_mmetadatafile:
+#def list_dict_to_string(list_dict):
+	#set $file_list = list_dict[0]['additional_input'].__getattr__('file_name')
+	#for d in list_dict[1:]:
+		#set $file_list = $file_list + ' --m-metadata-file=' + d['additional_input'].__getattr__('file_name')
+	#end for
+	#return $file_list
+#end def
+ --m-metadata-file=$list_dict_to_string($input_files_mmetadatafile)
+#end if
+
+
+--o-visualization=ovisualization
+;
+qiime tools export --input-path ovisualization.qzv --output-path out   && mkdir -p '$ovisualization.files_path'
+&& cp -r out/* '$ovisualization.files_path'
+&& mv '$ovisualization.files_path/index.html' '$ovisualization';
+	]]></command>
+	<inputs>
+		<param label="--p-state-column: TEXT  Metadata column containing state (time) variable information.                               [required]" name="pstatecolumn" optional="False" type="text"/>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[RelativeFrequency] Feature table containing metrics.          [optional]" name="itable" optional="True" type="data"/>
+		<param label="--p-individual-id-column: TEXT Metadata column containing IDs for individual subjects.                                  [optional]" name="pindividualidcolumn" optional="True" type="text"/>
+		<param label="--p-default-group-column: TEXT The default metadata column on which to separate groups for comparison (all categorical metadata columns will be available in the visualization). [optional]" name="pdefaultgroupcolumn" optional="True" type="text"/>
+		<param label="--p-default-metric: TEXT Numeric metadata or artifact column to test by default (all numeric metadata columns will be available in the visualization).           [optional]" name="pdefaultmetric" optional="True" type="text"/>
+		<param label="--p-yscale: " name="pyscale" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="linear">linear</option>
+			<option value="pow">pow</option>
+			<option value="sqrt">sqrt</option>
+			<option value="log">log</option>
+		</param>
+
+		<repeat name="input_files_mmetadatafile" optional="True" title="--m-metadata-file  [required]">
+			<param label="--m-metadata-file: Metadata file or artifact viewable as metadata. This option may be supplied multiple times to merge metadata. [optional]" name="additional_input" type="data" format="tabular,qza,no_unzip.zip" />
+		</repeat>
+
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: visualization.qzv" name="ovisualization"/>
+	</outputs>
+	<help><![CDATA[
+Generate interactive volatility plot
+####################################
+
+Generate an interactive control chart depicting the longitudinal volatility
+of sample metadata and/or feature frequencies across time (as set using the
+"state_column" parameter). Any numeric metadata column (and metadata-
+transformable artifacts, e.g., alpha diversity results) can be plotted on
+the y-axis, and are selectable using the "metric_column" selector. Metric
+values are averaged to compare across any categorical metadata column using
+the "group_column" selector. Longitudinal volatility for individual
+subjects sampled over time is co-plotted as "spaghetti" plots if the
+"individual_id_column" parameter is used. state_column will typically be a
+measure of time, but any numeric metadata column can be used.
+
+Parameters
+----------
+metadata : Metadata
+    Sample metadata file containing individual_id_column.
+state_column : Str
+    Metadata column containing state (time) variable information.
+individual_id_column : Str, optional
+    Metadata column containing IDs for individual subjects.
+default_group_column : Str, optional
+    The default metadata column on which to separate groups for comparison
+    (all categorical metadata columns will be available in the
+    visualization).
+default_metric : Str, optional
+    Numeric metadata or artifact column to test by default (all numeric
+    metadata columns will be available in the visualization).
+table : FeatureTable[RelativeFrequency], optional
+    Feature table containing metrics.
+yscale : Str % Choices('linear', 'pow', 'sqrt', 'log'), optional
+    y-axis scaling strategy to apply.
+
+Returns
+-------
+visualization : Visualization
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

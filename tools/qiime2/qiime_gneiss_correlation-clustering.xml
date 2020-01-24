@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<tool id="qiime_gneiss_correlation-clustering" name="qiime gneiss correlation-clustering" version="2019.7">
+	<description> - Hierarchical clustering using feature correlation.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime gneiss correlation-clustering
+
+--i-table=$itable
+
+#if $ppseudocount:
+ --p-pseudocount=$ppseudocount
+#end if
+
+--o-clustering=oclustering
+;
+cp oclustering.qza $oclustering
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] The feature table containing the samples in which the columns will be clustered.            [required]" name="itable" optional="False" type="data"/>
+		<param label="--p-pseudocount: NUMBER  The value to add to zero counts in the feature table.                                [default: 0.5]" name="ppseudocount" optional="True" type="float" value="0.5"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: clustering.qza" name="oclustering"/>
+	</outputs>
+	<help><![CDATA[
+Hierarchical clustering using feature correlation.
+##################################################
+
+Build a bifurcating tree that represents a hierarchical clustering of
+features.  The hiearchical clustering uses Ward hierarchical clustering
+based on the degree of proportionality between features.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    The feature table containing the samples in which the columns will be
+    clustered.
+pseudocount : Float, optional
+    The value to add to zero counts in the feature table.
+
+Returns
+-------
+clustering : Hierarchy
+    A hierarchy of feature identifiers where each tip corresponds to the
+    feature identifiers in the table. This tree can contain tip ids that
+    are not present in the table, but all feature ids in the table must be
+    present in this tree.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

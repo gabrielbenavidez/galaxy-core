@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<tool id="qiime_diversity_pcoa" name="qiime diversity pcoa" version="2019.7">
+	<description> - Principal Coordinate Analysis</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime diversity pcoa
+
+--i-distance-matrix=$idistancematrix
+
+#if str($pnumberofdimensions):
+ --p-number-of-dimensions="$pnumberofdimensions"
+#end if
+
+--o-pcoa=opcoa
+;
+cp opcoa.qza $opcoa
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-distance-matrix: ARTIFACT DistanceMatrix     The distance matrix on which PCoA should be computed. [required]" name="idistancematrix" optional="False" type="data"/>
+		<param label="--p-number-of-dimensions: INTEGER Range(1, None)     Dimensions to reduce the distance matrix to. This number determines how many eigenvectors and eigenvalues are returned,and influences the choice of algorithm used to compute them. By default, uses the default eigendecomposition method, SciPy's eigh, which computes all eigenvectors and eigenvalues in an exact manner. For very large matrices, this is expected to be slow. If a value is specified for this parameter, then the fast, heuristic eigendecomposition algorithm fsvd is used, which only computes and returns the number of dimensions specified, but suffers some degree of accuracy loss, the magnitude of which varies across different datasets.                          [optional]" name="pnumberofdimensions" optional="True" min="1" type="integer"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: pcoa.qza" name="opcoa"/>
+	</outputs>
+	<help><![CDATA[
+Principal Coordinate Analysis
+#############################
+
+Apply principal coordinate analysis.
+
+Parameters
+----------
+distance_matrix : DistanceMatrix
+    The distance matrix on which PCoA should be computed.
+number_of_dimensions : Int % Range(1, None), optional
+    Dimensions to reduce the distance matrix to. This number determines how
+    many eigenvectors and eigenvalues are returned,and influences the
+    choice of algorithm used to compute them. By default, uses the default
+    eigendecomposition method, SciPy's eigh, which computes all
+    eigenvectors and eigenvalues in an exact manner. For very large
+    matrices, this is expected to be slow. If a value is specified for this
+    parameter, then the fast, heuristic eigendecomposition algorithm fsvd
+    is used, which only computes and returns the number of dimensions
+    specified, but suffers some degree of accuracy loss, the magnitude of
+    which varies across different datasets.
+
+Returns
+-------
+pcoa : PCoAResults
+    The resulting PCoA matrix.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

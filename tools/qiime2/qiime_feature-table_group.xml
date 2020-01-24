@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<tool id="qiime_feature-table_group" name="qiime feature-table group" version="2019.7">
+	<description> - Group samples or features by a metadata column</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime feature-table group
+
+--i-table=$itable
+--p-axis=$paxis
+--m-metadata-column="$mmetadatacolumn"
+--p-mode=$pmode
+
+
+--m-metadata-file=$mmedatafile
+
+--o-grouped-table=ogroupedtable
+;
+cp ogroupedtable.qza $ogroupedtable
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] The table to group samples or features on.   [required]" name="itable" optional="False" type="data"/>
+		<param label="--p-axis: " name="paxis" optional="False" type="select">
+			<option value="feature">feature</option>
+			<option value="sample">sample</option>
+		</param>
+		<param label="--m-metadata-column: COLUMN  MetadataColumn[Categorical] A column defining the groups. Each unique value will become a new ID for the table on the given `axis`. [required]" name="mmetadatacolumn" optional="False" type="text"/>
+		<param label="--p-mode: " name="pmode" optional="False" type="select">
+			<option value="median-ceiling">median-ceiling</option>
+			<option value="mean-ceiling">mean-ceiling</option>
+			<option value="sum">sum</option>
+		</param>
+
+		<param label="--m-metadata-file  [required]" name="mmedatafile" type="data" format="tabular,qza,no_unzip.zip" />
+
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: groupedtable.qza" name="ogroupedtable"/>
+	</outputs>
+	<help><![CDATA[
+Group samples or features by a metadata column
+##############################################
+
+Group samples or features in a feature table using metadata to define the
+mapping of IDs to a group.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    The table to group samples or features on.
+axis : Str % Choices('sample', 'feature')
+    Along which axis to group. Each ID in the given axis must exist in
+    `metadata`.
+metadata : MetadataColumn[Categorical]
+    A column defining the groups. Each unique value will become a new ID
+    for the table on the given `axis`.
+mode : Str % Choices('median-ceiling', 'mean-ceiling', 'sum')
+    How to combine samples or features within a group. `sum` will sum the
+    frequencies across all samples or features within a group; `mean-
+    ceiling` will take the ceiling of the mean of these frequencies;
+    `median-ceiling` will take the ceiling of the median of these
+    frequencies.
+
+Returns
+-------
+grouped_table : FeatureTable[Frequency]
+    A table that has been grouped along the given `axis`. IDs on that axis
+    are replaced by values in the `metadata` column.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

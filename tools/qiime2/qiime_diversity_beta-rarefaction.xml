@@ -1,0 +1,172 @@
+<?xml version="1.0" ?>
+<tool id="qiime_diversity_beta-rarefaction" name="qiime diversity beta-rarefaction" version="2019.7">
+	<description> - Beta diversity rarefaction</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime diversity beta-rarefaction
+
+--i-table=$itable
+
+--p-metric=$pmetric
+
+--p-clustering-method=$pclusteringmethod
+
+#if str($psamplingdepth):
+ --p-sampling-depth="$psamplingdepth"
+#end if
+
+#if str($iphylogeny) != 'None':
+ --i-phylogeny=$iphylogeny
+#end if
+
+#if str($piterations):
+ --p-iterations=$piterations
+#end if
+
+#if str($pcorrelationmethod) != 'None':
+ --p-correlation-method=$pcorrelationmethod
+#end if
+
+#if str($pcolorscheme) != 'None':
+ --p-color-scheme=$pcolorscheme
+#end if
+
+#if $input_files_mmetadatafile:
+#def list_dict_to_string(list_dict):
+#set $file_list = list_dict[0]['additional_input'].__getattr__('file_name')
+#for d in list_dict[1:]:
+	#set $file_list = $file_list + ' --m-metadata-file=' + d['additional_input'].__getattr__('file_name')
+#end for
+#return $file_list
+#end def
+--m-metadata-file=$list_dict_to_string($input_files_mmetadatafile)
+#end if
+
+--o-visualization=ovisualization
+;
+qiime tools export --input-path ovisualization.qzv --output-path out   && mkdir -p '$ovisualization.files_path'
+&& cp -r out/* '$ovisualization.files_path'
+&& mv '$ovisualization.files_path/index.html' '$ovisualization';
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] Feature table upon which to perform beta diversity rarefaction analyses.                     [required]" name="itable" optional="False" type="data"/>
+		<param label="--p-metric: " name="pmetric" optional="False" type="select">
+			<option value="kulsinski">kulsinski</option>
+			<option value="euclidean">euclidean</option>
+			<option value="wminkowski">wminkowski</option>
+			<option value="dice">dice</option>
+			<option value="correlation">correlation</option>
+			<option value="hamming">hamming</option>
+			<option value="canberra">canberra</option>
+			<option value="canberra_adkins">canberra_adkins</option>
+			<option value="rogerstanimoto">rogerstanimoto</option>
+			<option value="sqeuclidean">sqeuclidean</option>
+			<option value="cosine">cosine</option>
+			<option value="seuclidean">seuclidean</option>
+			<option value="weighted_normalized_unifrac">weighted_normalized_unifrac</option>
+			<option value="sokalmichener">sokalmichener</option>
+			<option value="unweighted_unifrac">unweighted_unifrac</option>
+			<option value="cityblock">cityblock</option>
+			<option value="generalized_unifrac">generalized_unifrac</option>
+			<option value="weighted_unifrac">weighted_unifrac</option>
+			<option value="braycurtis">braycurtis</option>
+			<option value="jaccard">jaccard</option>
+			<option value="sokalsneath">sokalsneath</option>
+			<option value="aitchison">aitchison</option>
+			<option value="matching">matching</option>
+			<option value="chebyshev">chebyshev</option>
+			<option value="russellrao">russellrao</option>
+			<option value="yule">yule</option>
+			<option value="mahalanobis">mahalanobis</option>
+		</param>
+		<param label="--p-clustering-method: " name="pclusteringmethod" optional="False" type="select">
+			<option value="upgma">upgma</option>
+			<option value="nj">nj</option>
+		</param>
+		<param label="--p-sampling-depth: INTEGER Range(1, None)        The total frequency that each sample should be rarefied to prior to computing the diversity metric. [required]" name="psamplingdepth" optional="False" min="1" value="" type="integer"/>
+		<param format="qza,no_unzip.zip" label="--i-phylogeny: ARTIFACT  Phylogenetic tree containing tip identifiers that Phylogeny[Rooted]     correspond to the feature identifiers in the table. This tree can contain tip ids that are not present in the table, but all feature ids in the table must be present in this tree. [required for phylogenetic metrics]                                  [optional]" name="iphylogeny" optional="True" type="data"/>
+		<param label="--p-iterations: INTEGER  Number of times to rarefy the feature table at a Range(2, None)        given sampling depth.                  [default: 10]" name="piterations" optional="True" type="integer" min="2" value="10"/>
+		<param label="--p-correlation-method: " name="pcorrelationmethod" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="spearman">spearman</option>
+			<option value="pearson">pearson</option>
+		</param>
+		<param label="--p-color-scheme: " name="pcolorscheme" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="BrBG">BrBG</option>
+			<option value="BrBG_r">BrBG_r</option>
+			<option value="PRGn">PRGn</option>
+			<option value="PRGn_r">PRGn_r</option>
+			<option value="PiYG">PiYG</option>
+			<option value="PiYG_r">PiYG_r</option>
+			<option value="PuOr">PuOr</option>
+			<option value="PuOr_r">PuOr_r</option>
+			<option value="RdBu">RdBu</option>
+			<option value="RdBu_r">RdBu_r</option>
+			<option value="RdGy">RdGy</option>
+			<option value="RdGy_r">RdGy_r</option>
+			<option value="RdYlBu">RdYlBu</option>
+			<option value="RdYlBu_r">RdYlBu_r</option>
+			<option value="RdYlGn">RdYlGn</option>
+			<option value="RdYlGn_r">RdYlGn_r</option>
+		</param>
+
+		<repeat name="input_files_mmetadatafile" optional="False" title="--m-metadata-file  [required]">
+			<param label="--m-metadata-file: METADATA... (multiple arguments will be merged) The sample metadata used for the Emperor jackknifed PCoA plot. [required]" name="additional_input" type="data" format="tabular,qza,no_unzip.zip" />
+		</repeat>
+
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: visualization.qzv" name="ovisualization"/>
+	</outputs>
+	<help><![CDATA[
+Beta diversity rarefaction
+##########################
+
+Repeatedly rarefy a feature table to compare beta diversity results within
+a given rarefaction depth.  For a given beta diversity metric, this
+visualizer will provide: an Emperor jackknifed PCoA plot, samples clustered
+by UPGMA or neighbor joining with support calculation, and a heatmap
+showing the correlation between rarefaction trials of that beta diversity
+metric.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    Feature table upon which to perform beta diversity rarefaction
+    analyses.
+metric : Str % Choices('generalized_unifrac', 'sokalmichener', 'matching', 'yule', 'weighted_normalized_unifrac', 'dice', 'russellrao', 'rogerstanimoto', 'mahalanobis', 'wminkowski', 'kulsinski', 'aitchison', 'seuclidean', 'correlation', 'sokalsneath', 'hamming', 'jaccard', 'unweighted_unifrac', 'weighted_unifrac', 'cosine', 'canberra', 'euclidean', 'sqeuclidean', 'chebyshev', 'cityblock', 'canberra_adkins', 'braycurtis')
+    The beta diversity metric to be computed.
+clustering_method : Str % Choices('upgma', 'nj')
+    Samples can be clustered with neighbor joining or UPGMA. An arbitrary
+    rarefaction trial will be used for the tree, and the remaining trials
+    are used to calculate the support of the internal nodes of that tree.
+metadata : Metadata
+    The sample metadata used for the Emperor jackknifed PCoA plot.
+sampling_depth : Int % Range(1, None)
+    The total frequency that each sample should be rarefied to prior to
+    computing the diversity metric.
+iterations : Int % Range(2, None), optional
+    Number of times to rarefy the feature table at a given sampling depth.
+phylogeny : Phylogeny[Rooted], optional
+    Phylogenetic tree containing tip identifiers that correspond to the
+    feature identifiers in the table. This tree can contain tip ids that
+    are not present in the table, but all feature ids in the table must be
+    present in this tree. [required for phylogenetic metrics]
+correlation_method : Str % Choices('pearson', 'spearman'), optional
+    The Mantel correlation test to be applied when computing correlation
+    between beta diversity distance matrices.
+color_scheme : Str % Choices('BrBG', 'BrBG_r', 'PRGn', 'PRGn_r', 'PiYG', 'PiYG_r', 'PuOr', 'PuOr_r', 'RdBu', 'RdBu_r', 'RdGy', 'RdGy_r', 'RdYlBu', 'RdYlBu_r', 'RdYlGn', 'RdYlGn_r'), optional
+    The matplotlib color scheme to generate the heatmap with.
+
+Returns
+-------
+visualization : Visualization
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

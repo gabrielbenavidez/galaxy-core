@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<tool id="qiime_sample-classifier_classify-samples-from-dist" name="qiime sample-classifier classify-samples-from-dist" version="2019.7">
+	<description> - Run k-nearest-neighbors on a labeled distance matrix.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime sample-classifier classify-samples-from-dist
+
+--i-distance-matrix=$idistancematrix
+--m-metadata-column="$mmetadatacolumn"
+
+#if str($pk):
+ --p-k=$pk
+#end if
+
+#if str($ppalette) != 'None':
+ --p-palette=$ppalette
+#end if
+
+
+#if $metadatafile:
+ --m-metadata-file=$metadatafile
+#end if
+
+
+--o-predictions=opredictions
+--o-accuracy-results=oaccuracyresults
+;
+cp opredictions.qza $opredictions;
+qiime tools export --input-path oaccuracyresults.qzv --output-path out   && mkdir -p '$oaccuracyresults.files_path'
+&& cp -r out/* '$oaccuracyresults.files_path'
+&& mv '$oaccuracyresults.files_path/index.html' '$oaccuracyresults'
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-distance-matrix: ARTIFACT DistanceMatrix     a distance matrix                            [required]" name="idistancematrix" optional="False" type="data"/>
+		<param label="--m-metadata-column: COLUMN  MetadataColumn[Categorical] Categorical metadata column to use as prediction target.                                      [required]" name="mmetadatacolumn" optional="False" type="text"/>
+		<param label="--p-k: INTEGER        Number of nearest neighbors                [default: 1]" name="pk" optional="True" type="integer" value="1"/>
+		<param label="--p-palette: " name="ppalette" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="YellowOrangeBrown">YellowOrangeBrown</option>
+			<option value="YellowOrangeRed">YellowOrangeRed</option>
+			<option value="OrangeRed">OrangeRed</option>
+			<option value="PurpleRed">PurpleRed</option>
+			<option value="RedPurple">RedPurple</option>
+			<option value="BluePurple">BluePurple</option>
+			<option value="GreenBlue">GreenBlue</option>
+			<option value="PurpleBlue">PurpleBlue</option>
+			<option value="YellowGreen">YellowGreen</option>
+			<option value="summer">summer</option>
+			<option value="copper">copper</option>
+			<option value="viridis">viridis</option>
+			<option value="plasma">plasma</option>
+			<option value="inferno">inferno</option>
+			<option value="magma">magma</option>
+			<option value="sirocco">sirocco</option>
+			<option value="drifting">drifting</option>
+			<option value="melancholy">melancholy</option>
+			<option value="enigma">enigma</option>
+			<option value="eros">eros</option>
+			<option value="spectre">spectre</option>
+			<option value="ambition">ambition</option>
+			<option value="mysteriousstains">mysteriousstains</option>
+			<option value="daydream">daydream</option>
+			<option value="solano">solano</option>
+			<option value="navarro">navarro</option>
+			<option value="dandelions">dandelions</option>
+			<option value="deepblue">deepblue</option>
+			<option value="verve">verve</option>
+			<option value="greyscale">greyscale</option>
+		</param>
+
+		<param label="--m-metadata-file METADATA" name="metadatafile" type="data" format="tabular,qza,no_unzip.zip" />
+
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: predictions.qza" name="opredictions"/>
+		<data format="html" label="${tool.name} on ${on_string}: accuracyresults.qzv" name="oaccuracyresults"/>
+	</outputs>
+	<help><![CDATA[
+Run k-nearest-neighbors on a labeled distance matrix.
+#####################################################
+
+Run k-nearest-neighbors on a labeled distance matrix. Return cross-
+validated (leave one out) predictions and  accuracy. k = 1 by default
+
+Parameters
+----------
+distance_matrix : DistanceMatrix
+    a distance matrix
+metadata : MetadataColumn[Categorical]
+    Categorical metadata column to use as prediction target.
+k : Int, optional
+    Number of nearest neighbors
+palette : Str % Choices('YellowOrangeBrown', 'YellowOrangeRed', 'OrangeRed', 'PurpleRed', 'RedPurple', 'BluePurple', 'GreenBlue', 'PurpleBlue', 'YellowGreen', 'summer', 'copper', 'viridis', 'plasma', 'inferno', 'magma', 'sirocco', 'drifting', 'melancholy', 'enigma', 'eros', 'spectre', 'ambition', 'mysteriousstains', 'daydream', 'solano', 'navarro', 'dandelions', 'deepblue', 'verve', 'greyscale'), optional
+    The color palette to use for plotting.
+
+Returns
+-------
+predictions : SampleData[ClassifierPredictions]
+    leave one out predictions for each sample
+accuracy_results : Visualization
+    Accuracy results visualization.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

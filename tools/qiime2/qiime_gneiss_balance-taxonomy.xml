@@ -1,0 +1,129 @@
+<?xml version="1.0" ?>
+<tool id="qiime_gneiss_balance-taxonomy" name="qiime gneiss balance-taxonomy" version="2019.7">
+	<description> - Balance Summary</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime gneiss balance-taxonomy
+
+
+#if str( $id_to_taxonomy_fp.selector ) == 'history'
+	#set $tax = $id_to_taxonomy_fp.taxonomy_fp
+	--i-taxonomy '$tax'
+#else:
+	#set $tax = $id_to_taxonomy_fp.taxonomy_fp.fields.path
+	--i-taxonomy '$tax'
+#end if
+
+
+--i-table=$itable
+--i-tree=$itree
+--p-balance-name="$pbalancename"
+
+
+
+#if $metadatafile:
+ --m-metadata-file=$metadatafile
+#end if
+
+
+
+#if str($ppseudocount):
+ --p-pseudocount=$ppseudocount
+#end if
+
+#if str($ptaxalevel):
+ --p-taxa-level=$ptaxalevel
+#end if
+
+#if str($pnfeatures):
+ --p-n-features=$pnfeatures
+#end if
+
+#if str($pthreshold):
+ --p-threshold="$pthreshold"
+#end if
+#if str($mmetadatacolumn):
+ --m-metadata-column="$mmetadatacolumn"
+#end if
+
+--o-visualization=ovisualization
+;
+qiime tools export --input-path ovisualization.qzv --output-path out   && mkdir -p '$ovisualization.files_path'
+&& cp -r out/* '$ovisualization.files_path'
+&& mv '$ovisualization.files_path/index.html' '$ovisualization'
+	]]></command>
+	<inputs>
+
+		<conditional name="id_to_taxonomy_fp" optional="True">
+		   <param name="selector" type="select" label="Reference taxonomy to query">
+			  <option value="cached">Public databases</option>
+			  <option value="history">Databases from your history</option>
+		   </param>
+		   <when value="cached">
+			  <param argument="--taxonomy_fp" label="Reference taxonomy" type="select" optional="True">
+				 <options from_data_table="qiime_taxonomy" />
+			  </param>
+		   </when>
+		   <when value="history">
+			  <param argument="--taxonomy_fp" type="data" format="qza,no_unzip.zip" label="Reference databases" optional="True" />
+		   </when>
+		</conditional>
+
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] A table of abundances.                    [required]" name="itable" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-tree: ARTIFACT       The tree used to calculate the balances. Hierarchy                                                       [required]" name="itree" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-taxonomy: ARTIFACT FeatureData[Taxonomy] Taxonomy information for the OTUs.        [required]" name="itaxonomy" optional="False" type="data"/>
+		<param label="--p-balance-name: TEXT   Name of the balance to summarize.         [required]" name="pbalancename" optional="False" type="text"/>
+		<param label="--p-pseudocount: NUMBER  The pseudocount to add to avoid division by zero. [default: 0.5]" name="ppseudocount" optional="True" type="float" value="0.5"/>
+		<param label="--p-taxa-level: INTEGER  Level of taxonomy to summarize.         [default: 0]" name="ptaxalevel" optional="True" type="integer" value="0"/>
+		<param label="--p-n-features: INTEGER  The number of features to plot in the proportion plot.                                  [default: 10]" name="pnfeatures" optional="True" type="integer" value="10"/>
+		<param label="--p-threshold: NUMBER    A threshold to designate discrete categories for a numerical metadata column. This will split the numerical column values into two categories, values below the threshold, and values above the threshold. If not specified, this threshold will default to the mean.                                     [optional]" name="pthreshold" optional="True" type="float"/>
+		<param label="--m-metadata-column: COLUMN  MetadataColumn[Categorical | Numeric] Metadata column for plotting the balance (optional).                               [optional]" name="mmetadatacolumn" optional="True" type="text"/>
+
+		<param label="--m-metadata-file METADATA" name="metadatafile" type="data" format="tabular,qza,no_unzip.zip"  optional="True" />
+
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: visualization.qzv" name="ovisualization"/>
+	</outputs>
+	<help><![CDATA[
+Balance Summary
+###############
+
+Visualize the distribution of a single balance and summarize its numerator
+and denominator components.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    A table of abundances.
+tree : Hierarchy
+    The tree used to calculate the balances.
+taxonomy : FeatureData[Taxonomy]
+    Taxonomy information for the OTUs.
+balance_name : Str
+    Name of the balance to summarize.
+pseudocount : Float, optional
+    The pseudocount to add to avoid division by zero.
+taxa_level : Int, optional
+    Level of taxonomy to summarize.
+n_features : Int, optional
+    The number of features to plot in the proportion plot.
+threshold : Float, optional
+    A threshold to designate discrete categories for a numerical metadata
+    column. This will split the numerical column values into two
+    categories, values below the threshold, and values above the threshold.
+    If not specified, this threshold will default to the mean.
+metadata : MetadataColumn[Categorical | Numeric], optional
+    Metadata column for plotting the balance (optional).
+
+Returns
+-------
+visualization : Visualization
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

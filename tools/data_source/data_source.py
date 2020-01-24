@@ -8,6 +8,10 @@ from json import dumps, loads
 
 from six.moves.urllib.parse import urlencode, urlparse
 from six.moves.urllib.request import urlopen
+#added by Gabriel
+from six.moves.urllib import request
+
+
 
 from galaxy.datatypes import sniff
 from galaxy.datatypes.registry import Registry
@@ -68,6 +72,7 @@ def __main__():
 
     URL = params.get('URL', None)  # using exactly URL indicates that only one dataset is being downloaded
     URL_method = params.get('URL_method', None)
+    token = 'GtAuth token={0}'.format(params.get('token', None))
 
     # The Python support for fetching resources from the web is layered. urllib uses the httplib
     # library, which in turn uses the socket library.  As of Python 2.3 you can specify how long
@@ -87,11 +92,14 @@ def __main__():
         # The following calls to urlopen() will use the above default timeout
         try:
             if not URL_method or URL_method == 'get':
-                page = urlopen(cur_URL)
+                request_obj = request.Request(url=cur_URL)
+                request_obj.add_header('authorization', token)
+                request_obj.add_header('Accept','text/csv')
+                page = urlopen(request_obj)
             elif URL_method == 'post':
                 page = urlopen(cur_URL, urlencode(params).encode("utf-8"))
         except Exception as e:
-            stop_err('The remote data source application may be off line, please try again later. Error: %s' % str(e))
+            stop_err('Error: url=%s, token=%s\n  %s' % (cur_URL, token, e))
         if max_file_size:
             file_size = int(page.info().get('Content-Length', 0))
             if file_size > max_file_size:

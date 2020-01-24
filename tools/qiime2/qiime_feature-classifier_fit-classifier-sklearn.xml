@@ -1,0 +1,86 @@
+<?xml version="1.0" ?>
+<tool id="qiime_feature-classifier_fit-classifier-sklearn" name="qiime feature-classifier fit-classifier-sklearn" version="2019.7">
+	<description> - Train an almost arbitrary scikit-learn classifier</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime feature-classifier fit-classifier-sklearn
+
+--i-reference-reads=$ireferencereads
+
+
+#if str( $id_to_taxonomy_fp.selector ) == 'history'
+#set $tax = $id_to_taxonomy_fp.taxonomy_fp
+--i-reference-taxonomy '$tax'
+#else:
+#set $tax = $id_to_taxonomy_fp.taxonomy_fp.fields.path
+--i-reference-taxonomy '$tax'
+#end if
+
+
+--p-classifier-specification="$pclassifierspecification"
+
+#if str($iclassweight) != 'None':
+ --i-class-weight=$iclassweight
+#end if
+
+--o-classifier=oclassifier
+;
+cp oclassifier.qza $oclassifier
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-reference-reads: ARTIFACT FeatureData[Sequence] [required]" name="ireferencereads" optional="False" type="data"/>
+		
+		<conditional name="id_to_taxonomy_fp" optional="True">
+		   <param name="selector" type="select" label="Reference taxonomy to query">
+			  <option value="cached">Public databases</option>
+			  <option value="history">Databases from your history</option>
+		   </param>
+		   <when value="cached">
+			  <param argument="--taxonomy_fp" label="Reference taxonomy" type="select" optional="True">
+				 <options from_data_table="qiime_taxonomy" />
+			  </param>
+		   </when>
+		   <when value="history">
+			  <param argument="--taxonomy_fp" type="data" format="qza,no_unzip.zip" label="Reference databases" optional="True" />
+		   </when>
+		</conditional>
+		
+		<param label="--p-classifier-specification: TEXT [required]" name="pclassifierspecification" optional="False" type="text"/>
+		<param format="qza,no_unzip.zip" label="--i-class-weight: ARTIFACT FeatureTable[RelativeFrequency] [optional]" name="iclassweight" optional="True" type="data"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: classifier.qza" name="oclassifier"/>
+	</outputs>
+	<help><![CDATA[
+rain an almost arbitrary scikit-learn classifier
+################################################
+
+Train a scikit-learn classifier to classify reads.
+
+Parameters
+----------
+reference_reads : FeatureData[Sequence]
+	\
+
+reference_taxonomy : FeatureData[Taxonomy]
+	\
+
+classifier_specification : Str
+	\
+
+class_weight : FeatureTable[RelativeFrequency], optional
+	\
+
+Returns
+-------
+classifier : TaxonomicClassifier
+	\
+
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

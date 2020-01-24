@@ -1,0 +1,105 @@
+<?xml version="1.0" ?>
+<tool id="qiime_sample-classifier_confusion-matrix" name="qiime sample-classifier confusion-matrix" version="2019.7">
+	<description> - Make a confusion matrix from sample classifier predictions.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime sample-classifier confusion-matrix
+
+--i-predictions=$ipredictions
+--m-truth-column="$mtruthcolumn"
+--m-truth-file=mtruthfile
+
+#if str($pmissingsamples) != 'None':
+ --p-missing-samples=$pmissingsamples
+#end if
+
+#if str($ppalette) != 'None':
+ --p-palette=$ppalette
+#end if
+
+--o-visualization=ovisualization
+;
+qiime tools export --input-path ovisualization.qzv --output-path out   && mkdir -p '$ovisualization.files_path'
+&& cp -r out/* '$ovisualization.files_path'
+&& mv '$ovisualization.files_path/index.html' '$ovisualization';
+cp mtruthfile.qza $mtruthfile
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-predictions: ARTIFACT SampleData[ClassifierPredictions] Predicted values to plot on x axis. Should be predictions of categorical data produced by a sample classifier.                                  [required]" name="ipredictions" optional="False" type="data"/>
+		<param label="--m-truth-column: COLUMN  MetadataColumn[Categorical] Metadata column (true values) to plot on y axis. [required]" name="mtruthcolumn" optional="False" type="text"/>
+		<param label="--p-missing-samples: " name="pmissingsamples" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="error">error</option>
+			<option value="ignore">ignore</option>
+		</param>
+		<param label="--p-palette: " name="ppalette" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="YellowOrangeBrown">YellowOrangeBrown</option>
+			<option value="YellowOrangeRed">YellowOrangeRed</option>
+			<option value="OrangeRed">OrangeRed</option>
+			<option value="PurpleRed">PurpleRed</option>
+			<option value="RedPurple">RedPurple</option>
+			<option value="BluePurple">BluePurple</option>
+			<option value="GreenBlue">GreenBlue</option>
+			<option value="PurpleBlue">PurpleBlue</option>
+			<option value="YellowGreen">YellowGreen</option>
+			<option value="summer">summer</option>
+			<option value="copper">copper</option>
+			<option value="viridis">viridis</option>
+			<option value="plasma">plasma</option>
+			<option value="inferno">inferno</option>
+			<option value="magma">magma</option>
+			<option value="sirocco">sirocco</option>
+			<option value="drifting">drifting</option>
+			<option value="melancholy">melancholy</option>
+			<option value="enigma">enigma</option>
+			<option value="eros">eros</option>
+			<option value="spectre">spectre</option>
+			<option value="ambition">ambition</option>
+			<option value="mysteriousstains">mysteriousstains</option>
+			<option value="daydream">daydream</option>
+			<option value="solano">solano</option>
+			<option value="navarro">navarro</option>
+			<option value="dandelions">dandelions</option>
+			<option value="deepblue">deepblue</option>
+			<option value="verve">verve</option>
+			<option value="greyscale">greyscale</option>
+		</param>
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: visualization.qzv" name="ovisualization"/>
+		<data format="qza" label="${tool.name} on ${on_string}: truthfile.qza" name="mtruthfile"/>
+	</outputs>
+	<help><![CDATA[
+Make a confusion matrix from sample classifier predictions.
+###########################################################
+
+Make a confusion matrix and calculate accuracy of predicted vs. true values
+for a set of samples classified using a sample classifier.
+
+Parameters
+----------
+predictions : SampleData[ClassifierPredictions]
+    Predicted values to plot on x axis. Should be predictions of
+    categorical data produced by a sample classifier.
+truth : MetadataColumn[Categorical]
+    Metadata column (true values) to plot on y axis.
+missing_samples : Str % Choices('error', 'ignore'), optional
+    How to handle missing samples in metadata. "error" will fail if missing
+    samples are detected. "ignore" will cause the feature table and
+    metadata to be filtered, so that only samples found in both files are
+    retained.
+palette : Str % Choices('YellowOrangeBrown', 'YellowOrangeRed', 'OrangeRed', 'PurpleRed', 'RedPurple', 'BluePurple', 'GreenBlue', 'PurpleBlue', 'YellowGreen', 'summer', 'copper', 'viridis', 'plasma', 'inferno', 'magma', 'sirocco', 'drifting', 'melancholy', 'enigma', 'eros', 'spectre', 'ambition', 'mysteriousstains', 'daydream', 'solano', 'navarro', 'dandelions', 'deepblue', 'verve', 'greyscale'), optional
+    The color palette to use for plotting.
+
+Returns
+-------
+visualization : Visualization
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

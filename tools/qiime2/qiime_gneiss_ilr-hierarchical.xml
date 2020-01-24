@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<tool id="qiime_gneiss_ilr-hierarchical" name="qiime gneiss ilr-hierarchical" version="2019.7">
+	<description> - Isometric Log-ratio Transform applied to a hierarchical clustering</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime gneiss ilr-hierarchical
+
+--i-table=$itable
+--i-tree=$itree
+
+#if str($ppseudocount):
+ --p-pseudocount=$ppseudocount
+#end if
+
+--o-balances=obalances
+;
+cp obalances.qza $obalances
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency | Composition] The feature table containing the samples in which the ilr transform will be performed.      [required]" name="itable" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-tree: ARTIFACT       A hierarchy of feature identifiers that defines the Hierarchy             partitions of features.  Each tip in the hierarchycorresponds to the feature identifiers in the table. This tree can contain tip ids that are not present in the table, but all feature ids in the table must be present in this tree.  This assumes that all of the internal nodes in the tree have labels.                                   [required]" name="itree" optional="False" type="data"/>
+		<param label="--p-pseudocount: NUMBER  The value to add to zero counts in the feature table.                                [default: 0.5]" name="ppseudocount" optional="True" type="float" value="0.5"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: balances.qza" name="obalances"/>
+	</outputs>
+	<help><![CDATA[
+Isometric Log-ratio Transform applied to a hierarchical clustering
+##################################################################
+
+Calculate balances given a hierarchy.
+
+Parameters
+----------
+table : FeatureTable[Frequency | Composition]
+    The feature table containing the samples in which the ilr transform
+    will be performed.
+tree : Hierarchy
+    A hierarchy of feature identifiers that defines the partitions of
+    features.  Each tip in the hierarchycorresponds to the feature
+    identifiers in the table. This tree can contain tip ids that are not
+    present in the table, but all feature ids in the table must be present
+    in this tree.  This assumes that all of the internal nodes in the tree
+    have labels.
+pseudocount : Float, optional
+    The value to add to zero counts in the feature table.
+
+Returns
+-------
+balances : FeatureTable[Balance]
+    The resulting balances from the ilr transform.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

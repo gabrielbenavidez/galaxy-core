@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<tool id="qiime_feature-table_rarefy" name="qiime feature-table rarefy" version="2019.7">
+	<description> - Rarefy table</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime feature-table rarefy
+
+--i-table=$itable
+
+#if str($psamplingdepth):
+ --p-sampling-depth="$psamplingdepth"
+#end if
+
+#if $pwithreplacement:
+ --p-with-replacement
+#end if
+
+--o-rarefied-table=orarefiedtable
+;
+cp orarefiedtable.qza $orarefiedtable
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] The feature table to be rarefied.            [required]" name="itable" optional="False" type="data"/>
+		<param label="--p-sampling-depth: INTEGER Range(1, None)     The total frequency that each sample should be rarefied to. Samples where the sum of frequencies is less than the sampling depth will be not be included in the resulting table unless subsampling is performed with replacement.                            [required]" name="psamplingdepth" optional="False" min="1" value="" type="integer"/>
+		<param label="--p-with-replacement: --p-no-with-replacement Rarefy with replacement by sampling from the multinomial distribution instead of rarefying without replacement.                           [default: False]" name="pwithreplacement" selected="False" type="boolean"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: rarefiedtable.qza" name="orarefiedtable"/>
+	</outputs>
+	<help><![CDATA[
+Rarefy table
+############
+
+Subsample frequencies from all samples so that the sum of frequencies in
+each sample is equal to sampling-depth.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    The feature table to be rarefied.
+sampling_depth : Int % Range(1, None)
+    The total frequency that each sample should be rarefied to. Samples
+    where the sum of frequencies is less than the sampling depth will be
+    not be included in the resulting table unless subsampling is performed
+    with replacement.
+with_replacement : Bool, optional
+    Rarefy with replacement by sampling from the multinomial distribution
+    instead of rarefying without replacement.
+
+Returns
+-------
+rarefied_table : FeatureTable[Frequency]
+    The resulting rarefied feature table.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

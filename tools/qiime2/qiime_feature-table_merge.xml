@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<tool id="qiime_feature-table_merge" name="qiime feature-table merge" version="2019.7">
+	<description> - Combine multiple tables</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime feature-table merge
+
+#if $input_files_itables:
+#def list_dict_to_string(list_dict):
+	#set $file_list = list_dict[0]['additional_input'].__getattr__('file_name')
+	#for d in list_dict[1:]:
+		#set $file_list = $file_list + ' --i-tables=' + d['additional_input'].__getattr__('file_name')
+	#end for
+	#return $file_list
+#end def
+ --i-tables=$list_dict_to_string($input_files_itables)
+#end if
+
+
+#if str($poverlapmethod) != 'None':
+ --p-overlap-method=$poverlapmethod
+#end if
+
+
+--o-merged-table=omergedtable
+;
+cp omergedtable.qza $omergedtable
+	]]></command>
+	<inputs>
+		<repeat name="input_files_itables" optional="False" title="--i-tables">
+			<param format="qza,no_unzip.zip" label="--i-tables: PATH List[FeatureTable[Frequency]] The collection of feature tables to be merged.  [required]" name="additional_input" type="data"/>
+		</repeat>
+
+		<param label="--p-overlap-method: " name="poverlapmethod" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="error_on_overlapping_sample">error_on_overlapping_sample</option>
+			<option value="error_on_overlapping_feature">error_on_overlapping_feature</option>
+			<option value="sum">sum</option>
+		</param>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: mergedtable.qza" name="omergedtable"/>
+	</outputs>
+	<help><![CDATA[
+Combine multiple tables
+#######################
+
+Combines feature tables using the `overlap_method` provided.
+
+Parameters
+----------
+tables : List[FeatureTable[Frequency]]
+    The collection of feature tables to be merged.
+overlap_method : Str % Choices('error_on_overlapping_sample', 'error_on_overlapping_feature', 'sum'), optional
+    Method for handling overlapping ids.
+
+Returns
+-------
+merged_table : FeatureTable[Frequency]
+    The resulting merged feature table.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

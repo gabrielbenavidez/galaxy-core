@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<tool id="qiime_quality-control_evaluate-taxonomy" name="qiime quality-control evaluate-taxonomy" version="2019.7">
+	<description> - Evaluate expected vs. observed taxonomic assignments</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime quality-control evaluate-taxonomy
+
+--i-expected-taxa=$iexpectedtaxa
+--i-observed-taxa=$iobservedtaxa
+
+#if str($pdepth):
+ --p-depth="$pdepth"
+#end if
+
+#if str($ifeaturetable) != 'None':
+ --i-feature-table=$ifeaturetable
+#end if
+
+#if str($ppalette) != 'None':
+ --p-palette=$ppalette
+#end if
+
+#if $pnorequireexpids:
+ --p-no-require-exp-ids
+#end if
+
+#if $pnorequireobsids:
+ --p-no-require-obs-ids
+#end if
+
+#if str($psampleid):
+ --p-sample-id="$psampleid"
+#end if
+
+--o-visualization=ovisualization
+;
+qiime tools export --input-path ovisualization.qzv --output-path out   && mkdir -p '$ovisualization.files_path'
+&& cp -r out/* '$ovisualization.files_path'
+&& mv '$ovisualization.files_path/index.html' '$ovisualization'
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-expected-taxa: ARTIFACT FeatureData[Taxonomy] Expected taxonomic assignments               [required]" name="iexpectedtaxa" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-observed-taxa: ARTIFACT FeatureData[Taxonomy] Observed taxonomic assignments               [required]" name="iobservedtaxa" optional="False" type="data"/>
+		<param label="--p-depth: INTEGER    Maximum depth of semicolon-delimited taxonomic ranks to test (e.g., 1 = root, 7 = species for the greengenes reference sequence database).                [required]" name="pdepth" optional="False" value="" type="integer"/>
+		<param format="qza,no_unzip.zip" label="--i-feature-table: ARTIFACT FeatureTable[RelativeFrequency] Optional feature table containing relative frequency of each feature, used to weight accuracy scores by frequency. Must contain all features found in expected and/or observed taxa. Features found in the table but not the expected/observed taxa will be dropped prior to analysis.                                    [optional]" name="ifeaturetable" optional="True" type="data"/>
+		<param label="--p-palette: " name="ppalette" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="Set1">Set1</option>
+			<option value="Set2">Set2</option>
+			<option value="Set3">Set3</option>
+			<option value="Pastel1">Pastel1</option>
+			<option value="Pastel2">Pastel2</option>
+			<option value="Paired">Paired</option>
+			<option value="Accent">Accent</option>
+			<option value="Dark2">Dark2</option>
+			<option value="tab10">tab10</option>
+			<option value="tab20">tab20</option>
+			<option value="tab20b">tab20b</option>
+			<option value="tab20c">tab20c</option>
+			<option value="viridis">viridis</option>
+			<option value="plasma">plasma</option>
+			<option value="inferno">inferno</option>
+			<option value="magma">magma</option>
+			<option value="terrain">terrain</option>
+			<option value="rainbow">rainbow</option>
+		</param>
+		<param label="--p-no-require-exp-ids: Do not require that all features found in observed taxa must be found in expected taxa or raise error. [default: False]" name="pnorequireexpids" selected="False" type="boolean"/>
+		<param label="--p-no-require-obs-ids: Require that all features found in expected taxa must be found in observed taxa or raise error. [default: False]" name="pnorequireobsids" selected="False" type="boolean"/>
+		<param label="--p-sample-id: TEXT   Optional sample ID to use for extracting frequency data from feature table, and for labeling accuracy results. If no sample-id is provided, feature frequencies are derived from the sum of all samples present in the feature table.                [optional]" name="psampleid" optional="True" type="text"/>
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: visualization.qzv" name="ovisualization"/>
+	</outputs>
+	<help><![CDATA[
+Evaluate expected vs. observed taxonomic assignments
+####################################################
+
+This visualizer compares a pair of observed and expected taxonomic
+assignments to calculate precision, recall, and F-measure at each taxonomic
+level, up to maximum level specified by the depth parameter. These metrics
+are calculated at each semicolon-delimited rank. This action is useful for
+comparing the accuracy of taxonomic assignment, e.g., between different
+taxonomy classifiers or other bioinformatics methods. Expected taxonomies
+should be derived from simulated or mock community sequences that have
+known taxonomic affiliations.
+
+Parameters
+----------
+expected_taxa : FeatureData[Taxonomy]
+    Expected taxonomic assignments
+observed_taxa : FeatureData[Taxonomy]
+    Observed taxonomic assignments
+depth : Int
+    Maximum depth of semicolon-delimited taxonomic ranks to test (e.g., 1 =
+    root, 7 = species for the greengenes reference sequence database).
+palette : Str % Choices('Set1', 'Set2', 'Set3', 'Pastel1', 'Pastel2', 'Paired', 'Accent', 'Dark2', 'tab10', 'tab20', 'tab20b', 'tab20c', 'viridis', 'plasma', 'inferno', 'magma', 'terrain', 'rainbow'), optional
+    Color palette to utilize for plotting.
+require_exp_ids : Bool, optional
+    Require that all features found in observed taxa must be found in
+    expected taxa or raise error.
+require_obs_ids : Bool, optional
+    Require that all features found in expected taxa must be found in
+    observed taxa or raise error.
+feature_table : FeatureTable[RelativeFrequency], optional
+    Optional feature table containing relative frequency of each feature,
+    used to weight accuracy scores by frequency. Must contain all features
+    found in expected and/or observed taxa. Features found in the table but
+    not the expected/observed taxa will be dropped prior to analysis.
+sample_id : Str, optional
+    Optional sample ID to use for extracting frequency data from feature
+    table, and for labeling accuracy results. If no sample_id is provided,
+    feature frequencies are derived from the sum of all samples present in
+    the feature table.
+
+Returns
+-------
+visualization : Visualization
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

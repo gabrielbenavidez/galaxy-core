@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<tool id="qiime_emperor_plot" name="qiime emperor plot" version="2019.7">
+	<description> - Visualize and Interact with Principal Coordinates Analysis Plots</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime emperor plot
+
+--i-pcoa=$ipcoa
+
+
+#if $input_files_mmetadatafile:
+#def list_dict_to_string(list_dict):
+	#set $file_list = list_dict[0]['additional_input'].__getattr__('file_name')
+	#for d in list_dict[1:]:
+		#set $file_list = $file_list + ' --m-metadata-file=' + d['additional_input'].__getattr__('file_name')
+	#end for
+	#return $file_list
+#end def
+ --m-metadata-file=$list_dict_to_string($input_files_mmetadatafile)
+#end if
+
+
+#if str($pcustomaxes):
+ --p-custom-axes="$pcustomaxes"
+#end if
+
+#if $pignoremissingsamples:
+ --p-ignore-missing-samples
+#end if
+
+--o-visualization=ovisualization
+;
+qiime tools export --input-path ovisualization.qzv --output-path out   && mkdir -p '$ovisualization.files_path'
+&& cp -r out/* '$ovisualization.files_path'
+&& mv '$ovisualization.files_path/index.html' '$ovisualization'
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-pcoa: ARTIFACT    The principal coordinates matrix to be plotted. PCoAResults                                                     [required]" name="ipcoa" optional="False" type="data"/>
+		<param label="--p-custom-axes: TEXT... List[Str]          Numeric sample metadata columns that should be included as axes in the Emperor plot.        [optional]" name="pcustomaxes" optional="True" type="text"/>
+		<param label="--p-ignore-missing-samples: --p-no-ignore-missing-samples This will suppress the error raised when the coordinates matrix contains samples that are not present in the metadata. Samples without metadata are included by setting all metadata values to: 'This sample has no metadata'. This flag is only applied if at least one sample is present in both the coordinates matrix and the metadata.               [default: False]" name="pignoremissingsamples" selected="False" type="boolean"/>
+
+		<repeat name="input_files_mmetadatafile" optional="True" title="--m-metadata-file [required]">
+			<param label="--m-metadata-file: Metadata file or artifact viewable as metadata. This option may be supplied multiple times to merge metadata. [optional]" name="additional_input" type="data" format="tabular,qza,no_unzip.zip" />
+		</repeat>
+
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: visualization.qzv" name="ovisualization"/>
+	</outputs>
+	<help><![CDATA[
+Visualize and Interact with Principal Coordinates Analysis Plots
+################################################################
+
+Generates an interactive ordination plot where the user can visually
+integrate sample metadata.
+
+Parameters
+----------
+pcoa : PCoAResults
+    The principal coordinates matrix to be plotted.
+metadata : Metadata
+    The sample metadata.
+custom_axes : List[Str], optional
+    Numeric sample metadata columns that should be included as axes in the
+    Emperor plot.
+ignore_missing_samples : Bool, optional
+    This will suppress the error raised when the coordinates matrix
+    contains samples that are not present in the metadata. Samples without
+    metadata are included by setting all metadata values to: "This sample
+    has no metadata". This flag is only applied if at least one sample is
+    present in both the coordinates matrix and the metadata.
+
+Returns
+-------
+visualization : Visualization
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

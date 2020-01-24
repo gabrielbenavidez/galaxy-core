@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+<tool id="qiime_metadata_distance-matrix" name="qiime metadata distance-matrix" version="2019.7">
+	<description> - Create a distance matrix from a numeric Metadata column</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime metadata distance-matrix
+
+--m-metadata-column="$mmetadatacolumn"
+
+
+#if $input_files_mmetadatafile:
+#def list_dict_to_string(list_dict):
+	#set $file_list = list_dict[0]['additional_input'].__getattr__('file_name')
+	#for d in list_dict[1:]:
+		#set $file_list = $file_list + ' --m-metadata-file=' + d['additional_input'].__getattr__('file_name')
+	#end for
+	#return $file_list
+#end def
+ --m-metadata-file=$list_dict_to_string($input_files_mmetadatafile)
+#end if
+
+
+--o-distance-matrix=odistancematrix
+;
+cp odistancematrix.qza $odistancematrix
+	]]></command>
+	<inputs>
+		<param label="--m-metadata-column: COLUMN  MetadataColumn[Numeric] Numeric metadata column to compute pairwise Euclidean distances from                               [required]" name="mmetadatacolumn" optional="False" type="text"/>
+
+		<repeat name="input_files_mmetadatafile" optional="True" title="--m-metadata-file">
+			<param label="--m-metadata-file: Metadata file or artifact viewable as metadata. This option may be supplied multiple times to merge metadata. [optional]" name="additional_input" type="data" format="tabular,qza,no_unzip.zip" />
+		</repeat>
+
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: distancematrix.qza" name="odistancematrix"/>
+	</outputs>
+	<help><![CDATA[
+Create a distance matrix from a numeric Metadata column
+#######################################################
+
+Create a distance matrix from a numeric metadata column. The Euclidean
+distance is computed between each pair of samples or features in the
+column.  Tip: the distance matrix produced by this method can be used as
+input to the Mantel test available in `q2-diversity`.
+
+Parameters
+----------
+metadata : MetadataColumn[Numeric]
+    Numeric metadata column to compute pairwise Euclidean distances from
+
+Returns
+-------
+distance_matrix : DistanceMatrix
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

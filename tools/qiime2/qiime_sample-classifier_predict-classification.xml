@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<tool id="qiime_sample-classifier_predict-classification" name="qiime sample-classifier predict-classification" version="2019.7">
+	<description> - Use trained classifier to predict target values for new samples.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime sample-classifier predict-classification
+
+--i-table=$itable
+--i-sample-estimator=$isampleestimator
+
+#set $pnjobs = '${GALAXY_SLOTS:-4}'
+
+#if str($pnjobs):
+ --p-n-jobs="$pnjobs"
+#end if
+
+--o-predictions=opredictions
+;
+cp opredictions.qza $opredictions
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] Feature table containing all features that should be used for target prediction.                  [required]" name="itable" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-sample-estimator: ARTIFACT SampleEstimator[Classifier] Sample classifier trained with fit_classifier. [required]" name="isampleestimator" optional="False" type="data"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: predictions.qza" name="opredictions"/>
+	</outputs>
+	<help><![CDATA[
+Use trained classifier to predict target values for new samples.
+################################################################
+
+Use trained estimator to predict target values for new samples. These will
+typically be unseen samples, e.g., test data (derived manually or from
+split_table) or samples with unknown values, but can theoretically be any
+samples present in a feature table that contain overlapping features with
+the feature table used to train the estimator.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    Feature table containing all features that should be used for target
+    prediction.
+sample_estimator : SampleEstimator[Classifier]
+    Sample classifier trained with fit_classifier.
+
+Returns
+-------
+predictions : SampleData[ClassifierPredictions]
+    Predicted target values for each input sample.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

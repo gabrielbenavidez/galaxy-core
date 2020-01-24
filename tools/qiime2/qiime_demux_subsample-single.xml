@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<tool id="qiime_demux_subsample-single" name="qiime demux subsample-single" version="2019.7">
+	<description> - Subsample single-end sequences without replacement.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime demux subsample-single
+
+--i-sequences=$isequences
+--p-fraction="$pfraction"
+
+--o-subsampled-sequences=osubsampledsequences
+;
+cp osubsampledsequences.qza $osubsampledsequences
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-sequences: ARTIFACT SampleData[SequencesWithQuality | PairedEndSequencesWithQuality] The demultiplexed sequences to be subsampled. [required]" name="isequences" optional="False" type="data"/>
+		<param label="--p-fraction: PROPORTION Range(0, 1, inclusive_start=False) The fraction of sequences to retain in subsample. [required]" name="pfraction" optional="False" exclude_min="True" min="0" max="1" value="" type="float"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: subsampledsequences.qza" name="osubsampledsequences"/>
+	</outputs>
+	<help><![CDATA[
+Subsample single-end sequences without replacement.
+###################################################
+
+Generate a random subsample of single-end sequences containing
+approximately the fraction of input sequences specified by the fraction
+parameter. The number of output samples will always be equal to the number
+of input samples, even if some of those samples contain no sequences after
+subsampling.
+
+Parameters
+----------
+sequences : SampleData[SequencesWithQuality | PairedEndSequencesWithQuality]
+    The demultiplexed sequences to be subsampled.
+fraction : Float % Range(0, 1, inclusive_start=False)
+    The fraction of sequences to retain in subsample.
+
+Returns
+-------
+subsampled_sequences : SampleData[SequencesWithQuality]
+    The subsampled sequences.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

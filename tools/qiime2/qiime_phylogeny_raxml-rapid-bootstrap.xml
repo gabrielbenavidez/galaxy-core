@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" ?>
+<tool id="qiime_phylogeny_raxml-rapid-bootstrap" name="qiime phylogeny raxml-rapid-bootstrap" version="2019.7">
+	<description> - Construct a phylogenetic tree with bootstrap supports using RAxML.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime phylogeny raxml-rapid-bootstrap
+
+--i-alignment=$ialignment
+
+#if str($pseed):
+ --p-seed="$pseed"
+#end if
+
+#if str($prapidbootstrapseed):
+ --p-rapid-bootstrap-seed="$prapidbootstrapseed"
+#end if
+
+#if str($pbootstrapreplicates):
+ --p-bootstrap-replicates=$pbootstrapreplicates
+#end if
+
+#set $pnthreads = '${GALAXY_SLOTS:-4}'
+
+#if str($pnthreads):
+ --p-n-threads="$pnthreads"
+#end if
+
+
+#if str($praxmlversion) != 'None':
+ --p-raxml-version=$praxmlversion
+#end if
+
+#if str($psubstitutionmodel) != 'None':
+ --p-substitution-model=$psubstitutionmodel
+#end if
+
+--o-tree=otree
+;
+cp otree.qza $otree
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-alignment: ARTIFACT FeatureData[AlignedSequence] Aligned sequences to be used for phylogenetic reconstruction.                           [required]" name="ialignment" optional="False" type="data"/>
+		<param label="--p-seed: INTEGER        Random number seed for the parsimony starting tree. This allows you to reproduce tree results. If not supplied then one will be randomly chosen. [optional]" name="pseed" optional="True" type="integer"/>
+		<param label="--p-rapid-bootstrap-seed: INTEGER Specify a random seed for rapid bootstrapping. This allows you to reproduce rapid bootstrap results. If not supplied then one will be randomly chosen. [optional]" name="prapidbootstrapseed" optional="True" type="integer"/>
+		<param label="--p-bootstrap-replicates: INTEGER Range(10, None)       The number of bootstrap searches to perform. [default: 100]" name="pbootstrapreplicates" optional="True" type="integer" value="100"/>
+		<param label="--p-raxml-version: " name="praxmlversion" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="Standard">Standard</option>
+			<option value="SSE3">SSE3</option>
+			<option value="AVX2">AVX2</option>
+		</param>
+		<param label="--p-substitution-model: " name="psubstitutionmodel" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="GTRGAMMA">GTRGAMMA</option>
+			<option value="GTRGAMMAI">GTRGAMMAI</option>
+			<option value="GTRCAT">GTRCAT</option>
+			<option value="GTRCATI">GTRCATI</option>
+		</param>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: tree.qza" name="otree"/>
+	</outputs>
+	<help><![CDATA[
+Construct a phylogenetic tree with bootstrap supports using RAxML.
+##################################################################
+
+Construct a phylogenetic tree with RAxML with the addition of rapid
+bootstrapping support values. See:
+https://sco.h-its.org/exelixis/web/software/raxml/
+
+Parameters
+----------
+alignment : FeatureData[AlignedSequence]
+    Aligned sequences to be used for phylogenetic reconstruction.
+seed : Int, optional
+    Random number seed for the parsimony starting tree. This allows you to
+    reproduce tree results. If not supplied then one will be randomly
+    chosen.
+rapid_bootstrap_seed : Int, optional
+    Specify a random seed for rapid bootstrapping. This allows you to
+    reproduce rapid bootstrap results. If not supplied then one will be
+    randomly chosen.
+bootstrap_replicates : Int % Range(10, None), optional
+    The number of bootstrap searches to perform.
+raxml_version : Str % Choices('Standard', 'SSE3', 'AVX2'), optional
+    Select a specific CPU optimization of RAxML to use. The SSE3 versions
+    will run approximately 40% faster than the standard version. The AVX2
+    version will run 10-30% faster than the SSE3 version.
+substitution_model : Str % Choices('GTRGAMMA', 'GTRGAMMAI', 'GTRCAT', 'GTRCATI'), optional
+    Model of Nucleotide Substitution
+
+Returns
+-------
+tree : Phylogeny[Unrooted]
+    The resulting phylogenetic tree.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

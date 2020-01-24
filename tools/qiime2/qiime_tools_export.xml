@@ -1,0 +1,28 @@
+<?xml version="1.0" ?> 
+<tool id="qiime_tools_export" name="qiime tools export --input-path" version="2019.7">
+	<description> - Export data from a QIIME 2 Artifact or Visualization.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[qiime tools export --input-path $isequences --output-path testing	]]>
+    </command>
+	<inputs>
+	<param format="qza,no_unzip.zip" label="Input artifact to export! [required]" name="isequences" optional="False" type="data"/></inputs>
+	<outputs>
+    <data format="txt" name="report">
+	<!--<discover_datasets pattern="__designation_and_ext__" directory="testing" visible="true" />-->
+    <discover_datasets pattern="__designation__" format="biom2" directory="testing" visible="true" />
+    </data>
+	</outputs>
+	
+	<!--<outputs>
+	
+   <collection type="list" label="Exported artifact" name="output1">
+     <discover_datasets pattern="*.*" directory="test" />
+   </collection>
+ </outputs>-->
+	<macros>
+	   <import>qiime_citation.xml</import> 
+    </macros> 
+    <expand macro="qiime_citation" /> 
+</tool>

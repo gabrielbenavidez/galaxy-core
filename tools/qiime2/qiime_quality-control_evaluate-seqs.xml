@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<tool id="qiime_quality-control_evaluate-seqs" name="qiime quality-control evaluate-seqs" version="2019.7">
+	<description> - Compare query (observed) vs. reference (expected) sequences.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime quality-control evaluate-seqs
+
+--i-query-sequences=$iquerysequences
+--i-reference-sequences=$ireferencesequences
+
+--o-visualization=ovisualization
+;
+qiime tools export --input-path ovisualization.qzv --output-path out   && mkdir -p '$ovisualization.files_path'
+&& cp -r out/* '$ovisualization.files_path'
+&& mv '$ovisualization.files_path/index.html' '$ovisualization';
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-query-sequences: ARTIFACT FeatureData[Sequence] Sequences to test for exclusion              [required]" name="iquerysequences" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-reference-sequences: ARTIFACT FeatureData[Sequence] Reference sequences to align against feature sequences [required]" name="ireferencesequences" optional="False" type="data"/>
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: visualization.qzv" name="ovisualization"/>
+	</outputs>
+	<help><![CDATA[
+Compare query (observed) vs. reference (expected) sequences.
+############################################################
+
+This action aligns a set of query (e.g., observed) sequences against a set
+of reference (e.g., expected) sequences to evaluate the quality of
+alignment. The intended use is to align observed sequences against expected
+sequences (e.g., from a mock community) to determine the frequency of
+mismatches between observed sequences and the most similar expected
+sequences, e.g., as a measure of sequencing/method error. However, any
+sequences may be provided as input to generate a report on pairwise
+alignment quality against a set of reference sequences.
+
+Parameters
+----------
+query_sequences : FeatureData[Sequence]
+    Sequences to test for exclusion
+reference_sequences : FeatureData[Sequence]
+    Reference sequences to align against feature sequences
+show_alignments : Bool, optional
+    Option to plot pairwise alignments of query sequences and their top
+    hits.
+
+Returns
+-------
+visualization : Visualization
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

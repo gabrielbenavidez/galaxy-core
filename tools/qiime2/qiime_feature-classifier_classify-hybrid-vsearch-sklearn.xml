@@ -1,0 +1,241 @@
+<?xml version="1.0" ?>
+<tool id="qiime_feature-classifier_classify-hybrid-vsearch-sklearn" name="qiime feature-classifier classify-hybrid-vsearch-sklearn" version="2019.7">
+	<description> -  ALPHA Hybrid classifier: VSEARCH exact match + sklearn classifier</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime feature-classifier classify-hybrid-vsearch-sklearn
+    
+--i-query=$iquery
+--i-reference-reads=$ireferencereads
+
+
+
+
+#if str( $id_to_taxonomy_fp.selector ) == 'history'
+#set $tax = $id_to_taxonomy_fp.taxonomy_fp
+--i-reference-taxonomy '$tax'
+#else:
+#set $tax = $id_to_taxonomy_fp.taxonomy_fp.fields.path
+--i-reference-taxonomy '$tax'
+#end if
+
+
+
+
+
+#if str( $id_to_classifier_fp.selector ) == 'history'
+#set $classifier = $id_to_classifier_fp.classifier_fp
+--i-classifier '$classifier'
+#else:
+#set $classifier = $id_to_classifier_fp.classifier_fp.fields.path
+--i-classifier '$classifier'
+#end if
+
+
+
+
+
+#if str($pmaxaccepts):
+ --p-maxaccepts=$pmaxaccepts
+#end if
+
+#if str($pconfidence):
+ --p-confidence=$pconfidence
+#end if
+
+
+
+
+#if str($ppercidentity):
+ --p-perc-identity=$ppercidentity
+#end if
+
+#if str($pquerycov):
+ --p-query-cov=$pquerycov
+#end if
+
+#if str($pstrand) != 'None':
+ --p-strand=$pstrand
+#end if
+
+#if str($pminconsensus):
+ --p-min-consensus=$pminconsensus
+#end if
+
+
+#if str($preadorientation) != 'None':
+ --p-read-orientation=$preadorientation
+#end if
+
+#set $pthreads = '${GALAXY_SLOTS:-4}'
+
+#if str($pthreads):
+
+#if str($pthreads):
+ --p-threads="$pthreads"
+#end if
+
+#end if
+
+
+#if $pprefilter:
+ --p-prefilter
+#end if
+
+#if str($psamplesize):
+ --p-sample-size=$psamplesize
+#end if
+
+#if str($prandseed):
+ --p-randseed=$prandseed
+#end if
+
+
+--o-classification=oclassification
+
+;
+cp oclassification.qza $oclassification
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-query: ARTIFACT FeatureData[Sequence] Sequences to classify taxonomically.        [required]" name="iquery" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-reference-reads: ARTIFACT FeatureData[Sequence] reference sequences.                        [required]" name="ireferencereads" optional="False" type="data"/>
+
+
+		<conditional name="id_to_taxonomy_fp" optional="True">
+		   <param name="selector" type="select" label="Reference taxonomy to query">
+			  <option value="cached">Public databases</option>
+			  <option value="history">Databases from your history</option>
+		   </param>
+		   <when value="cached">
+			  <param argument="--taxonomy_fp" label="Reference taxonomy" type="select" optional="True">
+				 <options from_data_table="qiime_taxonomy" />
+			  </param>
+		   </when>
+		   <when value="history">
+			  <param argument="--taxonomy_fp" type="data" format="qza,no_unzip.zip" label="Reference databases" optional="True" />
+		   </when>
+		</conditional>
+
+
+		<conditional name="id_to_classifier_fp" optional="True">
+		   <param name="selector" type="select" label="Reference classifier to query">
+			  <option value="cached">Public classifiers</option>
+			  <option value="history">Classifiers from your history</option>
+		   </param>
+		   <when value="cached">
+			  <param name="classifier_fp" label="Reference classifier" type="select" optional="True">
+				 <options from_data_table="qiime_rep_set" />
+			  </param>
+		   </when>
+		   <when value="history">
+			  <param name="classifier_fp" type="data" format="qza,no_unzip.zip" label="Reference classifier" optional="True" />
+		   </when>
+		</conditional>
+
+
+		<param label="--p-maxaccepts: VALUE Int % Range(1, None) | Str % Choices('all') Maximum number of hits to keep for each query. Set to 'all' to keep all hits > perc-identity similarity.  [default: 10]" name="pmaxaccepts" optional="True" type="text" value="10" />
+		<param label="--p-confidence: VALUE Float % Range(0, 1, inclusive_end=True) | Str % Choices('disable')  Confidence threshold for limiting taxonomic depth. Set to 'disable' to disable confidence calculation, or 0 to calculate confidence but not apply it to limit the taxonomic depth of the assignments. [default: 0.7]" name="pconfidence" optional="True" type="text" value="0.7" />
+
+
+		<param label="--p-perc-identity: PROPORTION Range(0.0, 1.0, inclusive_end=True) Percent sequence similarity to use for PREFILTER. Reject match if percent identity to query is lower. Set to a lower value to perform a rough pre-filter. This parameter is ignored if `prefilter` is disabled. [default: 0.5]" name="ppercidentity" optional="True" type="float" value="0.5" min="0" max="1" exclusive_end="False" />
+		<param label="--p-query-cov: PROPORTION Range(0.0, 1.0, inclusive_end=True) Query coverage threshold to use for PREFILTER. Reject match if query alignment coverage per high-scoring pair is lower. Set to a lower value to perform a rough pre-filter. This parameter is ignored if `prefilter` is disabled.                            [default: 0.8]" name="pquerycov" optional="True" type="float" value="0.8" min="0" max="1" exclusive_end="False" />
+		<param label="--p-strand: " name="pstrand" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="both">both</option>
+			<option value="plus">plus</option>
+		</param>
+		<param label="--p-min-consensus: NUMBER Range(0.5, 1.0, inclusive_start=False, inclusive_end=True) Minimum fraction of assignments must match top hit to be accepted as consensus assignment.   [default: 0.51]" name="pminconsensus" optional="True" type="float" value="0.51" min="0.5" max="1" exclusive_end="True" />
+		<param label="--p-read-orientation: TEXT Choices('same', 'reverse-complement', 'auto') Direction of reads with respect to reference sequences in pre-trained sklearn classifier. same will cause reads to be classified unchanged; reverse-complement will cause reads to be reversed and complemented prior to classification. 'auto' will autodetect orientation based on the confidence estimates for the first 100 reads.   [default: 'auto'] " name="preadorientation" optional="True" type="select" >
+			<option value="None">Selection is Optional</option>
+			<option value="same">same</option>
+			<option value="reverse-complement">reverse-complement</option>
+			<option selected="True" value="auto">auto</option>
+		</param>
+		<param label="--p-prefilter: --p-no-prefilter Toggle positive filter of query sequences on or off. [default: True]" name="pprefilter" selected="False" type="boolean"/>
+		<param label="--p-sample-size: INTEGER Range(1, None)      Randomly extract the given number of sequences from the reference database to use for prefiltering. This parameter is ignored if `prefilter` is disabled. [default: 1000]" name="psamplesize" optional="True" type="integer" value="1000" min="1"/>
+		<param label="--p-randseed: INTEGER  Use integer as a seed for the pseudo-random generator Range(0, None)      used during prefiltering. A given seed always produces the same output, which is useful for replicability. Set to 0 to use a pseudo-random seed. This parameter is ignored if `prefilter` is disabled.    [default: 0]" name="prandseed" optional="True" type="integer" value="0" min="0"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: classification.qza" name="oclassification"/>
+	</outputs>
+	<help><![CDATA[
+ALPHA Hybrid classifier: VSEARCH exact match + sklearn classifier
+##################################################################
+
+NOTE: THIS PIPELINE IS AN ALPHA RELEASE. Please report bugs to
+https://forum.qiime2.org! Assign taxonomy to query sequences using hybrid
+classifier. First performs rough positive filter to remove artifact and
+low-coverage sequences (use "prefilter" parameter to toggle this step on or
+off). Second, performs VSEARCH exact match between query and
+reference_reads to find exact matches, followed by least common ancestor
+consensus taxonomy assignment from among maxaccepts top hits, min_consensus
+of which share that taxonomic assignment. Query sequences without an exact
+match are then classified with a pre-trained sklearn taxonomy classifier to
+predict the most likely taxonomic lineage.
+
+Parameters
+----------
+query : FeatureData[Sequence]
+    Sequences to classify taxonomically.
+reference_reads : FeatureData[Sequence]
+    reference sequences.
+reference_taxonomy : FeatureData[Taxonomy]
+    reference taxonomy labels.
+classifier : TaxonomicClassifier
+    Pre-trained sklearn taxonomic classifier for classifying the reads.
+maxaccepts : Int % Range(1, None) | Str % Choices('all'), optional
+    Maximum number of hits to keep for each query. Set to "all" to keep all
+    hits > perc_identity similarity.
+perc_identity : Float % Range(0.0, 1.0, inclusive_end=True), optional
+    Percent sequence similarity to use for PREFILTER. Reject match if
+    percent identity to query is lower. Set to a lower value to perform a
+    rough pre-filter. This parameter is ignored if `prefilter` is disabled.
+query_cov : Float % Range(0.0, 1.0, inclusive_end=True), optional
+    Query coverage threshold to use for PREFILTER. Reject match if query
+    alignment coverage per high-scoring pair is lower. Set to a lower value
+    to perform a rough pre-filter. This parameter is ignored if `prefilter`
+    is disabled.
+strand : Str % Choices('both', 'plus'), optional
+    Align against reference sequences in forward ("plus") or both
+    directions ("both").
+min_consensus : Float % Range(0.5, 1.0, inclusive_start=False, inclusive_end=True), optional
+    Minimum fraction of assignments must match top hit to be accepted as
+    consensus assignment.
+reads_per_batch : Int % Range(0, None), optional
+    Number of reads to process in each batch for sklearn classification. If
+    "auto", this parameter is autoscaled to min(number of query sequences /
+    threads, 20000).
+confidence : Float % Range(0, 1, inclusive_end=True) | Str % Choices('disable'), optional
+    Confidence threshold for limiting taxonomic depth. Set to "disable" to
+    disable confidence calculation, or 0 to calculate confidence but not
+    apply it to limit the taxonomic depth of the assignments.
+read_orientation : Str % Choices('same', 'reverse-complement', 'auto'), optional
+    Direction of reads with respect to reference sequences in pre-trained
+    sklearn classifier. same will cause reads to be classified unchanged;
+    reverse-complement will cause reads to be reversed and complemented
+    prior to classification. "auto" will autodetect orientation based on
+    the confidence estimates for the first 100 reads.
+prefilter : Bool, optional
+    Toggle positive filter of query sequences on or off.
+sample_size : Int % Range(1, None), optional
+    Randomly extract the given number of sequences from the reference
+    database to use for prefiltering. This parameter is ignored if
+    `prefilter` is disabled.
+randseed : Int % Range(0, None), optional
+    Use integer as a seed for the pseudo-random generator used during
+    prefiltering. A given seed always produces the same output, which is
+    useful for replicability. Set to 0 to use a pseudo-random seed. This
+    parameter is ignored if `prefilter` is disabled.
+
+Returns
+-------
+classification : FeatureData[Taxonomy]
+    The resulting taxonomy classifications.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

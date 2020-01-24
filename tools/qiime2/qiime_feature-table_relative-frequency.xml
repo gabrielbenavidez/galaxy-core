@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<tool id="qiime_feature-table_relative-frequency" name="qiime feature-table relative-frequency" version="2019.7">
+	<description> - Convert to relative frequencies</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime feature-table relative-frequency
+
+--i-table=$itable
+
+--o-relative-frequency-table=orelativefrequencytable
+;
+cp orelativefrequencytable.qza $orelativefrequencytable
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] The feature table to be converted into relative frequencies.                                 [required]" name="itable" optional="False" type="data"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: relativefrequencytable.qza" name="orelativefrequencytable"/>
+	</outputs>
+	<help><![CDATA[
+Convert to relative frequencies
+###############################
+
+Convert frequencies to relative frequencies by dividing each frequency in a
+sample by the sum of frequencies in that sample.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    The feature table to be converted into relative frequencies.
+
+Returns
+-------
+relative_frequency_table : FeatureTable[RelativeFrequency]
+    The resulting relative frequency feature table.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

@@ -1,0 +1,107 @@
+<?xml version="1.0" ?>
+<tool id="qiime_sample-classifier_metatable" name="qiime sample-classifier metatable" version="2019.7">
+	<description> - Convert (and merge) positive numeric metadata (in)to feature table.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime sample-classifier metatable
+
+
+#if str($itable) != 'None':
+ --i-table=$itable
+#end if
+
+#if str($pmissingsamples) != 'None':
+ --p-missing-samples=$pmissingsamples
+#end if
+
+#if str($pmissingvalues) != 'None':
+ --p-missing-values=$pmissingvalues
+#end if
+
+
+#if $input_files_mmetadatafile:
+#def list_dict_to_string(list_dict):
+	#set $file_list = list_dict[0]['additional_input'].__getattr__('file_name')
+	#for d in list_dict[1:]:
+		#set $file_list = $file_list + ' --m-metadata-file=' + d['additional_input'].__getattr__('file_name')
+	#end for
+	#return $file_list
+#end def
+ --m-metadata-file=$list_dict_to_string($input_files_mmetadatafile)
+#end if
+
+
+--o-converted-table=oconvertedtable
+;
+cp oconvertedtable.qza $oconvertedtable
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] Feature table containing all features that should be used for target prediction.                  [optional]" name="itable" optional="True" type="data"/>
+		<param label="--p-missing-samples: " name="pmissingsamples" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="error">error</option>
+			<option value="ignore">ignore</option>
+		</param>
+		<param label="--p-missing-values: " name="pmissingvalues" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="drop_samples">drop_samples</option>
+			<option value="drop_features">drop_features</option>
+			<option value="error">error</option>
+			<option value="fill">fill</option>
+		</param>
+
+		<repeat name="input_files_mmetadatafile" optional="True" title="--m-metadata-file">
+			<param label="--m-metadata-file: Metadata file or artifact viewable as metadata. This option may be supplied multiple times to merge metadata. [optional]" name="additional_input" type="data" format="tabular,qza,no_unzip.zip" />
+		</repeat>
+
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: convertedtable.qza" name="oconvertedtable"/>
+	</outputs>
+	<help><![CDATA[
+Convert (and merge) positive numeric metadata (in)to feature table.
+###################################################################
+
+Convert numeric sample metadata from TSV file into a feature table.
+Optionally merge with an existing feature table. Only numeric metadata will
+be converted; categorical columns will be silently dropped. By default, if
+a table is used as input only samples found in both the table and metadata
+(intersection) are merged, and others are silently dropped. Set
+missing_samples="error" to raise an error if samples found in the table are
+missing from the metadata file. The metadata file can always contain a
+superset of samples. Note that columns will be dropped if they are non-
+numeric, contain only unique values, contain no unique values (zero
+variance), contain only empty cells, or contain negative values. This
+method currently only converts postive numeric metadata into feature data.
+Tip: convert categorical columns to dummy variables to include them in the
+output feature table.
+
+Parameters
+----------
+metadata : Metadata
+    Metadata file to convert to feature table.
+table : FeatureTable[Frequency], optional
+    Feature table containing all features that should be used for target
+    prediction.
+missing_samples : Str % Choices('error', 'ignore'), optional
+    How to handle missing samples in metadata. "error" will fail if missing
+    samples are detected. "ignore" will cause the feature table and
+    metadata to be filtered, so that only samples found in both files are
+    retained.
+missing_values : Str % Choices('drop_samples', 'drop_features', 'error', 'fill'), optional
+    How to handle missing values (nans) in metadata. Either "drop_samples"
+    with missing values, "drop_features" with missing values, "fill"
+    missing values with zeros, or "error" if any missing values are found.
+
+Returns
+-------
+converted_table : FeatureTable[Frequency]
+    Converted feature table
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

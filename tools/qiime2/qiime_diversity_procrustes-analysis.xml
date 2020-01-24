@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<tool id="qiime_diversity_procrustes-analysis" name="qiime diversity procrustes-analysis" version="2019.7">
+	<description> - Procrustes Analysis</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime diversity procrustes-analysis
+
+--i-reference=$ireference
+--i-other=$iother
+
+#if str($pdimensions):
+ --p-dimensions=$pdimensions
+#end if
+
+--o-transformed-reference=otransformedreference
+--o-transformed-other=otransformedother
+;
+cp otransformedreference.qza $otransformedreference;
+cp otransformedother.qza $otransformedother
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-reference: ARTIFACT  The ordination matrix to which data is fitted to. PCoAResults                                                     [required]" name="ireference" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-other: ARTIFACT      The ordination matrix that's fitted to the PCoAResults           reference ordination.                     [required]" name="iother" optional="False" type="data"/>
+		<param label="--p-dimensions: INTEGER Range(1, None)                                                [default: 5]" name="pdimensions" optional="True" type="integer" min="1" value="5"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: transformedreference.qza" name="otransformedreference"/>
+		<data format="qza" label="${tool.name} on ${on_string}: transformedother.qza" name="otransformedother"/>
+	</outputs>
+	<help><![CDATA[
+Procrustes Analysis
+###################
+
+Fit two ordination matrices with Procrustes analysis
+
+Parameters
+----------
+reference : PCoAResults
+    The ordination matrix to which data is fitted to.
+other : PCoAResults
+    The ordination matrix that's fitted to the reference ordination.
+dimensions : Int % Range(1, None), optional
+	\
+
+Returns
+-------
+transformed_reference : PCoAResults
+    A normalized version of the "reference" ordination matrix.
+transformed_other : PCoAResults
+    A normalized and fitted version of the "other" ordination matrix.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

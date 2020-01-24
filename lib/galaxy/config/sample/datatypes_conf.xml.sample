@@ -748,6 +748,11 @@
     <datatype extension="dada2_sequencetable" type="galaxy.datatypes.tabular:Tabular" mimetype="application/text" subclass="true" display_in_upload="true" />
     <datatype extension="dada2_uniques" type="galaxy.datatypes.tabular:Tabular" mimetype="application/text" subclass="true" display_in_upload="true" />
     <datatype extension="ckpt" type="galaxy.datatypes.binary:Binary" subclass="true" display_in_upload="true" />
+  
+     <!-- QIIME2 datatypes 2019-10-03 Thomas J. Taylor -->
+    <datatype extension="qza" type="galaxy.datatypes.binary:CompressedZipArchive" display_in_upload="true"/>
+    <!-- End QIIME2 datatypes -->
+  
   </registration>
   <sniffers>
     <!--

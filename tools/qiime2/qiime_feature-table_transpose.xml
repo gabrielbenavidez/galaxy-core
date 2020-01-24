@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<tool id="qiime_feature-table_transpose" name="qiime feature-table transpose" version="2019.7">
+	<description> - Transpose a feature table.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime feature-table transpose
+
+--i-table=$itable
+
+--o-transposed-feature-table=otransposedfeaturetable
+;
+cp otransposedfeaturetable.qza $otransposedfeaturetable
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] The feature table to be transposed.          [required]" name="itable" optional="False" type="data"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: transposedfeaturetable.qza" name="otransposedfeaturetable"/>
+	</outputs>
+	<help><![CDATA[
+Transpose a feature table.
+##########################
+
+Transpose the rows and columns (typically samples and features) of a
+feature table.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    The feature table to be transposed.
+
+Returns
+-------
+transposed_feature_table : FeatureTable[Frequency]
+    The resulting transposed feature table.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<tool id="qiime_sample-classifier_summarize" name="qiime sample-classifier summarize" version="2019.7">
+	<description> - Summarize parameter and feature extraction information for a trained estimator.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime sample-classifier summarize 
+
+--i-sample-estimator=$isampleestimator
+
+--o-visualization=ovisualization
+;
+qiime tools export --input-path ovisualization.qzv --output-path out   && mkdir -p '$ovisualization.files_path'
+&& cp -r out/* '$ovisualization.files_path'
+&& mv '$ovisualization.files_path/index.html' '$ovisualization'
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-sample-estimator: ARTIFACT SampleEstimator[Classifier | Regressor] Sample estimator trained with fit_classifier or fit_regressor.                               [required]" name="isampleestimator" optional="False" type="data"/>
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: visualization.qzv" name="ovisualization"/>
+	</outputs>
+	<help><![CDATA[
+Summarize parameter and feature extraction information for a trained estimator.
+###############################################################################
+
+Summarize parameter and feature extraction information for a trained
+estimator.
+
+Parameters
+----------
+sample_estimator : SampleEstimator[Classifier | Regressor]
+    Sample estimator trained with fit_classifier or fit_regressor.
+
+Returns
+-------
+visualization : Visualization
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

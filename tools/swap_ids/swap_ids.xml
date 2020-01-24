@@ -1,0 +1,20 @@
+<?xml version="1.0" ?> <tool id="swap ids" name="swap ids" >
+	<description> - Rename sample ids </description>
+	<requirements>
+		<!--requirement type="package" version="0.24.2">pandas</requirement-->
+		<!--requirement type="package">xlrd</requirement-->
+		<container type="docker">infotechsoft/tools</container>
+	</requirements>
+	<command><![CDATA[
+		python '/tools/swap_ids.py' -i '$resultsTable' -m '$metadata' -o '$caseroResults' -c '$match_col' -s '$swap_col'
+	]]></command>
+	<inputs>
+		<param name="resultsTable" type="data" format="tsv" label="Input file" />
+		<param name="metadata" type="data" format="xlsx" label="Metadata file" />
+		<param name="match_col" argument="--matchcol" type="text" label="Column to match" />
+		<param name="swap_col" type="text" argument="--swapcol" label="Column to swap" />
+	</inputs>
+	<outputs>
+		<data name="caseroResults" format="tsv" label="${tool.name} on ${on_string}: expected-results.tsv" />
+	</outputs>
+</tool>

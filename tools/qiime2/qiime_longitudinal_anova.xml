@@ -1,0 +1,97 @@
+<?xml version="1.0" ?>
+<tool id="qiime_longitudinal_anova" name="qiime longitudinal anova" version="2019.7">
+	<description> - ANOVA test</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime longitudinal anova
+
+
+
+
+#if 'X' in str($pformula):
+  #set $pformula_temp = $pformula.replace('X', "~")
+  #set $pformula = $pformula_temp
+#end if
+
+--p-formula="$pformula"
+
+
+
+#if str($psstype) != 'None':
+ --p-sstype=$psstype
+#end if
+
+
+#if $input_files_mmetadatafile:
+#def list_dict_to_string(list_dict):
+	#set $file_list = list_dict[0]['additional_input'].__getattr__('file_name')
+	#for d in list_dict[1:]:
+		#set $file_list = $file_list + ' --m-metadata-file=' + d['additional_input'].__getattr__('file_name')
+	#end for
+	#return $file_list
+#end def
+ --m-metadata-file=$list_dict_to_string($input_files_mmetadatafile)
+#end if
+
+
+--o-visualization=ovisualization
+;
+qiime tools export --input-path ovisualization.qzv --output-path out   && mkdir -p '$ovisualization.files_path'
+&& cp -r out/* '$ovisualization.files_path'
+&& mv '$ovisualization.files_path/index.html' '$ovisualization';
+	]]></command>
+	<inputs>
+		<param label="--p-formula: TEXT     R-style formula specifying the model. All terms must be present in the sample metadata or metadata-transformable artifacts and can be continuous or categorical metadata columns. Formulae will be in the format 'a ~ b + c', where 'a' is the metric (dependent variable) and 'b' and 'c' are independent covariates. Use '+' to add a variable; '+ a:b' to add an interaction between variables a and b; '*' to include a variable and all interactions; and '-' to subtract a particular term (e.g., an interaction term). See https://patsy.readthedocs.io/en/latest/formulas.html for full documentation of valid formula operators. Always enclose formulae in quotes to avoid unpleasant surprises.                                   [required]" name="pformula" optional="False" type="text"/>
+		<param label="--p-sstype: " name="psstype" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="I">I</option>
+			<option value="II">II</option>
+			<option value="III">III</option>
+		</param>
+
+		<repeat name="input_files_mmetadatafile" optional="True" title="--m-metadata-file">
+			<param label="--m-metadata-file: Metadata file or artifact viewable as metadata. This option may be supplied multiple times to merge metadata. [optional]" name="additional_input" type="data" format="tabular,qza,no_unzip.zip" />
+		</repeat>
+
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: visualization.qzv" name="ovisualization"/>
+	</outputs>
+	<help><![CDATA[
+ANOVA test
+##########
+
+Perform an ANOVA test on any factors present in a metadata file and/or
+metadata-transformable artifacts. This is followed by pairwise t-tests to
+examine pairwise differences between categorical sample groups.
+
+Parameters
+----------
+metadata : Metadata
+    Sample metadata containing formula terms.
+formula : Str
+    R-style formula specifying the model. All terms must be present in the
+    sample metadata or metadata-transformable artifacts and can be
+    continuous or categorical metadata columns. Formulae will be in the
+    format "a ~ b + c", where "a" is the metric (dependent variable) and
+    "b" and "c" are independent covariates. Use "+" to add a variable; "+
+    a:b" to add an interaction between variables a and b; "*" to include a
+    variable and all interactions; and "-" to subtract a particular term
+    (e.g., an interaction term). See
+    https://patsy.readthedocs.io/en/latest/formulas.html for full
+    documentation of valid formula operators. Always enclose formulae in
+    quotes to avoid unpleasant surprises.
+sstype : Str % Choices('I', 'II', 'III'), optional
+    Type of sum of squares calculation to perform (I, II, or III).
+
+Returns
+-------
+visualization : Visualization
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

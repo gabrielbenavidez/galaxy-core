@@ -1,0 +1,117 @@
+<?xml version="1.0" ?>
+<tool id="qiime_feature-classifier_extract-reads" name="qiime feature-classifier extract-reads" version="2019.7">
+	<description> - Extract reads from reference</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+
+
+#if str( $input_sequences.selector ) == 'history'
+	#set $seq = $input_sequences.i_sequences
+
+#else:
+	qiime tools import --type 'FeatureData[Sequence]' --input-path '$input_sequences.i_sequences.fields.path' --output-path database.qza;
+	#set $seq = 'database.qza'
+#end if
+
+
+qiime feature-classifier extract-reads
+
+--i-sequences=$seq
+
+--p-f-primer="$pfprimer"
+--p-r-primer="$prprimer"
+
+#if str($ptrunclen):
+ --p-trunc-len=$ptrunclen
+#end if
+
+#if str($ptrimleft):
+ --p-trim-left=$ptrimleft
+#end if
+
+#if str($pidentity):
+ --p-identity=$pidentity
+#end if
+
+#if str($pminlength):
+ --p-min-length=$pminlength
+#end if
+
+#if str($pmaxlength):
+ --p-max-length=$pmaxlength
+#end if
+
+--o-reads=oreads
+;
+cp oreads.qza $oreads
+	]]></command>
+	<inputs>
+		<conditional name="input_sequences" optional="False">
+		   <param name="selector" type="select" label="--i-sequences: FeatureData[Sequence] [required] - Reference sequences to query">
+			  <option value="cached">Public databases</option>
+			  <option value="history">Databases from your history</option>
+		   </param>
+		   <when value="cached">
+			  <param name="i_sequences" label="--i-sequences: FeatureData[Sequence] [required] - Reference sequences" type="select" optional="True">
+				 <options from_data_table="qiime_rep_set" />
+			  </param>
+		   </when>
+		   <when value="history">
+			  <param name="i_sequences" type="data" format="qza,no_unzip.zip" label="Reference databases" optional="True" />
+		   </when>
+		</conditional>
+
+		<param label="--p-f-primer: TEXT       forward primer sequence                   [required]" name="pfprimer" optional="False" type="text"/>
+		<param label="--p-r-primer: TEXT       reverse primer sequence                   [required]" name="prprimer" optional="False" type="text"/>
+		<param label="--p-trunc-len: INTEGER   read is cut to trunc-len if trunc-len is positive. Applied before trim-left.               [default: 0]" name="ptrunclen" optional="True" type="integer" value="0"/>
+		<param label="--p-trim-left: INTEGER   trim-left nucleotides are removed from the 5' end if trim-left is positive. Applied after trunc-len. [default: 0]" name="ptrimleft" optional="True" type="integer" value="0"/>
+		<param label="--p-identity: NUMBER     minimum combined primer match identity threshold. [default: 0.8]" name="pidentity" optional="True" type="float" value="0.8"/>
+		<param label="--p-min-length: INTEGER  Minimum amplicon length. Shorter amplicons are Range(0, None)        discarded. Applied after trimming and truncation, so be aware that trimming may impact sequence retention. Set to zero to disable min length filtering.                             [default: 50]" name="pminlength" optional="True" type="integer" min="0" value="50"/>
+		<param label="--p-max-length: INTEGER  Maximum amplicon length. Longer amplicons are Range(0, None)        discarded. Applied before trimming and truncation, so plan accordingly. Set to zero (default) to disable max length filtering.           [default: 0]" name="pmaxlength" optional="True" type="integer" min="0" value="0"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: reads.qza" name="oreads"/>
+	</outputs>
+	<help><![CDATA[
+Extract reads from reference
+############################
+
+Extract sequencing-like reads from a reference database.
+
+Parameters
+----------
+sequences : FeatureData[Sequence]
+	\
+
+f_primer : Str
+    forward primer sequence
+r_primer : Str
+    reverse primer sequence
+trunc_len : Int, optional
+    read is cut to trunc_len if trunc_len is positive. Applied before
+    trim_left.
+trim_left : Int, optional
+    trim_left nucleotides are removed from the 5' end if trim_left is
+    positive. Applied after trunc_len.
+identity : Float, optional
+    minimum combined primer match identity threshold.
+min_length : Int % Range(0, None), optional
+    Minimum amplicon length. Shorter amplicons are discarded. Applied after
+    trimming and truncation, so be aware that trimming may impact sequence
+    retention. Set to zero to disable min length filtering.
+max_length : Int % Range(0, None), optional
+    Maximum amplicon length. Longer amplicons are discarded. Applied before
+    trimming and truncation, so plan accordingly. Set to zero (default) to
+    disable max length filtering.
+
+Returns
+-------
+reads : FeatureData[Sequence]
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

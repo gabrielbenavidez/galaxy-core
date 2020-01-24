@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<tool id="qiime_vsearch_join-pairs" name="qiime vsearch join-pairs" version="2019.7">
+	<description> - Join paired-end reads.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime vsearch join-pairs
+
+--i-demultiplexed-seqs=$idemultiplexedseqs
+
+#if str($ptruncqual):
+ --p-truncqual="$ptruncqual"
+#end if
+
+#if str($pminlen):
+ --p-minlen=$pminlen
+#end if
+
+#if str($pmaxns):
+ --p-maxns="$pmaxns"
+#end if
+
+#if $pallowmergestagger:
+ --p-allowmergestagger
+#end if
+
+#if str($pminovlen):
+ --p-minovlen=$pminovlen
+#end if
+
+#if str($pmaxdiffs):
+ --p-maxdiffs=$pmaxdiffs
+#end if
+
+#if str($pminmergelen):
+ --p-minmergelen="$pminmergelen"
+#end if
+
+#if str($pmaxmergelen):
+ --p-maxmergelen="$pmaxmergelen"
+#end if
+
+#if str($pmaxee):
+ --p-maxee="$pmaxee"
+#end if
+
+#if str($pqmin):
+ --p-qmin=$pqmin
+#end if
+
+#if str($pqminout):
+ --p-qminout=$pqminout
+#end if
+
+#if str($pqmax):
+ --p-qmax=$pqmax
+#end if
+
+#if str($pqmaxout):
+ --p-qmaxout=$pqmaxout
+#end if
+
+--o-joined-sequences=ojoinedsequences
+;
+cp ojoinedsequences.qza $ojoinedsequences
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-demultiplexed-seqs: ARTIFACT SampleData[PairedEndSequencesWithQuality] The demultiplexed paired-end sequences to be joined. [required]" name="idemultiplexedseqs" optional="False" type="data"/>
+		<param label="--p-truncqual: INTEGER  Truncate sequences at the first base with the Range(0, None)       specified quality score value or lower.    [optional]" name="ptruncqual" optional="True" min="0" type="integer"/>
+		<param label="--p-minlen: INTEGER     Sequences shorter than minlen after truncation are Range(0, None)       discarded.                               [default: 1]" name="pminlen" optional="True" type="integer" min="0" value="1"/>
+		<param label="--p-maxns: INTEGER      Sequences with more than maxns N characters are Range(0, None)       discarded.                                 [optional]" name="pmaxns" optional="True" min="0" type="integer"/>
+		<param label="--p-allowmergestagger: --p-no-allowmergestagger Allow joining of staggered read pairs. [default: False]" name="pallowmergestagger" selected="False" type="boolean"/>
+		<param label="--p-minovlen: INTEGER   Minimum overlap length of forward and reverse reads Range(0, None)       for joining.                            [default: 10]" name="pminovlen" optional="True" type="integer" min="0" value="10"/>
+		<param label="--p-maxdiffs: INTEGER   Maximum number of mismatches in the forward/reverse Range(0, None)       read overlap for joining.               [default: 10]" name="pmaxdiffs" optional="True" type="integer" min="0" value="10"/>
+		<param label="--p-minmergelen: INTEGER Range(0, None)       Minimum length of the joined read to be retained. [optional]" name="pminmergelen" optional="True" min="0" type="integer"/>
+		<param label="--p-maxmergelen: INTEGER Range(0, None)       Maximum length of the joined read to be retained. [optional]" name="pmaxmergelen" optional="True" min="0" type="integer"/>
+		<param label="--p-maxee: NUMBER       Maximum number of expected errors in the joined read Range(0.0, None)     to be retained.                            [optional]" name="pmaxee" optional="True" min="0" type="float"/>
+		<param label="--p-qmin: INTEGER Range(-5, 2, inclusive_end=True) The minimum allowed quality score in the input. [default: 0]" name="pqmin" optional="True" type="integer" min="-5" max="2" exclude_max="False" value="0"/>
+		<param label="--p-qminout: INTEGER Range(-5, 2, inclusive_end=True) The minimum allowed quality score to use in output. [default: 0]" name="pqminout" optional="True" type="integer" min="-5" max="2" exclude_max="False" value="0"/>
+		<param label="--p-qmax: INTEGER Range(40, 41, inclusive_end=True) The maximum allowed quality score in the input. [default: 41]" name="pqmax" optional="True" type="integer" min="40" max="41" exclude_max="False" value="41"/>
+		<param label="--p-qmaxout: INTEGER Range(40, 41, inclusive_end=True) The maximum allowed quality score to use in output. [default: 41]" name="pqmaxout" optional="True" type="integer" min="40" max="41" exclude_max="False" value="41"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: joinedsequences.qza" name="ojoinedsequences"/>
+	</outputs>
+	<help><![CDATA[
+Join paired-end reads.
+######################
+
+Join paired-end sequence reads using vsearch's merge_pairs function. The
+qmin, qminout, qmax, and qmaxout parameters should only need to be modified
+when working with older fastq sequence data. See the vsearch documentation
+for details on how paired-end joining is performed, and for more
+information on the parameters to this method.
+
+Parameters
+----------
+demultiplexed_seqs : SampleData[PairedEndSequencesWithQuality]
+    The demultiplexed paired-end sequences to be joined.
+truncqual : Int % Range(0, None), optional
+    Truncate sequences at the first base with the specified quality score
+    value or lower.
+minlen : Int % Range(0, None), optional
+    Sequences shorter than minlen after truncation are discarded.
+maxns : Int % Range(0, None), optional
+    Sequences with more than maxns N characters are discarded.
+allowmergestagger : Bool, optional
+    Allow joining of staggered read pairs.
+minovlen : Int % Range(0, None), optional
+    Minimum overlap length of forward and reverse reads for joining.
+maxdiffs : Int % Range(0, None), optional
+    Maximum number of mismatches in the forward/reverse read overlap for
+    joining.
+minmergelen : Int % Range(0, None), optional
+    Minimum length of the joined read to be retained.
+maxmergelen : Int % Range(0, None), optional
+    Maximum length of the joined read to be retained.
+maxee : Float % Range(0.0, None), optional
+    Maximum number of expected errors in the joined read to be retained.
+qmin : Int % Range(-5, 2, inclusive_end=True), optional
+    The minimum allowed quality score in the input.
+qminout : Int % Range(-5, 2, inclusive_end=True), optional
+    The minimum allowed quality score to use in output.
+qmax : Int % Range(40, 41, inclusive_end=True), optional
+    The maximum allowed quality score in the input.
+qmaxout : Int % Range(40, 41, inclusive_end=True), optional
+    The maximum allowed quality score to use in output.
+
+Returns
+-------
+joined_sequences : SampleData[JoinedSequencesWithQuality]
+    The joined sequences.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<tool id="qiime_sample-classifier_split-table" name="qiime sample-classifier split-table" version="2019.7">
+	<description> - Split a feature table into training and testing sets.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime sample-classifier split-table
+
+--i-table=$itable
+--m-metadata-column="$mmetadatacolumn"
+
+
+
+#if $metadatafile:
+ --m-metadata-file=$metadatafile
+#end if
+
+
+
+
+#if str($ptestsize):
+ --p-test-size=$ptestsize
+#end if
+
+#if str($prandomstate):
+ --p-random-state="$prandomstate"
+#end if
+
+#if $pnostratify:
+ --p-no-stratify
+#end if
+
+#if str($pmissingsamples) != 'None':
+ --p-missing-samples=$pmissingsamples
+#end if
+
+--o-training-table=otrainingtable
+--o-test-table=otesttable
+;
+cp otrainingtable.qza $otrainingtable;
+cp otesttable.qza $otesttable;
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-table: ARTIFACT FeatureTable[Frequency] Feature table containing all features that should be used for target prediction.                  [required]" name="itable" optional="False" type="data"/>
+		<param label="--m-metadata-column: COLUMN  MetadataColumn[Numeric | Categorical] Numeric metadata column to use as prediction target. [required]" name="mmetadatacolumn" optional="False" type="text"/>
+		<param label="--p-test-size: PROPORTION Range(0.0, 1.0, inclusive_start=False) Fraction of input samples to exclude from training set and use for classifier testing.          [default: 0.2]" name="ptestsize" optional="True" type="float" value="0.2" min="0" max="1" exclusive_end="True"/>
+		<param label="--p-random-state: INTEGER Seed used by random number generator.        [optional]" name="prandomstate" optional="True" type="integer"/>
+		<param label="--p-no-stratify: Evenly stratify training and test data among metadata categories. If True, all values in column must match at least two samples.                      [default: False]" name="pnostratify" selected="False" type="boolean"/>
+		<param label="--p-missing-samples: " name="pmissingsamples" optional="True" type="select">
+			<option selected="True" value="None">Selection is Optional</option>
+			<option value="error">error</option>
+			<option value="ignore">ignore</option>
+		</param>
+
+		<param label="--m-metadata-file METADATA" name="metadatafile" type="data" format="tabular,qza,no_unzip.zip" />
+
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: trainingtable.qza" name="otrainingtable"/>
+		<data format="qza" label="${tool.name} on ${on_string}: testtable.qza" name="otesttable"/>
+	</outputs>
+	<help><![CDATA[
+Split a feature table into training and testing sets.
+#####################################################
+
+Split a feature table into training and testing sets. By default stratifies
+training and test sets on a metadata column, such that values in that
+column are evenly represented across training and test sets.
+
+Parameters
+----------
+table : FeatureTable[Frequency]
+    Feature table containing all features that should be used for target
+    prediction.
+metadata : MetadataColumn[Numeric | Categorical]
+    Numeric metadata column to use as prediction target.
+test_size : Float % Range(0.0, 1.0, inclusive_start=False), optional
+    Fraction of input samples to exclude from training set and use for
+    classifier testing.
+random_state : Int, optional
+    Seed used by random number generator.
+stratify : Bool, optional
+    Evenly stratify training and test data among metadata categories. If
+    True, all values in column must match at least two samples.
+missing_samples : Str % Choices('error', 'ignore'), optional
+    How to handle missing samples in metadata. "error" will fail if missing
+    samples are detected. "ignore" will cause the feature table and
+    metadata to be filtered, so that only samples found in both files are
+    retained.
+
+Returns
+-------
+training_table : FeatureTable[Frequency]
+    Feature table containing training samples
+test_table : FeatureTable[Frequency]
+    Feature table containing test samples
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

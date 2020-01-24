@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<tool id="qiime_emperor_biplot" name="qiime emperor biplot" version="2019.7">
+	<description> - Visualize and Interact with Principal Coordinates Analysis Biplot</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime emperor biplot
+
+--i-biplot=$ibiplot
+
+
+#if $m_sample_metadatafile:
+#def list_dict_to_string_sample_mdata(list_dict):
+#set $file_list = list_dict[0]['additional_input'].__getattr__('file_name')
+#for d in list_dict[1:]:
+	#set $file_list = $file_list + ' --m-sample-metadata-file=' + d['additional_input'].__getattr__('file_name')
+#end for
+#return $file_list
+#end def
+--m-sample-metadata-file=$list_dict_to_string_sample_mdata($m_sample_metadatafile)
+#end if
+
+
+
+#if $m_feature_metadatafile:
+#def list_dict_to_string_feature_mdata(list_dict):
+#set $file_list = list_dict[0]['additional_input'].__getattr__('file_name')
+#for d in list_dict[1:]:
+	#set $file_list = $file_list + ' --m-feature-metadata-file=' + d['additional_input'].__getattr__('file_name')
+#end for
+#return $file_list
+#end def
+--m-feature-metadata-file=$list_dict_to_string_feature_mdata($m_feature_metadatafile)
+#end if
+
+
+
+#if $pignoremissingsamples:
+ --p-ignore-missing-samples
+#end if
+
+#if str($pnumberoffeatures):
+ --p-number-of-features=$pnumberoffeatures
+#end if
+ 
+--o-visualization=ovisualization
+;
+qiime tools export --input-path ovisualization.qzv --output-path out   && mkdir -p '$ovisualization.files_path'
+&& cp -r out/* '$ovisualization.files_path'
+&& mv '$ovisualization.files_path/index.html' '$ovisualization'
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-biplot: ARTIFACT PCoAResults % Properties('biplot') The principal coordinates matrix to be plotted. [required]" name="ibiplot" optional="False" type="data"/>
+		<param label="--p-ignore-missing-samples: --p-no-ignore-missing-samples This will suppress the error raised when the coordinates matrix contains samples that are not present in the metadata. Samples without metadata are included by setting all metadata values to: 'This sample has no metadata'. This flag is only applied if at least one sample is present in both the coordinates matrix and the metadata.               [default: False]" name="pignoremissingsamples" selected="False" type="boolean"/>
+		<param label="--p-number-of-features: INTEGER Range(1, None)     The number of most important features (arrows) to display in the ordination.                 [default: 5]" name="pnumberoffeatures" optional="True" type="integer" min="1" value="5"/>
+
+		<repeat name="m_sample_metadatafile" optional="False" title="--m-sample-metadata-file  [required]">
+			<param label="--m-sample-metadata-file: (multiple arguments will be merged)  The sample metadata. [required]" name="additional_input" type="data" format="tabular,qza,no_unzip.zip" />
+		</repeat>
+
+		<repeat name="m_feature_metadatafile" optional="True" title="--m-feature-metadata-file">
+			<param label="--m-feature-metadata-file: (multiple arguments will be merged)  The feature metadata (useful to manipulate the arrows in the plot).  [optional]" name="additional_input" type="data" format="tabular,qza,no_unzip.zip" />
+		</repeat>
+
+	</inputs>
+	<outputs>
+		<data format="html" label="${tool.name} on ${on_string}: visualization.qzv" name="ovisualization"/>
+	</outputs>
+	<help><![CDATA[
+Visualize and Interact with Principal Coordinates Analysis Biplot
+#################################################################
+
+Generates an interactive ordination biplot where the user can visually
+integrate sample and feature metadata.
+
+Parameters
+----------
+biplot : PCoAResults % Properties('biplot')
+    The principal coordinates matrix to be plotted.
+sample_metadata : Metadata
+    The sample metadata
+feature_metadata : Metadata, optional
+    The feature metadata (useful to manipulate the arrows in the plot).
+ignore_missing_samples : Bool, optional
+    This will suppress the error raised when the coordinates matrix
+    contains samples that are not present in the metadata. Samples without
+    metadata are included by setting all metadata values to: "This sample
+    has no metadata". This flag is only applied if at least one sample is
+    present in both the coordinates matrix and the metadata.
+number_of_features : Int % Range(1, None), optional
+    The number of most important features (arrows) to display in the
+    ordination.
+
+Returns
+-------
+visualization : Visualization
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<tool id="qiime_fragment-insertion_sepp" name="qiime fragment-insertion sepp" version="2019.7">
+	<description> - Insert fragment sequences using SEPP into reference phylogenies like Greengenes 13_8</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime fragment-insertion sepp
+
+--i-representative-sequences=$irepresentativesequences
+
+#if str($ireferencealignment) != 'None':
+ --i-reference-alignment=$ireferencealignment
+#end if
+
+#if str($ireferencephylogeny) != 'None':
+ --i-reference-phylogeny=$ireferencephylogeny
+#end if
+
+#set $pthreads = '${GALAXY_SLOTS:-4}'
+#if str($pthreads):
+ --p-threads="$pthreads"
+#end if
+
+
+#if str($palignmentsubsetsize):
+ --p-alignment-subset-size=$palignmentsubsetsize
+#end if
+
+#if str($pplacementsubsetsize):
+ --p-placement-subset-size="$pplacementsubsetsize"
+#end if
+
+--o-tree=otree
+--o-placements=oplacements
+;
+cp otree.qza $otree;
+cp oplacements.qza $oplacements
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-representative-sequences: ARTIFACT FeatureData[Sequence] The sequences to insert                      [required]" name="irepresentativesequences" optional="False" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-reference-alignment: ARTIFACT FeatureData[AlignedSequence] The reference multiple nucleotide alignment used to construct the reference phylogeny.           [optional]" name="ireferencealignment" optional="True" type="data"/>
+		<param format="qza,no_unzip.zip" label="--i-reference-phylogeny: ARTIFACT Phylogeny[Rooted]  The rooted reference phylogeny. Must be in sync with reference-alignment, i.e. each tip name must have exactly one corresponding record.            [optional]" name="ireferencephylogeny" optional="True" type="data"/>
+		<param label="--p-alignment-subset-size: INTEGER Each placement subset is further broken into subsets of at most these many sequences and a separate HMM is trained on each subset. The default alignment subset size is set to balance the exhaustiveness of the alignment step with the running time.   [default: 1000]" name="palignmentsubsetsize" optional="True" type="integer" value="1000"/>
+		<param label="--p-placement-subset-size: INTEGER The tree is divided into subsets such that each subset includes at most these many subsets. The placement step places the fragment on only one subset, determined based on alignment scores. The default placement subset is set to make sure the memory requirement of the pplacer step does not become prohibitively large." name="pplacementsubsetsize" optional="True" type="integer"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: tree.qza" name="otree"/>
+		<data format="qza" label="${tool.name} on ${on_string}: placements.qza" name="oplacements"/>
+	</outputs>
+	<help><![CDATA[
+Insert fragment sequences using SEPP into reference phylogenies like Greengenes 13_8
+####################################################################################
+
+Perform fragment insertion of 16S sequences using the SEPP algorithm
+against the Greengenes 13_8 99% tree.
+
+Parameters
+----------
+representative_sequences : FeatureData[Sequence]
+    The sequences to insert
+alignment_subset_size : Int, optional
+    Each placement subset is further broken into subsets of at most these
+    many sequences and a separate HMM is trained on each subset. The
+    default alignment subset size is set to balance the exhaustiveness of
+    the alignment step with the running time.
+placement_subset_size : Int, optional
+    The tree is divided into subsets such that each subset includes at most
+    these many subsets. The placement step places the fragment on only one
+    subset, determined based on alignment scores. The default placement
+    subset is set to make sure the memory requirement of the pplacer step
+    does not become prohibitively large. Further reading:
+    https://github.com/smirarab/sepp/blob/master/tutorial/sepp-
+    tutorial.md#sample-datasets-default-parameters
+reference_alignment : FeatureData[AlignedSequence], optional
+    The reference multiple nucleotide alignment used to construct the
+    reference phylogeny.
+reference_phylogeny : Phylogeny[Rooted], optional
+    The rooted reference phylogeny. Must be in sync with reference-
+    alignment, i.e. each tip name must have exactly one corresponding
+    record.
+debug : Bool, optional
+    Print additional run information to STDOUT for debugging. Run together
+    with --verbose to actually see the information on STDOUT. Temporary
+    directories will not be removed if run fails.
+
+Returns
+-------
+tree : Phylogeny[Rooted]
+    The tree with inserted feature data
+placements : Placements
+	\
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>

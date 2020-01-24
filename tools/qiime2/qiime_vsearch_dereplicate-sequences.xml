@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<tool id="qiime_vsearch_dereplicate-sequences" name="qiime vsearch dereplicate-sequences" version="2019.7">
+	<description> - Dereplicate sequences.</description>
+	<requirements>
+		<container type="docker">qiime2/core</container>
+	</requirements>
+	<command><![CDATA[
+qiime vsearch dereplicate-sequences
+
+--i-sequences=$isequences
+
+#if $pderepprefix:
+ --p-derep-prefix
+#end if
+
+--o-dereplicated-table=odereplicatedtable
+--o-dereplicated-sequences=odereplicatedsequences
+;
+cp odereplicatedtable.qza $odereplicatedtable;
+cp odereplicatedsequences.qza $odereplicatedsequences
+	]]></command>
+	<inputs>
+		<param format="qza,no_unzip.zip" label="--i-sequences: ARTIFACT SampleData[Sequences] | SampleData[SequencesWithQuality] | SampleData[JoinedSequencesWithQuality] The sequences to be dereplicated.         [required]" name="isequences" optional="False" type="data"/>
+		<param label="--p-derep-prefix: --p-no-derep-prefix Merge sequences with identical prefixes. If a sequence is identical to the prefix of two or more longer sequences, it is clustered with the shortest of them. If they are equally long, it is clustered with the most abundant.             [default: False]" name="pderepprefix" selected="False" type="boolean"/>
+	</inputs>
+	<outputs>
+		<data format="qza" label="${tool.name} on ${on_string}: dereplicatedtable.qza" name="odereplicatedtable"/>
+		<data format="qza" label="${tool.name} on ${on_string}: dereplicatedsequences.qza" name="odereplicatedsequences"/>
+	</outputs>
+	<help><![CDATA[
+Dereplicate sequences.
+######################
+
+Dereplicate sequence data and create a feature table and feature
+representative sequences. Feature identifiers in the resulting artifacts
+will be the sha1 hash of the sequence defining each feature. If clustering
+of features into OTUs is desired, the resulting artifacts can be passed to
+the cluster_features_* methods in this plugin.
+
+Parameters
+----------
+sequences : SampleData[Sequences] | SampleData[SequencesWithQuality] | SampleData[JoinedSequencesWithQuality]
+    The sequences to be dereplicated.
+derep_prefix : Bool, optional
+    Merge sequences with identical prefixes. If a sequence is identical to
+    the prefix of two or more longer sequences, it is clustered with the
+    shortest of them. If they are equally long, it is clustered with the
+    most abundant.
+
+Returns
+-------
+dereplicated_table : FeatureTable[Frequency]
+    The table of dereplicated sequences.
+dereplicated_sequences : FeatureData[Sequence]
+    The dereplicated sequences.
+	]]></help>
+<macros>
+    <import>qiime_citation.xml</import>
+</macros>
+<expand macro="qiime_citation"/>
+</tool>
