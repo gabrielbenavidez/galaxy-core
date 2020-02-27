@@ -5,7 +5,7 @@
 		<container type="docker">qiime2/core</container>
 	</requirements>
 	<command><![CDATA[
-#set global datasetId = $ovisualization.dataset.dataset_id
+
 qiime metadata tabulate
 
 

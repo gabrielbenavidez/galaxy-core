@@ -81,9 +81,9 @@ const View = Backbone.View.extend({
     },
 
     render: function() {
-        this.$navbarBrandTitle.html(`Galaxy ${(this.options.brand && `/ ${this.options.brand}`) || ""}`);
+        this.$navbarBrandTitle.html(`InfotechSoft ${(this.options.brand && `/ ${this.options.brand}`) || ""}`);
         this.$navbarBrandLink.attr("href", this.options.logo_url);
-        this.$navbarBrandImage.attr("src", this.options.logo_src);
+        this.$navbarBrandImage.attr("src", '/static/images/infotechsoft_branding/InfoTechSoft_Icon.png');
         this.quotaMeter.render();
         return this;
     },

@@ -27,7 +27,7 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts/";
 @import "charts.scss";
 @import "message.scss";
 @import "toolshed.scss";
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Orbitron&display=swap');
 // ==== Select2 ====
 /* fix for zero width select2 - remove when fixed there */
 .select2-minwidth {
@@ -65,6 +65,7 @@ $fa-font-path: "../../../node_modules/font-awesome/fonts/";
 
 body {
     @extend .m-2;
+    font-weight: 500;
 }
 
 .unselectable {
@@ -131,6 +132,7 @@ body {
 #left,
 #center,
 #right {
+    font-family: 'Montserrat', sans-serif;
     @extend .position-absolute;
     @extend .h-100;
 }
@@ -241,7 +243,7 @@ body {
     line-height: $panel_footer_height;
     width: 100%;
     border-top: $layout-border;
-    background: $panel-footer-bg-color;
+    background: #d0cece;
     color: $panel-header-text-color;
     a {
         color: $panel-header-text-color;
@@ -350,6 +352,8 @@ body {
     @extend .mb-0;
     background-color: $brand-dark;
     height: $masthead-height;
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 500;
     .navbar-nav {
         min-height: 100%;
         > li {
@@ -359,7 +363,7 @@ body {
             display: flex;
             align-items: center;
             &.active {
-                background: darken($brand-dark, 10%);
+                background: #d64851;
                 .nav-link {
                     color: $white;
                 }
@@ -367,15 +371,16 @@ body {
             .nav-link {
                 cursor: pointer;
                 text-decoration: none;
-                color: $gray-300;
+                color: white;
                 &:hover {
-                    color: $brand-toggle;
+                    color:white;
+                    font-weight: 500;
                 }
                 &.nav-icon {
                     font-size: 1.7em;
                 }
                 &.toggle {
-                    color: $brand-toggle;
+                    color: white;
                 }
             }
             .nav-note {
@@ -387,25 +392,40 @@ body {
                 color: $brand-toggle;
                 width: 0;
             }
+            .dropdown-menu{
+                background-color: #f0f0f1;
+                .dropdown-item{
+                    &:hover{
+                        background-color: $brand-dark;
+                        color: white;
+                    }
+                }
+            }
         }
     }
     .navbar-brand {
         @extend .position-absolute;
         @extend .font-weight-bold;
-        left: 0.3rem;
+        left: 1rem;
         top: 0;
         font-family: verdana;
         font-size: 1.25rem;
         color: $gray-300;
         text-decoration: none;
+        width: 18%;
         .navbar-brand-image {
-            display: inline;
-            width: 26px;
-            margin-left: 0.35em;
+            width: 20%;
+            height: 5vh;
+            left: 7%;
             border: none;
+            margin-top: -1%;
         }
         .navbar-brand-title {
+            font-family: 'Orbitron', sans-serif;
             color: $white;
+            font-weight: 500;
+            position: relative;
+            top:.5vh;
         }
     }
 }
@@ -758,6 +778,10 @@ div.form-row-input label {
     background-image: url(../../images/info_small.png);
 }
 
+.infomessagesmall a{
+    color: $brand-text;
+}
+
 .errormark,
 .warningmark,
 .donemark,
@@ -898,7 +922,7 @@ div.debug {
     background-color: $brand-light;
 }
 .grid .current {
-    background-color: lighten($brand-success, 20%);
+    background-color:rgba(82,82,82,.05)
 }
 
 // Pulled out of grid base
@@ -1201,6 +1225,10 @@ div.popmenu-wrapper {
         display: block;
         position: relative;
         float: none;
+        background-color: #f0f0f1;
+    }
+    .dropdown-menu .dropdown-item  {
+        background-color: #e2e2e2;
     }
 }
 
@@ -1363,8 +1391,9 @@ div.permissionContainer {
 }
 
 div.toolSectionTitle {
-    font-weight: 500;
+    font-weight: 600;
     font-size: $h4-font-size;
+    text-decoration: none;
 }
 
 div.toolPanelLabel {
@@ -1390,7 +1419,7 @@ div.toolTitleNoSection {
         text-decoration: none;
         display: block;
         &:hover {
-            background: darken($panel-bg-color, 5%);
+            background: darken($brand-light, 10%);
         }
     }
     &.text-muted a {
@@ -1773,11 +1802,13 @@ body.reports {
     overflow: hidden;
     #left {
         background: #c1c9e5 url(../../images/menu_bg.png) top repeat-x;
+        font-family: 'Montserrat',sans-serif;
     }
     .unified-panel-body {
         overflow: auto;
     }
     .toolMenu {
+        font-weight: 500;
         margin-left: 10px;
     }
 }

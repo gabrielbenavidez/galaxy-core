@@ -1,0 +1,103 @@
+
+
+html{
+    height: 100%;
+}
+
+.m-0{
+    height: 100%;
+    display:flex;
+    justify-content: center;
+}
+
+.py-4{
+    background-color: white;
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-container{
+    width: 40%;
+    height: 55vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-text{
+    font-family: 'Orbitron';
+    height: -20vh;
+    width: fit-content;
+    font-size: 40px;
+    align-self: center;
+    color: rgb(90, 90, 90);
+    margin-top: 1vh;
+    font-weight: 200;
+}
+
+.tour-container{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    margin-top: -3vh;
+    width: 35%;
+    height: 10vh;
+}
+
+.infotechsoft_logo
+{
+    margin-top: 0%;
+    width:60%;
+    height:30vh;
+}
+
+
+.interactive_tour
+{
+    font-family: 'Montserrat';
+    height: 5vh;
+    font-size:1.3em;
+    width: fit-content;
+}
+
+.interactive_tour a{
+    background-color:#ce2e38;
+    color:white;
+    font-weight:400;
+    margin-top: 0vh;
+    width: fit-content;
+    font-family: 'Montserrat';
+}
+
+#tour-button
+{
+    background-color:#ce2e38;
+    color:white;
+    font-weight:400;
+    margin-top: 0vh;
+    width: fit-content;
+    font-family: 'Montserrat';
+}
+
+#tour-button:hover
+{
+    background-color:#eb2a36;
+    color:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

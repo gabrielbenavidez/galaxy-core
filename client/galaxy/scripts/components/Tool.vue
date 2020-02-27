@@ -18,6 +18,7 @@
                     </span>
                 </span>
                 <span class="tool-old-link">{{ tool.name }}</span>
+                <br>
                 {{ tool.description }}
             </a>
         </div>

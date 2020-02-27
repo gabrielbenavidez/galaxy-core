@@ -2,10 +2,9 @@
 <tool id="qiime_quality-control_evaluate-composition" name="qiime quality-control evaluate-composition" version="2019.7">
 	<description> - Evaluate expected vs. observed taxonomic composition of samples</description>
 	<requirements>
-		<container type="docker">qiime2/core</container>
+		<container type="docker">qiime2/core:2019.7</container>
 	</requirements>
 	<command><![CDATA[
-#set global datasetId = $ovisualization.dataset.dataset_id
 qiime quality-control evaluate-composition
 
 --i-expected-features=$iexpectedfeatures

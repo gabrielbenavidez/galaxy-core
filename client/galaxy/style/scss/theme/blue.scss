@@ -1,16 +1,17 @@
 // Brand colors
-$brand-primary: #25537b;
-$brand-secondary: #dee2e6;
-$brand-success: #66cc66;
-$brand-info: #2077b3;
-$brand-warning: #fe7f02;
-$brand-danger: #e31a1e;
-$brand-light: #f8f9fa;
-$brand-dark: #2c3143;
-$brand-toggle: gold;
+$brand-primary: #d64851;
+$brand-secondary: #e6e6e6;
+$brand-success: #1c9220;
+$brand-info: rgb(90, 90, 90);
+$brand-warning: #f05757;
+$brand-danger: #e24852;
+$brand-light: #f0f0f1;
+$brand-text: rgb(90, 90, 90);
+$brand-dark: #525252;
+$brand-toggle: #161718;
 
 // Text colors
-$text-color: $brand-dark;
+$text-color: $brand-text;
 $text-muted: lighten($text-color, 10%);
 $text-light: lighten($text-color, 20%);
 $border-color: lighten($text-color, 60%);

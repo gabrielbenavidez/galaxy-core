@@ -136,8 +136,16 @@ pre.code {
 .alert-success {
     a {
         font-weight: bold;
+        color: darkgrey;
     }
 }
+
+.alert-info{
+    background-color: #efb6b9;
+    color: #6c5052;
+    border-color: #e27f85;
+}
+
 
 // increase visibility of dropdown menu section headers
 .dropdown-header {
