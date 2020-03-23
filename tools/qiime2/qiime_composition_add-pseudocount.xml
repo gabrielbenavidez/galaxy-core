@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_composition_add-pseudocount" name="qiime composition add-pseudocount" version="2019.7">
-	<description> - Add pseudocount to table</description>
+	<description>Add pseudocount to table</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

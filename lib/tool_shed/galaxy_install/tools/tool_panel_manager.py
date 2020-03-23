@@ -314,8 +314,8 @@ class ToolPanelManager(object):
             tool_section = None
         return tool_section
 
-    def get_or_create_tool_section(self, toolbox, tool_panel_section_id, new_tool_panel_section_label=None):
-        return toolbox.get_section(section_id=tool_panel_section_id, new_label=new_tool_panel_section_label, create_if_needed=True)
+    def get_or_create_tool_section(self, toolbox, tool_panel_section_id, new_tool_panel_section_label=None, new_tool_panel_section_icon=None):
+        return toolbox.get_section(section_id=tool_panel_section_id, new_label=new_tool_panel_section_label, create_if_needed=True, new_icon=new_tool_panel_section_icon)
 
     def get_shed_tool_conf_dict(self, shed_tool_conf):
         """
@@ -331,13 +331,19 @@ class ToolPanelManager(object):
                     return shed_tool_conf_dict
         raise RequestParameterInvalidException("Requested shed_tool_conf '%s' is not an active shed_tool_config_file" % shed_tool_conf)
 
-    def handle_tool_panel_section(self, toolbox, tool_panel_section_id=None, new_tool_panel_section_label=None):
+    def handle_tool_panel_section(self, toolbox, tool_panel_section_id=None, new_tool_panel_section_label=None, new_tool_panel_section_icon=None ):
         """Return a ToolSection object retrieved from the current in-memory tool_panel."""
         # If tool_panel_section_id is received, the section exists in the tool panel.  In this
         # case, the value of the received tool_panel_section_id must be the id retrieved from a
         # tool panel config (e.g., tool_conf.xml, which may have getext).  If new_tool_panel_section_label
         # is received, a new section will be added to the tool panel.
-        if new_tool_panel_section_label:
+        if new_tool_panel_section_icon:
+            section_id = str(new_tool_panel_section_icon.lower().replace(' ', '_'))
+            tool_panel_section_key, tool_section = \
+                self.get_or_create_tool_section(toolbox,
+                                                tool_panel_section_id=section_id,
+                                                new_tool_panel_section_icon=new_tool_panel_section_icon)
+        elif new_tool_panel_section_label:
             section_id = str(new_tool_panel_section_label.lower().replace(' ', '_'))
             tool_panel_section_key, tool_section = \
                 self.get_or_create_tool_section(toolbox,
@@ -350,7 +356,7 @@ class ToolPanelManager(object):
         return tool_panel_section_key, tool_section
 
     def handle_tool_panel_selection(self, toolbox, metadata, no_changes_checked, tool_panel_section_id,
-                                    new_tool_panel_section_label):
+                                    new_tool_panel_section_label, new_tool_panel_section_icon ):
         """
         Handle the selected tool panel location for loading tools included in
         tool shed repositories when installing or reinstalling them.
@@ -380,13 +386,13 @@ class ToolPanelManager(object):
                         tool_panel_section_key, tool_section = \
                             self.get_or_create_tool_section(toolbox,
                                                             tool_panel_section_id=original_section_id,
-                                                            new_tool_panel_section_label=new_tool_panel_section_label)
+                                                            new_tool_panel_section_label=new_tool_panel_section_label,new_tool_panel_section_icon=new_tool_panel_section_icon)
             else:
                 # The user elected to change the tool panel section to contain the tools.
                 tool_panel_section_key, tool_section = \
                     self.handle_tool_panel_section(toolbox,
                                                    tool_panel_section_id=tool_panel_section_id,
-                                                   new_tool_panel_section_label=new_tool_panel_section_label)
+                                                   new_tool_panel_section_label=new_tool_panel_section_label, new_tool_panel_section_icon=new_tool_panel_section_icon)
         return tool_section, tool_panel_section_key
 
     def remove_from_shed_tool_config(self, shed_tool_conf_dict, metadata):

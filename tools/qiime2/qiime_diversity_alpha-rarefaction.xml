@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_alpha-rarefaction" name="qiime diversity alpha-rarefaction" version="2019.7">
-	<description> - Alpha rarefaction curves</description>
+	<description>Alpha rarefaction curves</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

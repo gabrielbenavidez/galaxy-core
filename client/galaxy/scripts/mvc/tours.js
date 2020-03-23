@@ -92,16 +92,16 @@ var hooked_tour_from_data = data => {
                     .trigger("change");
             };
         }
-        if (step.path) {
-            // Galaxy does *not* support automagic path navigation right now in
-            // Tours -- too many ways to get your client 'stuck' in automatic
-            // navigation loops.  We can probably re-enable this as our client
-            // routing matures.
-            console.warn(
-                "This Galaxy Tour is attempting to use path navigation.  This is known to be unstable and can possibly get the Galaxy client 'stuck' in a tour, and at this time is not allowed."
-            );
-            delete step.path;
-        }
+        // if (step.path) {
+        //     // Galaxy does *not* support automagic path navigation right now in
+        //     // Tours -- too many ways to get your client 'stuck' in automatic
+        //     // navigation loops.  We can probably re-enable this as our client
+        //     // routing matures.
+        //     console.warn(
+        //         "This Galaxy Tour is attempting to use path navigation.  This is known to be unstable and can possibly get the Galaxy client 'stuck' in a tour, and at this time is not allowed."
+        //     );
+        //     delete step.path;
+        // }
     });
     return data;
 };

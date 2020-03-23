@@ -1,5 +1,5 @@
-<?xml version="1.0" ?> <tool id="swap ids" name="swap ids" >
-	<description> - Rename sample ids </description>
+<?xml version="1.0" ?> <tool id="swap_ids" name="swap ids" >
+	<description>  Rename sample ids </description>
 	<requirements>
 		<!--requirement type="package" version="0.24.2">pandas</requirement-->
 		<!--requirement type="package">xlrd</requirement-->

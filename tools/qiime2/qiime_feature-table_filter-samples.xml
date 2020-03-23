@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" ?>
 <tool id="qiime_feature-table_filter-samples" name="qiime feature-table filter-samples" version="2019.7">
-	<description> - Filter samples from table</description>
+	<description>Filter samples from table</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

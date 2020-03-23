@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_feature-table_subsample" name="qiime feature-table subsample" version="2019.7">
-	<description> - Subsample table</description>
+	<description>Subsample table</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

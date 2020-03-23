@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_phylogeny_iqtree" name="qiime phylogeny iqtree" version="2019.7">
-	<description> - Construct a phylogenetic tree with IQ-TREE.</description>
+	<description>Construct a phylogenetic tree with IQ-TREE.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

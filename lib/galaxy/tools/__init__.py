@@ -417,7 +417,7 @@ class Tool(Dictifiable):
     requires_setting_metadata = True
     produces_entry_points = False
     default_tool_action = DefaultToolAction
-    dict_collection_visible_keys = ['id', 'name', 'version', 'description', 'labels']
+    dict_collection_visible_keys = ['id', 'name', 'version', 'description', 'labels', 'icon']
 
     def __init__(self, config_file, tool_source, app, guid=None, repository_id=None, tool_shed_repository=None, allow_code_files=True, dynamic=False):
         """Load a tool from the config named by `config_file`"""
@@ -442,6 +442,7 @@ class Tool(Dictifiable):
         self.target = 'galaxy_main'
         self.method = 'post'
         self.labels = []
+        self.icon = []
         self.check_values = True
         self.nginx_upload = False
         self.input_required = False

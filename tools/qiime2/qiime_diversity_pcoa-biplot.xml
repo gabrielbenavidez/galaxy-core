@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_pcoa-biplot" name="qiime diversity pcoa-biplot" version="2019.7">
-	<description> - Principal Coordinate Analysis Biplot</description>
+	<description>Principal Coordinate Analysis Biplot</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

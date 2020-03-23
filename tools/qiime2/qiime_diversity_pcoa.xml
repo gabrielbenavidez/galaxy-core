@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_pcoa" name="qiime diversity pcoa" version="2019.7">
-	<description> - Principal Coordinate Analysis</description>
+	<description>Principal Coordinate Analysis</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

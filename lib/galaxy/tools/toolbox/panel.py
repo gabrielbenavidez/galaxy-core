@@ -13,6 +13,7 @@ panel_item_types = bunch.Bunch(
     WORKFLOW="WORKFLOW",
     SECTION="SECTION",
     LABEL="LABEL",
+    ICON="ICON"
 )
 
 
@@ -23,7 +24,7 @@ class HasPanelItems(object):
     @abstractmethod
     def panel_items(self):
         """ Return an ordered dictionary-like object describing tool panel
-        items (such as workflows, tools, labels, and sections).
+        items (such as workflows, tools, labels, icons, and sections).
         """
 
     def panel_items_iter(self):
@@ -40,6 +41,8 @@ class HasPanelItems(object):
                 panel_type = panel_item_types.LABEL
             elif panel_key.startswith("workflow_"):
                 panel_type = panel_item_types.WORKFLOW
+            elif panel_key.startswith("icon_"):
+                panel_type = panel_item_types.ICON
             yield (panel_key, panel_type, panel_value)
 
 
@@ -49,7 +52,7 @@ class ToolSection(Dictifiable, HasPanelItems):
     group in the user interface.
     """
 
-    dict_collection_visible_keys = ['id', 'name', 'version']
+    dict_collection_visible_keys = ['id', 'name', 'version', 'icon']
 
     def __init__(self, item=None):
         """ Build a ToolSection from an ElementTree element or a dictionary.
@@ -59,12 +62,14 @@ class ToolSection(Dictifiable, HasPanelItems):
         self.name = item.get('name') or ''
         self.id = item.get('id') or ''
         self.version = item.get('version') or ''
+        self.icon = item.get('icon') or ''
         self.elems = ToolPanelElements()
 
     def copy(self):
         copy = ToolSection()
         copy.name = self.name
         copy.id = self.id
+        copy.icon = self.icon
         copy.version = self.version
         copy.elems = self.elems.copy()
         return copy
@@ -175,3 +180,13 @@ class ToolPanelElements(odict, HasPanelItems):
 
     def panel_items(self):
         return self
+
+#added by Gabriel
+    def get_icon(self, icon):
+        for element in self.values():
+            if isinstance(element, ToolSection) and element.name == icon:
+                return element
+
+    def stub_icon(self,key):
+        key = 'icon_%s' % key
+        self[key] = None

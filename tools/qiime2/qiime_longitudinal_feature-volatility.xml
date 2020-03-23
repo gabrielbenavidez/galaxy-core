@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_longitudinal_feature-volatility" name="qiime longitudinal feature-volatility" version="2019.7">
-	<description> - Feature volatility analysis</description>
+	<description>Feature volatility analysis</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

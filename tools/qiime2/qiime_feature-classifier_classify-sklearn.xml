@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_feature-classifier_classify-sklearn" name="qiime feature-classifier classify-sklearn" version="2019.7">
-	<description> - Pre-fitted sklearn-based taxonomy classifier</description>
+	<description>Pre-fitted sklearn-based taxonomy classifier</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

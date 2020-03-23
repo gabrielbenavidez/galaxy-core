@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_feature-classifier_fit-classifier-sklearn" name="qiime feature-classifier fit-classifier-sklearn" version="2019.7">
-	<description> - Train an almost arbitrary scikit-learn classifier</description>
+	<description>Train an almost arbitrary scikit-learn classifier</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

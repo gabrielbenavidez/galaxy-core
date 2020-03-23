@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_feature-classifier_classify-consensus-blast" name="qiime feature-classifier classify-consensus-blast" version="2019.7">
-	<description> - BLAST+ consensus taxonomy classifier</description>
+	<description>BLAST+ consensus taxonomy classifier</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

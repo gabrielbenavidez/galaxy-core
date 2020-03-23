@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_sample-classifier_scatterplot" name="qiime sample-classifier scatterplot" version="2019.7">
-	<description> - Make 2D scatterplot and linear regression of regressor predictions.</description>
+	<description>Make 2D scatterplot and linear regression of regressor predictions.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_dada2_denoise-paired" name="qiime dada2 denoise-paired" version="2019.7">
-	<description> - Denoise and dereplicate paired-end sequences</description>
+	<description>Denoise and dereplicate paired-end sequences</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

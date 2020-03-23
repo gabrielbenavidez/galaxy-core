@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <tool name="GenomeSpace Exporter" id="genomespace_exporter" require_login="True" version="0.0.7" profile="16.04">
-    <description> - send data to GenomeSpace</description>
+    <description>  send data to GenomeSpace</description>
     <environment_variables>
         <environment_variable name="GS_TOKEN">
             #set $token = $__user__.preferences.get('genomespace_token', None)

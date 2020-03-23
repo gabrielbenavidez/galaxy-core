@@ -262,6 +262,7 @@ class AbstractToolBox(Dictifiable, ManagesIntegratedToolPanelMixin):
                 self._load_label_tag_set(item, panel_dict=panel_dict, integrated_panel_dict=integrated_panel_dict, load_panel_dict=load_panel_dict, index=index)
             elif item_type == 'tool_dir':
                 self._load_tooldir_tag_set(item, panel_dict, tool_path, integrated_panel_dict, load_panel_dict=load_panel_dict)
+            
 
     def get_shed_config_dict_by_filename(self, filename):
         filename = os.path.abspath(filename)
@@ -280,25 +281,37 @@ class AbstractToolBox(Dictifiable, ManagesIntegratedToolPanelMixin):
                 self._dynamic_tool_confs[index] = shed_conf
         self._save_integrated_tool_panel()
 
-    def get_section(self, section_id, new_label=None, create_if_needed=False):
+    def get_section(self, section_id, new_label=None, create_if_needed=False, new_icon=None):
         tool_panel_section_key = str(section_id)
         if tool_panel_section_key in self._tool_panel:
             # Appending a tool to an existing section in toolbox._tool_panel
             tool_section = self._tool_panel[tool_panel_section_key]
             log.debug("Appending to tool panel section: %s" % str(tool_section.name))
+        elif new_icon and self._tool_panel.getIcon(new_icon):
+            tool_section = self._tool_panel.getIcon(new_icon)
+            tool_panel_section_key = tool_section.icon
         elif new_label and self._tool_panel.get_label(new_label):
             tool_section = self._tool_panel.get_label(new_label)
             tool_panel_section_key = tool_section.id
         elif create_if_needed:
             # Appending a new section to toolbox._tool_panel
-            if new_label is None:
+            #added by Gabriel
+            session_dict={}
+            if new_icon is None:
+                new_icon = section_id
+                section_dict_dict_tmp = {
+                    'icon': new_icon,
+                }
+                session_dict = section_dict_dict_tmp
+            elif new_label is None:
                 # This might add an ugly section label to the tool panel, but, oh well...
                 new_label = section_id
-            section_dict = {
-                'name': new_label,
-                'id': section_id,
-                'version': '',
-            }
+                section_dict_dict_tmp = {
+                    'name': new_label,
+                    'id': section_id,
+                    'version': '',
+                }
+                section_dict = section_dict_dict_tmp
             self.create_section(section_dict)
             tool_section = self._tool_panel[tool_panel_section_key]
             self._save_integrated_tool_panel()
@@ -414,11 +427,14 @@ class AbstractToolBox(Dictifiable, ManagesIntegratedToolPanelMixin):
                     log.debug("Loaded workflow: %s %s" % (workflow_id, workflow.name))
             elif item_type == panel_item_types.LABEL:
                 self._tool_panel[key] = val
+            elif item_type == panel_item_types.ICON:
+                self._tool_panel[key] = val
             elif item_type == panel_item_types.SECTION:
                 section_dict = {
                     'id': val.id or '',
                     'name': val.name or '',
                     'version': val.version or '',
+                    'icon': val.icon or ''
                 }
                 section = ToolSection(section_dict)
                 log.debug("Loading section: %s" % section_dict.get('name'))
@@ -434,6 +450,10 @@ class AbstractToolBox(Dictifiable, ManagesIntegratedToolPanelMixin):
                             workflow = self._workflows_by_id[workflow_id]
                             section.elems[section_key] = workflow
                             log.debug("Loaded workflow: %s %s" % (workflow_id, workflow.name))
+                    elif section_item_type == panel_item_types.ICON:
+                        if section_val:
+                            section.elems[section_key] = section_val
+                            log.debug("Loaded icon: %s" % (section_val.icon))
                     elif section_item_type == panel_item_types.LABEL:
                         if section_val:
                             section.elems[section_key] = section_val
@@ -458,6 +478,8 @@ class AbstractToolBox(Dictifiable, ManagesIntegratedToolPanelMixin):
                 self._integrated_tool_panel.stub_workflow(key)
             elif elem.tag == 'section':
                 section = ToolSection(elem)
+            elif elem.tag == 'icon':
+                self.integrated_tool_panel.stub_icon(key)
                 for section_elem in elem:
                     section_id = section_elem.get('id')
                     if section_elem.tag == 'tool':
@@ -466,6 +488,8 @@ class AbstractToolBox(Dictifiable, ManagesIntegratedToolPanelMixin):
                         section.elems.stub_workflow(section_id)
                     elif section_elem.tag == 'label':
                         section.elems.stub_label(section_id)
+                    elif section_elem.tag == 'icon':
+                        section.elems.stub_icon(section_id)
                 self._integrated_tool_panel.append_section(key, section)
             elif elem.tag == 'label':
                 self._integrated_tool_panel.stub_label(key)
@@ -680,8 +704,11 @@ class AbstractToolBox(Dictifiable, ManagesIntegratedToolPanelMixin):
             # If labels were specified in the toolbox config, attach them to
             # the tool.
             labels = item.labels
+            icon = item.icon
             if labels is not None:
                 tool.labels = labels
+            if icon is not None:
+                tool.icon = icon
         except (IOError, OSError) as exc:
             log.error("Error reading tool configuration file from path '%s': %s", path, unicodify(exc))
         except Exception:
@@ -789,7 +816,7 @@ class AbstractToolBox(Dictifiable, ManagesIntegratedToolPanelMixin):
                 load_panel_dict=load_panel_dict,
                 guid=sub_item.get('guid'),
                 index=sub_index,
-                internal=internal,
+                internal=internal
             )
 
         # Ensure each tool's section is stored
@@ -797,7 +824,7 @@ class AbstractToolBox(Dictifiable, ManagesIntegratedToolPanelMixin):
             if section_item_type == panel_item_types.TOOL:
                 if section_item:
                     tool_id = section_key.replace('tool_', '', 1)
-                    self._integrated_section_by_tool[tool_id] = integrated_section.id, integrated_section.name
+                    self._integrated_section_by_tool[tool_id] = integrated_section.id, integrated_section.name, integrated_section.icon
 
         if load_panel_dict:
             self._tool_panel[key] = section

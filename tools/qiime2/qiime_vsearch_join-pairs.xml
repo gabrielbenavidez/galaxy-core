@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_vsearch_join-pairs" name="qiime vsearch join-pairs" version="2019.7">
-	<description> - Join paired-end reads.</description>
+	<description>Join paired-end reads.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

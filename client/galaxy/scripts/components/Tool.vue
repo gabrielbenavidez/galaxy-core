@@ -17,6 +17,7 @@
                         {{ label }}
                     </span>
                 </span>
+                <i :class="tool.icon" :id="tool.id" style="padding-right:3px;"></i>
                 <span class="tool-old-link">{{ tool.name }}</span>
                 <br>
                 {{ tool.description }}

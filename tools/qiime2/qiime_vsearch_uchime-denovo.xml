@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_vsearch_uchime-denovo" name="qiime vsearch uchime-denovo" version="2019.7">
-	<description> - De novo chimera filtering with vsearch.</description>
+	<description>De novo chimera filtering with vsearch.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

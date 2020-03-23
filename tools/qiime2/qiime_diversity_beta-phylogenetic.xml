@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_beta-phylogenetic" name="qiime diversity beta-phylogenetic" version="2019.7">
-	<description> - Beta diversity (phylogenetic)</description>
+	<description>Beta diversity (phylogenetic)</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

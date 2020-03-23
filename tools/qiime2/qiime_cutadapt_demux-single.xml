@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_cutadapt_demux-single" name="qiime cutadapt demux-single" version="2019.7">
-	<description> - Demultiplex single-end sequence data with barcodes in- sequence.</description>
+	<description>Demultiplex single-end sequence data with barcodes in- sequence.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

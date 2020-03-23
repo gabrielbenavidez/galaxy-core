@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_quality-control_exclude-seqs" name="qiime quality-control exclude-seqs" version="2019.7">
-	<description> - Exclude sequences by alignment</description>
+	<description>Exclude sequences by alignment</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

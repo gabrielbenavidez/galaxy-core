@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_emperor_plot" name="qiime emperor plot" version="2019.7">
-	<description> - Visualize and Interact with Principal Coordinates Analysis Plots</description>
+	<description>Visualize and Interact with Principal Coordinates Analysis Plots</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

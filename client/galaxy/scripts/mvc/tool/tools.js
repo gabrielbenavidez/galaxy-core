@@ -293,6 +293,7 @@ var ToolCollection = Backbone.Collection.extend({
  */
 var ToolSectionLabel = Backbone.Model.extend(VisibilityMixin);
 
+
 /**
  * Section of tool panel with elements (labels and tools).
  */

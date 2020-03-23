@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_bioenv" name="qiime diversity bioenv" version="2019.7">
-	<description> - bioenv</description>
+	<description>bioenv</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_alignment_mask" name="qiime alignment mask" version="2019.7">
-	<description> - Positional conservation and gap filtering.</description>
+	<description>Positional conservation and gap filtering.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

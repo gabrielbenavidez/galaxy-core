@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_metadata_distance-matrix" name="qiime metadata distance-matrix" version="2019.7">
-	<description> - Create a distance matrix from a numeric Metadata column</description>
+	<description>Create a distance matrix from a numeric Metadata column</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

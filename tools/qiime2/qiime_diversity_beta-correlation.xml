@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_beta-correlation" name="qiime diversity beta-correlation" version="2019.7">
-	<description> - Beta diversity correlation</description>
+	<description>Beta diversity correlation</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

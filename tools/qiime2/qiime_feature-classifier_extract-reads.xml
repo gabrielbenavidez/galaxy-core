@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_feature-classifier_extract-reads" name="qiime feature-classifier extract-reads" version="2019.7">
-	<description> - Extract reads from reference</description>
+	<description>Extract reads from reference</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

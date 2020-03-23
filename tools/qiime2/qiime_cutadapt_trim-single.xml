@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_cutadapt_trim-single" name="qiime cutadapt trim-single" version="2019.7">
-	<description> - Find and remove adapters in demultiplexed single-end sequences.</description>
+	<description>Find and remove adapters in demultiplexed single-end sequences.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

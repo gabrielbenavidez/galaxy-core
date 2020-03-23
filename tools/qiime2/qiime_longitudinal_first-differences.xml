@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_longitudinal_first-differences" name="qiime longitudinal first-differences" version="2019.7">
-	<description> - Compute first differences or difference from baseline between sequential states</description>
+	<description>Compute first differences or difference from baseline between sequential states</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

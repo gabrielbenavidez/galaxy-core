@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_feature-table_heatmap" name="qiime feature-table heatmap" version="2019.7">
-	<description> - Generate a heatmap representation of a feature table</description>
+	<description>Generate a heatmap representation of a feature table</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

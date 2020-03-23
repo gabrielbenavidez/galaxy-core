@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_feature-table_transpose" name="qiime feature-table transpose" version="2019.7">
-	<description> - Transpose a feature table.</description>
+	<description>Transpose a feature table.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

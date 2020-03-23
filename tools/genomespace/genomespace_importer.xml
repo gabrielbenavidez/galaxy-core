@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <tool name="GenomeSpace Importer" id="genomespace_importer" tool_type="output_parameter_json" require_login="True" version="0.0.6">
-    <description> - receive data from GenomeSpace</description>
+    <description>  receive data from GenomeSpace</description>
     <environment_variables>
         <environment_variable name="GS_TOKEN">
             #set $token = $__user__.preferences.get('genomespace_token', None)

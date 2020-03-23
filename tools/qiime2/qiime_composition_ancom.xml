@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_composition_ancom" name="qiime composition ancom" version="2019.7">
-	<description> - Apply ANCOM to identify features that differ in abundance.</description>
+	<description>Apply ANCOM to identify features that differ in abundance.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_beta-group-significance" name="qiime diversity beta-group-significance" version="2019.7">
-	<description> - Beta diversity group significance</description>
+	<description>Beta diversity group significance</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

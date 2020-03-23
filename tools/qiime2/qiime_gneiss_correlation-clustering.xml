@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_gneiss_correlation-clustering" name="qiime gneiss correlation-clustering" version="2019.7">
-	<description> - Hierarchical clustering using feature correlation.</description>
+	<description>Hierarchical clustering using feature correlation.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_quality-control_evaluate-seqs" name="qiime quality-control evaluate-seqs" version="2019.7">
-	<description> - Compare query (observed) vs. reference (expected) sequences.</description>
+	<description>Compare query (observed) vs. reference (expected) sequences.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

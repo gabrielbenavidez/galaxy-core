@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_taxa_collapse" name="qiime taxa collapse" version="2019.7">
-	<description> - Collapse features by their taxonomy at the specified level</description>
+	<description>Collapse features by their taxonomy at the specified level</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

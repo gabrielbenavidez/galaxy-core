@@ -267,6 +267,7 @@ $ui-margin-horizontal-large: $margin-v * 2;
     @extend .pl-2;
     height: $input-height;
     background: transparent;
+    border: 1px solid #a6a4a4;
     &[disabled],
     &[readonly],
     fieldset[disabled] & {
@@ -274,6 +275,11 @@ $ui-margin-horizontal-large: $margin-v * 2;
         background-color: $brand-light;
     }
 }
+
+.form-control:focus{
+    box-shadow: 0 0 0 0rem;
+}
+
 
 .ui-textarea {
     @extend .ui-input;

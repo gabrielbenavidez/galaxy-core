@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_taxa_barplot" name="qiime taxa barplot" version="2019.7">
-	<description> - Visualize taxonomy with an interactive bar plot</description>
+	<description>Visualize taxonomy with an interactive bar plot</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

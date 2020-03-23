@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_taxa_filter-table" name="qiime taxa filter-table" version="2019.7">
-	<description> - Taxonomy-based feature table filter.</description>
+	<description>Taxonomy-based feature table filter.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

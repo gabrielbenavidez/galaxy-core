@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_gneiss_assign-ids" name="qiime gneiss assign-ids" version="2019.7">
-	<description> - Assigns ids on internal nodes in the tree, and makes sure that they are consistent with the table columns.</description>
+	<description>Assigns ids on internal nodes in the tree, and makes sure that they are consistent with the table columns.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

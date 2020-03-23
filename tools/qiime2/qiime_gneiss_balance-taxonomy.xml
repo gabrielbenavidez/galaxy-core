@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_gneiss_balance-taxonomy" name="qiime gneiss balance-taxonomy" version="2019.7">
-	<description> - Balance Summary</description>
+	<description>Balance Summary</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

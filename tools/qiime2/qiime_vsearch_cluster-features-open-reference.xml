@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_vsearch_cluster-features-open-reference" name="qiime vsearch cluster-features-open-reference" version="2019.7">
-	<description> -  Open-reference clustering of features.</description>
+	<description>Open-reference clustering of features.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

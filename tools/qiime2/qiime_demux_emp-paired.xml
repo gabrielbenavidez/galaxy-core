@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_demux_emp-paired" name="qiime demux emp-paired" version="2019.7">
-	<description> - Demultiplex paired-end sequence data generated with the EMP protocol.</description>
+	<description>Demultiplex paired-end sequence data generated with the EMP protocol.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

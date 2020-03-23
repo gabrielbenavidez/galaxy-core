@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_demux_summarize" name="qiime demux summarize" version="1.0">
-	<description> - Summarize counts per sample.</description>
+	<description>Summarize counts per sample.</description>
 	<requirements>
 		<container type="docker">qiime2/core:2019.7</container>
 	</requirements>

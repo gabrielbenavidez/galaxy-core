@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_dada2_denoise-pyro" name="qiime dada2 denoise-pyro" version="2019.7">
-	<description> - Denoise and dereplicate single-end pyrosequences</description>
+	<description>Denoise and dereplicate single-end pyrosequences</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

@@ -233,7 +233,7 @@ var LibraryRowView = Backbone.View.extend({
     templateRow: function() {
         return _.template(
             `<tr class="<% if(library.get("deleted") === true) { print("active") } %>"
-                style="display:none;" data-id="<%- library.get("id") %>">
+                style="display: table-row;" data-id="<%- library.get("id") %>">
                 <% if(!edit_mode) { %>
                     <% if(library.get("deleted")) { %>
                         <td style="color:grey;"><%- library.get("name") %></td>

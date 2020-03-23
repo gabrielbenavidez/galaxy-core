@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tool id="qiime_tools_export_collection" name="qiime tools export --input-path collection" version="2019.7">
-   <description>- Export data from a QIIME 2 Artifact or Visualization.</description>
+   <description> Export data from a QIIME 2 Artifact or Visualization.</description>
    <requirements>
 	<container type="docker">qiime2/core</container>
    </requirements>

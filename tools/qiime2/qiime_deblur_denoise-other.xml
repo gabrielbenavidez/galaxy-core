@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_deblur_denoise-other" name="qiime deblur denoise-other" version="2019.7">
-	<description> - Deblur sequences using a user-specified positive filter.</description>
+	<description>Deblur sequences using a user-specified positive filter.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

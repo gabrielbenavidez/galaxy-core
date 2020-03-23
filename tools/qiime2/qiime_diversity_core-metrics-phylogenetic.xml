@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_core-metrics-phylogenetic" name="qiime diversity core-metrics-phylogenetic" version="2019.7">
-	<description> - Core diversity metrics (phylogenetic and non- phylogenetic)</description>
+	<description>Core diversity metrics (phylogenetic and non- phylogenetic)</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

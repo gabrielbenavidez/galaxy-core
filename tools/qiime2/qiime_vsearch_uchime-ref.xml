@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_vsearch_uchime-ref" name="qiime vsearch uchime-ref" version="2019.7">
-	<description> - Reference-based chimera filtering with vsearch.</description>
+	<description>Reference-based chimera filtering with vsearch.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

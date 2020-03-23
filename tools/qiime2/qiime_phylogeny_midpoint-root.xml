@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_phylogeny_midpoint-root" name="qiime phylogeny midpoint-root" version="2019.7">
-	<description> - Midpoint root an unrooted phylogenetic tree.</description>
+	<description>Midpoint root an unrooted phylogenetic tree.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

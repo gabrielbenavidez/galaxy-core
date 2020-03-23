@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_feature-table_rarefy" name="qiime feature-table rarefy" version="2019.7">
-	<description> - Rarefy table</description>
+	<description>Rarefy table</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

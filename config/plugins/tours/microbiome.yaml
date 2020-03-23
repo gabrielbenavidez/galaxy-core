@@ -1,0 +1,35 @@
+﻿id: microbiome
+name: Galaxy Tour
+description: This is a new tour created with the Galaxy Tour Builder extension.
+title_default: Galaxy Tour
+steps:
+  - title: Step 1
+    element: '#shared a[href$="/library/index"]'
+    content: select "Shared Data"
+    placement: left
+    postclick:
+      - '#shared a[href$="/library/index"]'
+  - title: Step 2
+    element: 'a[href$="/library/list"]'
+    content: select "Data Libraries"
+    placement: right
+  - title: Step 3
+    element: '#library_list_body > tr > td:nth-child(1) > a'
+    content: select "Microbiome Data"
+    placement: right
+    path: /library/list
+  - title: Step 4
+    element: 'a[href$="#folders/Febfb8f50c6abde6d"]'
+    content: select "raw_input"
+    placement: right
+    path: /library/list/#folders/F1cd8e2f6b131e891
+    #'#folder_list_body > tr.folder_row.library-row > td:nth-child(3) > a[href="/#folders/Febfb8f50c6abde6d"]'
+  # - title: Step 5
+  #   element: '#center > div > div:nth-child(1) > div > form > div.dropdown.mr-1.show > div > a.toolbtn-collection-import.add-to-history-collection.dropdown-item'
+  #   content: Now click export to your History then select "as a collection"
+  #   placement: bottom
+  #   path: /library/list/#folders/Febfb8f50c6abde6d
+    
+
+    
+    

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_feature-table_group" name="qiime feature-table group" version="2019.7">
-	<description> - Group samples or features by a metadata column</description>
+	<description>Group samples or features by a metadata column</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

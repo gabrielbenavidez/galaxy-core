@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_longitudinal_maturity-index" name="qiime longitudinal maturity-index" version="2019.7">
-	<description> - Microbial maturity index prediction.</description>
+	<description>Microbial maturity index prediction.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

@@ -1,0 +1,1124 @@
+*** Starting uWSGI 2.0.18 (64bit) on [Wed Mar  4 14:14:48 2020] ***
+compiled with version: 8.2.1 20180905 (Red Hat 8.2.1-3) on 17 April 2019 16:48:42
+os: Linux-4.15.0-65-generic #74-Ubuntu SMP Tue Sep 17 17:06:04 UTC 2019
+nodename: galaxy-microbiome
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /home/manager/Dev/galaxy
+detected binary path: /home/manager/Dev/galaxy/.venv/bin/python
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 128432
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+building mime-types dictionary from file /etc/mime.types...554 entry found
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on :8080 fd 4
+spawned uWSGI http 1 (pid: 17866)
+uwsgi socket 0 bound to TCP address 127.0.0.1:41139 (port auto-assigned) fd 3
+Python version: 2.7.15+ (default, Oct  7 2019, 17:39:04)  [GCC 7.4.0]
+--- Python VM already initialized ---
+Python main interpreter initialized at 0x5655548332f0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 153376 bytes (149 KB) for 4 cores
+*** Operational MODE: threaded ***
+added lib/ to pythonpath.
+DEBUG:galaxy.app:python path is: lib/, ., , /home/manager/Dev/galaxy/.venv/bin, /home/manager/Dev/galaxy/.venv/lib/python2.7, /home/manager/Dev/galaxy/.venv/lib/python2.7/plat-x86_64-linux-gnu, /home/manager/Dev/galaxy/.venv/lib/python2.7/lib-tk, /home/manager/Dev/galaxy/.venv/lib/python2.7/lib-old, /home/manager/Dev/galaxy/.venv/lib/python2.7/lib-dynload, /usr/lib/python2.7, /usr/lib/python2.7/plat-x86_64-linux-gnu, /usr/lib/python2.7/lib-tk, /home/manager/Dev/galaxy/.venv/local/lib/python2.7/site-packages, /home/manager/Dev/galaxy/.venv/lib/python2.7/site-packages
+DEBUG:galaxy.config:Configuration directory is /home/manager/Dev/galaxy/config
+DEBUG:galaxy.config:Data directory is /home/manager/Dev/galaxy/database
+DEBUG:galaxy.config:Mutable config directory is /home/manager/Dev/galaxy/config
+DEBUG:galaxy.containers:config file '/home/manager/Dev/galaxy/config/containers_conf.yml' does not exist, running with default config
+galaxy.web_stack DEBUG 2020-03-04 14:14:54,665 [p:17865,w:0,m:0] [MainThread] UWSGIApplicationStack initialized
+galaxy.queue_worker INFO 2020-03-04 14:14:54,666 [p:17865,w:0,m:0] [MainThread] Initializing main Galaxy Queue Worker on sqlalchemy+postgresql://manager:********@localhost:5432/galaxydev
+tool_shed.tool_shed_registry DEBUG 2020-03-04 14:14:54,831 [p:17865,w:0,m:0] [MainThread] Loading references to tool sheds from internal default config
+tool_shed.tool_shed_registry DEBUG 2020-03-04 14:14:54,832 [p:17865,w:0,m:0] [MainThread] Loaded reference to tool shed: Galaxy Main Tool Shed
+migrate.versioning.repository DEBUG 2020-03-04 14:14:54,875 [p:17865,w:0,m:0] [MainThread] Loading repository lib/galaxy/model/migrate...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,876 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0001_initial_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,876 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0001_initial_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,877 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0002_metadata_file_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,877 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0002_metadata_file_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,877 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0003_security_and_libraries.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,877 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0003_security_and_libraries.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,877 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0004_indexes_and_defaults.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,877 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0004_indexes_and_defaults.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,877 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0005_cleanup_datasets_fix.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,877 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0005_cleanup_datasets_fix.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,878 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0006_change_qual_datatype.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,878 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0006_change_qual_datatype.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,878 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0007_sharing_histories.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,878 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0007_sharing_histories.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,878 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0008_galaxy_forms.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,878 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0008_galaxy_forms.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,878 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0009_request_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,878 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0009_request_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,879 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0010_hda_display_at_authz_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,879 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0010_hda_display_at_authz_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,879 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0011_v0010_mysql_index_fix.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,879 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0011_v0010_mysql_index_fix.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,879 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0012_user_address.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,879 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0012_user_address.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,879 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0013_change_lib_item_templates_to_forms.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,879 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0013_change_lib_item_templates_to_forms.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,880 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0014_pages.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,880 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0014_pages.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,880 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0015_tagging.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,880 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0015_tagging.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,880 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0016_v0015_mysql_index_fix.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,880 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0016_v0015_mysql_index_fix.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,880 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0017_library_item_indexes.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,880 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0017_library_item_indexes.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,881 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0018_ordered_tags_and_page_tags.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,881 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0018_ordered_tags_and_page_tags.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,881 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0019_request_library_folder.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,881 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0019_request_library_folder.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,881 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0020_library_upload_job.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,881 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0020_library_upload_job.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,881 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0021_user_prefs.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,881 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0021_user_prefs.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,882 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0022_visualization_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,882 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0022_visualization_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,882 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0023_page_published_and_deleted_columns.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,882 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0023_page_published_and_deleted_columns.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,882 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0024_page_slug_unique_constraint.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,882 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0024_page_slug_unique_constraint.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,882 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0025_user_info.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,882 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0025_user_info.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,883 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0026_cloud_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,883 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0026_cloud_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,883 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0027_request_events.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,883 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0027_request_events.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,883 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0028_external_metadata_file_override.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,883 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0028_external_metadata_file_override.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,883 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0029_user_actions.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,883 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0029_user_actions.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,883 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0030_history_slug_column.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,884 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0030_history_slug_column.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,884 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0031_community_and_workflow_tags.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,884 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0031_community_and_workflow_tags.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,884 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0032_stored_workflow_slug_column.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,884 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0032_stored_workflow_slug_column.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,884 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0033_published_cols_for_histories_and_workflows.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,884 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0033_published_cols_for_histories_and_workflows.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,884 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0034_page_user_share_association.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,885 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0034_page_user_share_association.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,885 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0035_item_annotations_and_workflow_step_tags.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,885 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0035_item_annotations_and_workflow_step_tags.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,885 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0036_add_deleted_column_to_library_template_assoc_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,885 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0036_add_deleted_column_to_library_template_assoc_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,885 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0037_samples_library.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,885 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0037_samples_library.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,885 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0038_add_inheritable_column_to_library_template_assoc_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,886 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0038_add_inheritable_column_to_library_template_assoc_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,886 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0039_add_synopsis_column_to_library_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,886 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0039_add_synopsis_column_to_library_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,886 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0040_page_annotations.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,886 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0040_page_annotations.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,886 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0041_workflow_invocation.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,886 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0041_workflow_invocation.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,886 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0042_workflow_invocation_fix.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,887 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0042_workflow_invocation_fix.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,887 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0043_visualization_sharing_tagging_annotating.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,887 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0043_visualization_sharing_tagging_annotating.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,887 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0044_add_notify_column_to_request_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,887 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0044_add_notify_column_to_request_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,887 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0045_request_type_permissions_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,887 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0045_request_type_permissions_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,887 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0046_post_job_actions.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,888 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0046_post_job_actions.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,888 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0047_job_table_user_id_column.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,888 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0047_job_table_user_id_column.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,888 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0048_dataset_instance_state_column.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,888 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0048_dataset_instance_state_column.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,888 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0049_api_keys_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,888 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0049_api_keys_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,888 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0050_drop_cloud_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,889 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0050_drop_cloud_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,889 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0051_imported_col_for_jobs_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,889 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0051_imported_col_for_jobs_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,889 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0052_sample_dataset_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,889 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0052_sample_dataset_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,889 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0053_item_ratings.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,889 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0053_item_ratings.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,889 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0054_visualization_dbkey.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,890 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0054_visualization_dbkey.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,890 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0055_add_pja_assoc_for_jobs.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,890 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0055_add_pja_assoc_for_jobs.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,890 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0056_workflow_outputs.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,890 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0056_workflow_outputs.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,890 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0057_request_notify.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,890 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0057_request_notify.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,890 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0058_history_import_export.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,891 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0058_history_import_export.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,891 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0059_sample_dataset_file_path.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,891 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0059_sample_dataset_file_path.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,891 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0060_history_archive_import.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,891 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0060_history_archive_import.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,891 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0061_tasks.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,891 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0061_tasks.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,891 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0062_user_openid_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,891 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0062_user_openid_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,892 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0063_sequencer_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,892 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0063_sequencer_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,892 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0064_add_run_and_sample_run_association_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,892 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0064_add_run_and_sample_run_association_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,892 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0065_add_name_to_form_fields_and_values.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,892 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0065_add_name_to_form_fields_and_values.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,892 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0066_deferred_job_and_transfer_job_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,893 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0066_deferred_job_and_transfer_job_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,893 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0067_populate_sequencer_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,893 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0067_populate_sequencer_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,893 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0068_rename_sequencer_to_external_services.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,893 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0068_rename_sequencer_to_external_services.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,893 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0069_rename_sequencer_form_type.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,893 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0069_rename_sequencer_form_type.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,893 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0070_add_info_column_to_deferred_job_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,894 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0070_add_info_column_to_deferred_job_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,894 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0071_add_history_and_workflow_to_sample.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,894 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0071_add_history_and_workflow_to_sample.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,894 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0072_add_pid_and_socket_columns_to_transfer_job_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,894 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0072_add_pid_and_socket_columns_to_transfer_job_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,894 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0073_add_ldda_to_implicit_conversion_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,894 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0073_add_ldda_to_implicit_conversion_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,894 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0074_add_purged_column_to_library_dataset_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,895 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0074_add_purged_column_to_library_dataset_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,895 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0075_add_subindex_column_to_run_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,895 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0075_add_subindex_column_to_run_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,895 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0076_fix_form_values_data_corruption.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,895 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0076_fix_form_values_data_corruption.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,895 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0077_create_tool_tag_association_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,895 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0077_create_tool_tag_association_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,895 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0078_add_columns_for_disk_usage_accounting.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,896 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0078_add_columns_for_disk_usage_accounting.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,896 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0079_input_library_to_job_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,896 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0079_input_library_to_job_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,896 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0080_quota_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,896 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0080_quota_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,896 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0081_add_tool_version_to_hda_ldda.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,896 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0081_add_tool_version_to_hda_ldda.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,896 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0082_add_tool_shed_repository_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,897 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0082_add_tool_shed_repository_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,897 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0083_add_prepare_files_to_task.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,897 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0083_add_prepare_files_to_task.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,897 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0084_add_ldda_id_to_implicit_conversion_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,897 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0084_add_ldda_id_to_implicit_conversion_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,897 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0085_add_task_info.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,897 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0085_add_task_info.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,897 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0086_add_tool_shed_repository_table_columns.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,898 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0086_add_tool_shed_repository_table_columns.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,898 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0087_tool_id_guid_map_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,898 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0087_tool_id_guid_map_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,898 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0088_add_installed_changeset_revison_column.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,898 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0088_add_installed_changeset_revison_column.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,898 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0089_add_object_store_id_columns.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,898 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0089_add_object_store_id_columns.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,898 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0090_add_tool_shed_repository_table_columns.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,898 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0090_add_tool_shed_repository_table_columns.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,899 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0091_add_tool_version_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,899 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0091_add_tool_version_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,899 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0092_add_migrate_tools_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,899 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0092_add_migrate_tools_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,899 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0093_add_job_params_col.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,899 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0093_add_job_params_col.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,899 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0094_add_job_handler_col.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,899 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0094_add_job_handler_col.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,900 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0095_hda_subsets.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,900 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0095_hda_subsets.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,900 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0096_openid_provider.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,900 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0096_openid_provider.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,900 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0097_add_ctx_rev_column.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,900 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0097_add_ctx_rev_column.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,900 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0098_genome_index_tool_data_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,900 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0098_genome_index_tool_data_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,901 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0099_add_tool_dependency_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,901 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0099_add_tool_dependency_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,901 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0100_alter_tool_dependency_table_version_column.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,901 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0100_alter_tool_dependency_table_version_column.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,901 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0101_drop_installed_changeset_revision_column.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,901 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0101_drop_installed_changeset_revision_column.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,901 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0102_add_tool_dependency_status_columns.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,901 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0102_add_tool_dependency_status_columns.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,902 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0103_add_tool_shed_repository_status_columns.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,902 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0103_add_tool_shed_repository_status_columns.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,902 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0104_update_genome_downloader_job_parameters.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,902 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0104_update_genome_downloader_job_parameters.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,902 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0105_add_cleanup_event_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,902 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0105_add_cleanup_event_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,902 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0106_add_missing_indexes.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,902 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0106_add_missing_indexes.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,903 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0107_add_exit_code_to_job_and_task.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,903 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0107_add_exit_code_to_job_and_task.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,903 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0108_add_extended_metadata.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,903 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0108_add_extended_metadata.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,903 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0109_add_repository_dependency_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,903 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0109_add_repository_dependency_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,903 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0110_add_dataset_uuid.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,903 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0110_add_dataset_uuid.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,904 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0111_add_job_destinations.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,904 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0111_add_job_destinations.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,904 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0112_add_data_manager_history_association_and_data_manager_job_association_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,904 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0112_add_data_manager_history_association_and_data_manager_job_association_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,904 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0113_update_migrate_tools_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,904 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0113_update_migrate_tools_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,904 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0114_update_migrate_tools_table_again.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,904 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0114_update_migrate_tools_table_again.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,905 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0115_longer_user_password_field.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,905 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0115_longer_user_password_field.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,905 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0116_drop_update_available_col_add_tool_shed_status_col.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,905 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0116_drop_update_available_col_add_tool_shed_status_col.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,905 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0117_add_user_activation.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,905 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0117_add_user_activation.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,905 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0118_add_hda_extended_metadata.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,905 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0118_add_hda_extended_metadata.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,906 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0119_job_metrics.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,906 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0119_job_metrics.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,906 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0120_dataset_collections.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,906 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0120_dataset_collections.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,906 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0121_workflow_uuids.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,906 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0121_workflow_uuids.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,906 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0122_grow_mysql_blobs.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,906 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0122_grow_mysql_blobs.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,907 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0123_add_workflow_request_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,907 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0123_add_workflow_request_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,907 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0124_job_state_history.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,907 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0124_job_state_history.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,907 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0125_workflow_step_tracking.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,907 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0125_workflow_step_tracking.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,907 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0126_password_reset.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,907 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0126_password_reset.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,907 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0127_output_collection_adjustments.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,908 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0127_output_collection_adjustments.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,908 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0128_session_timeout.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,908 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0128_session_timeout.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,908 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0129_job_external_output_metadata_validity.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,908 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0129_job_external_output_metadata_validity.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,908 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0130_change_pref_datatype.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,908 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0130_change_pref_datatype.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,909 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0131_subworkflow_and_input_parameter_modules.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,909 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0131_subworkflow_and_input_parameter_modules.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,909 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0132_add_lastpasswordchange_to_user.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,909 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0132_add_lastpasswordchange_to_user.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,909 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0133_add_dependency_column_to_job.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,909 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0133_add_dependency_column_to_job.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,909 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0134_hda_set_deleted_if_purged.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,909 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0134_hda_set_deleted_if_purged.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,910 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0135_add_library_tags.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,910 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0135_add_library_tags.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,910 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0136_collection_and_workflow_state.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,910 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0136_collection_and_workflow_state.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,910 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0137_add_copied_from_job_id_column.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,910 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0137_add_copied_from_job_id_column.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,910 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0138_add_hda_version.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,910 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0138_add_hda_version.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,911 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0139_add_history_dataset_association_history_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,911 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0139_add_history_dataset_association_history_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,911 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0140_add_dataset_version_to_job_to_input_dataset_association_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,911 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0140_add_dataset_version_to_job_to_input_dataset_association_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,911 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0141_add_oidc_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,911 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0141_add_oidc_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,911 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0142_change_numeric_metric_precision.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,911 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0142_change_numeric_metric_precision.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,912 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0143_add_cloudauthz_tables.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,912 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0143_add_cloudauthz_tables.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,912 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0144_add_cleanup_event_user_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,912 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0144_add_cleanup_event_user_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,912 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0145_add_workflow_step_input.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,912 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0145_add_workflow_step_input.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,912 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0146_workflow_paths.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,912 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0146_workflow_paths.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,913 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0147_job_messages.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,913 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0147_job_messages.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,913 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0148_add_checksum_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,913 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0148_add_checksum_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,913 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0149_dynamic_tools.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,913 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0149_dynamic_tools.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,913 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0150_add_create_time_field_for_cloudauthz.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,913 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0150_add_create_time_field_for_cloudauthz.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,914 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0151_add_worker_process.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,914 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0151_add_worker_process.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,914 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0152_add_metadata_file_uuid.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,914 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0152_add_metadata_file_uuid.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,914 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0153_add_custos_authnz_token_table.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,914 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0153_add_custos_authnz_token_table.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,914 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0154_created_from_basename.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,914 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0154_created_from_basename.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,915 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0155_job_galaxy_version.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,915 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0155_job_galaxy_version.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,915 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0156_add_interactivetools.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,915 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0156_add_interactivetools.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,915 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0157_rework_dataset_validation.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,915 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0157_rework_dataset_validation.py loaded successfully
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,915 [p:17865,w:0,m:0] [MainThread] Loading script lib/galaxy/model/migrate/versions/0158_workflow_reports.py...
+migrate.versioning.script.base DEBUG 2020-03-04 14:14:54,915 [p:17865,w:0,m:0] [MainThread] Script lib/galaxy/model/migrate/versions/0158_workflow_reports.py loaded successfully
+migrate.versioning.repository DEBUG 2020-03-04 14:14:54,916 [p:17865,w:0,m:0] [MainThread] Repository lib/galaxy/model/migrate loaded successfully
+migrate.versioning.repository DEBUG 2020-03-04 14:14:54,916 [p:17865,w:0,m:0] [MainThread] Config: OrderedDict([('db_settings', OrderedDict([('__name__', 'db_settings'), ('repository_id', 'Galaxy'), ('version_table', 'migrate_version'), ('required_dbs', '[]')]))])
+galaxy.model.migrate.check INFO 2020-03-04 14:14:55,209 [p:17865,w:0,m:0] [MainThread] At database version 158
+galaxy.config INFO 2020-03-04 14:14:55,211 [p:17865,w:0,m:0] [MainThread] Install database targetting Galaxy's database configuration.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,278 [p:17865,w:0,m:0] [MainThread] Loading datatypes from /home/manager/Dev/galaxy/config/datatypes_conf.xml
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,279 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Ab1 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,280 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.assembly:Amos from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,281 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.anvio:AnvioComposite from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,282 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.anvio:AnvioComposite from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,282 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Data from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,282 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.anvio:AnvioContigsDB from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,282 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.anvio:AnvioDB from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,282 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.anvio:AnvioGenomesDB from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,283 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.anvio:AnvioPanDB from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,283 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.anvio:AnvioComposite from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,283 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.anvio:AnvioProfileDB from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,283 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.anvio:AnvioSamplesDB from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,284 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:Json from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,284 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.anvio:AnvioStructureDB from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,284 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:TSV from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,285 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:Arff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,285 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:GenericAsn1 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,285 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:GenericAsn1Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,285 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:Axt from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,286 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:FeatureLocationIndex from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,286 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Bam from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,286 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,286 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:BamInputSorted from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,287 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:BamQuerynameSorted from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,287 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:BamNative from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,287 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:ProBam from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,287 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:CRAM from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,287 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:Bed from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,288 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:BedGraph from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,288 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:BedStrict from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,288 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:Bed6 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,288 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:Bed12 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,289 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:ProBed from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,289 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.chrominfo:ChromInfo from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,289 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:DAA from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,289 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:RMA6 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,290 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:DMND from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,290 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Idat from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,290 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:BigBed from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,290 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:BigWig from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,291 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,291 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:ChromatinInteractions from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,291 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:CSV from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,291 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:TSV from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,291 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:TSV from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,292 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:CustomTrack from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,293 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.ngsindex:BowtieColorIndex from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,293 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.ngsindex:BowtieBaseIndex from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,293 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:csFasta from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,293 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Data from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,294 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,294 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:Json from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,294 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:ImgtJson from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,294 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:GeoJson from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,294 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:Json from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,295 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:DotBracket from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,295 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,295 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:Fasta from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,296 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:Fastg from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,296 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:Fastq from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,296 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:FastqSanger from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,297 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:FastqSolexa from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,297 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:FastqCSSanger from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,298 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:FastqIllumina from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,299 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:SequenceSplitLocations from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,299 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Eland from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,299 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:ElandMulti from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,299 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tracks:GeneTrack from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,299 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:Gff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,300 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:Gff3 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,300 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Gif from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,300 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Gmaj from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,300 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,301 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:Gtf from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,301 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,301 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:H5 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,302 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Loom from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,302 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Anndata from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,302 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:H5 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,302 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:Json from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,303 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:Json from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,303 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Cool from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,303 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:MCool from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,303 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:Html from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,304 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:Interval from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,381 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.isa:IsaTab from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,382 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.isa:IsaJson from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,382 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,382 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,382 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,383 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,384 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,384 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,385 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Jpg from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,385 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Tiff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,385 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Tiff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,385 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Tiff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,386 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Tiff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,386 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Tiff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,386 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Tiff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,387 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Tiff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,387 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Tiff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,387 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Hamamatsu from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,388 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Hamamatsu from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,388 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Hamamatsu from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,388 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Mirax from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,388 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Sakura from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,389 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Bmp from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,389 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Im from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,389 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Pcd from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,389 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Pcx from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,389 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Ppm from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,390 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Psd from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,390 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Xbm from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,390 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Xpm from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,390 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Rgb from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,391 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Pbm from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,391 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Pgm from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,391 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Nrrd from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,391 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Nrrd from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,392 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:RNADotPlotMatrix from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,392 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:CompressedZipArchive from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,392 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:CompressedArchive from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,392 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Directory from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,396 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:PepXml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,396 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:PepXml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,397 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:PepXml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,397 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:PepXml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,397 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:ProtXML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,397 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.xml:GenericXml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,398 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.xml:GenericXml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,398 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:PepXmlReport from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,398 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:ProtXmlReport from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,399 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:MascotDat from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,399 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:MzIdentML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,399 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:IdXML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,399 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:TandemXML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,399 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:ThermoRAW from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,400 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:BafTar from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,400 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:YepTar from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,400 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:TdfTar from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,400 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:MassHunterTar from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,401 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:MassLynxTar from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,401 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:WiffTar from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,401 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:MzML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,401 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:NmrML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,401 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:Mgf from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,402 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:Wiff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,402 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:MzXML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,402 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:MzData from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,402 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:Ms2 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,403 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:MzQuantML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,403 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:MzSQlite from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,403 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:TraML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,403 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:FeatureXML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,404 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:ConsensusXML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,404 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:UniProtXML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,404 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:Msp from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,404 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:SPLibNoIndex from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,404 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:SPLib from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,405 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:BlibSQlite from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,405 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:XHunterAslFormat from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,405 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:IdpDB from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,405 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:Sf3 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,406 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,406 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:ConnectivityTable from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,406 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:PostgresqlArchive from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,406 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:SearchGuiArchive from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,407 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Fast5Archive from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,407 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Fast5ArchiveGz from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,407 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Fast5ArchiveBz2 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,407 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:CompressedArchive from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,408 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,408 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.xml:GenericXml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,408 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,409 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,409 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:ImzML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,409 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.proteomics:Analyze75 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,409 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:CompressedArchive from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,410 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:CompressedArchive from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,410 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:NetCDF from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,410 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Eps from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,411 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Rast from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,411 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Laj from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,411 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:Lav from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,411 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:Maf from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,411 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:MafCustomTrack from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,412 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:MatrixMarket from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,412 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:ENCODEPeak from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,412 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Pdf from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,412 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Pileup from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,412 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:Obo from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,413 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.xml:Owl from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,413 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.images:Png from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,413 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.qualityscore:QualityScore from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,413 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.qualityscore:QualityScoreSolexa from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,414 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.qualityscore:QualityScoreIllumina from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,414 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.qualityscore:QualityScoreSOLiD from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,414 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.qualityscore:QualityScore454 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,414 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.assembly:Roadmaps from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,414 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Sam from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,415 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Scf from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,415 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.assembly:Sequences from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,415 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.gis:Shapefile from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,416 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:SnpEffDb from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,416 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:SnpSiftDbNSFP from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,416 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,416 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Sff from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,417 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Sra from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,417 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.xml:GenericXml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,417 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Taxonomy from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,417 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,418 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:TwoBit from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,418 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:SQlite from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,418 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:SQlite from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,419 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:SQlite from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,419 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:GeminiSQLite from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,419 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:CuffDiffSQlite from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,419 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:GAFASQLite from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,419 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,420 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:LineCount from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,420 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:MemePsp from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,420 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.xml:MEMEXml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,420 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.xml:CisML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,420 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.xml:GenericXml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,421 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Vcf from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,421 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Bcf from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,421 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Bcf from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,422 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:BcfUncompressed from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,422 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.assembly:Velvet from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,422 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:Wiggle from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,422 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,423 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,423 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,423 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:VcfGz from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,423 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,424 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,424 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.xml:Phyloxml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,424 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Newick from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,424 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Newick from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,425 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Nexus from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,425 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:IQTree from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,429 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:SquareDistanceMatrix from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,434 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Affybatch from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,434 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Eigenstratgeno from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,434 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Eigenstratpca from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,434 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Eset from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,435 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Fped from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,435 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Fphe from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,435 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:GenomeGraphs from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,435 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:ldIndep from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,436 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:MAlist from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,436 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Lped from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,436 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Pbed from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,436 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Pheno from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,437 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Pphe from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,437 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:RexpBase from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,437 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Rgenetics from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,437 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:Snptest from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,437 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:SNPMatrix from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,438 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:ExcelXls from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,438 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:Ipynb from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,438 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:Json from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,438 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:ExpressionJson from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,441 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.graph:Xgmml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,441 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.graph:Sif from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,443 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.triples:Triples from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,443 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.triples:HDT from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,443 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.triples:NTriples from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,443 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.triples:N3 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,443 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.triples:Turtle from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,444 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.triples:Rdf from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,444 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.triples:Jsonld from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,444 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:ExcelXls from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,444 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Xlsx from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,444 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,445 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,445 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,445 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,446 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,446 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,446 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,447 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,447 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,447 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,448 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,448 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,448 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,448 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,449 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,449 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,449 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,450 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,450 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,450 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,451 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,451 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,451 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,452 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,452 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,452 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,452 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,453 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,453 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,453 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,454 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,454 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,454 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,455 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,455 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,455 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,456 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,456 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,456 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,456 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,457 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,457 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,458 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,458 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,458 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,459 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,459 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,459 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,459 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,460 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,460 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,460 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,461 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,461 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,461 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,462 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,462 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,462 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,462 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,463 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,463 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,463 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,464 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,464 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,464 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,465 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,465 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,465 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,466 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,466 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:Genbank from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,466 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,467 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,467 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,467 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,468 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,468 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,468 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,468 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,469 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,469 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.phylip:Phylip from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,470 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,470 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,470 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,471 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,471 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,471 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,471 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,472 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,472 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,472 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,473 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,473 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,473 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,474 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.annotation:SnapHmm from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,474 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.annotation:Augustus from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,474 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:ICM from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,476 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.msa:InfernalCM from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,476 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.msa:Hmmer2 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,476 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.msa:Hmmer3 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,477 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.msa:Stockholm_1_0 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,477 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.msa:MauveXmfa from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,478 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.microarrays:Cel from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,478 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.microarrays:Gpr from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,478 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.microarrays:Gal from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,478 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:RData from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,479 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:RData from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,479 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,479 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:OxliCountGraph from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,480 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:OxliNodeGraph from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,480 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:OxliTagSet from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,480 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:OxliStopTags from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,480 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:OxliSubset from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,480 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:OxliGraphLabels from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,482 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.constructive_solid_geometry:STL from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,482 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.constructive_solid_geometry:PlyAscii from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,482 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.constructive_solid_geometry:PlyBinary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,483 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.constructive_solid_geometry:VtkAscii from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,483 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.constructive_solid_geometry:VtkBinary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,483 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.text:Biom1 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,483 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Biom2 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,483 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:MashSketch from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,484 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.interval:ScIdx from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,486 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:SMILES from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,487 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:SDF from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,487 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:InChI from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,487 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:MOL from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,487 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:MOL2 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,487 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:CML from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,488 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:FPS from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,488 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:OBFS from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,488 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:DRF from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,488 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:PHAR from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,489 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:PDB from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,489 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:PDBQT from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,489 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:PQR from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,489 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Trr from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,490 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Dcd from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,490 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,490 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,490 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,491 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Xtc from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,491 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Cpt from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,491 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,492 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Vel from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,493 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:grd from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,493 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.molecules:grdtgz from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,493 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Otu from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,493 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Otu from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,494 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Sabund from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,494 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Sabund from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,494 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:GroupAbund from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,494 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:GroupAbund from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,495 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Names from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,495 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Group from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,495 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Summary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,496 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Group from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,496 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Oligos from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,496 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.sequence:Fasta from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,496 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:AccNos from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,496 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:AccNos from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,497 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,497 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:SecondaryStructureMap from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,497 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:AlignCheck from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,498 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:AlignReport from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,498 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:LaneMask from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,498 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:DistanceMatrix from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,498 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:Text from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,498 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:PairwiseDistanceMatrix from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,499 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:SquareDistanceMatrix from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,499 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:LowerTriangleDistanceMatrix from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,499 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:RefTaxonomy from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,499 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:RefTaxonomy from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,500 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:RefTaxonomy from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,500 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:ConsensusTaxonomy from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,500 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:TaxonomySummary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,501 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Frequency from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,501 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Quantile from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,501 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Quantile from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,501 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Quantile from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,502 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Quantile from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,502 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:Axes from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,502 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:SffFlow from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,503 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.mothur:CountTable from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,503 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.neo4j:Neo4jDB from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,504 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.neo4j:Neo4jDBzip from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,504 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tracks:UCSCTrackHub from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,505 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.blast:BlastXml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,505 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.blast:BlastNucDb from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,506 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.blast:BlastProtDb from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,506 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.blast:BlastDomainDb from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,506 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:GenericAsn1 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,507 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:GenericAsn1Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,507 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.data:GenericAsn1 from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,508 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.plant_tribes:PlantTribesKsComponents from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,508 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.plant_tribes:Smat from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,508 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:GenotypeMatrix from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,509 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,509 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,509 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,510 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,510 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:DataIn from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,510 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:MarkerMap from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,510 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,511 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,511 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:AllegroLOD from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,511 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.genetics:IdeasPre from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,511 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.xml:Sbml from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,512 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.spaln:SpalnNuclDb from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,512 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.spaln:SpalnProtDb from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,513 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:RData from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,513 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:RData from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,513 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:RData from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,514 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:RData from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,514 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,514 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.tabular:Tabular from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,515 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:Binary from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,515 [p:17865,w:0,m:0] [MainThread] Retrieved datatype module galaxy.datatypes.binary:CompressedZipArchive from the datatype registry.
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,515 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.plant_tribes:PlantTribesKsComponents'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,516 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.plant_tribes:Smat'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,516 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:Sabund'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,516 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:Otu'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,516 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:GroupAbund'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,516 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:SecondaryStructureMap'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,516 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:LowerTriangleDistanceMatrix'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,517 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:SquareDistanceMatrix'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,517 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:PairwiseDistanceMatrix'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,517 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:Oligos'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,517 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:Quantile'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,517 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:Frequency'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,517 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:LaneMask'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,518 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:RefTaxonomy'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,518 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.mothur:Axes'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,518 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.constructive_solid_geometry:PlyAscii'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,518 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.constructive_solid_geometry:PlyBinary'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,518 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.constructive_solid_geometry:VtkAscii'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,518 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.constructive_solid_geometry:VtkBinary'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,519 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.interval:ScIdx'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,519 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.tabular:Vcf'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,519 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:TwoBit'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,519 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:GeminiSQLite'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,519 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:MzSQlite'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,519 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:IdpDB'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,520 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:BlibSQlite'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,520 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:CuffDiffSQlite'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,520 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:GAFASQLite'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,520 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:SQlite'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,520 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Cool'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,521 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:MCool'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,521 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Loom'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,521 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Anndata'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,521 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Biom2'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,521 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:H5'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,521 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Bam'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,522 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:BamQuerynameSorted'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,522 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:BamNative'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,522 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:CRAM'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,522 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Sff'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,522 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Sra'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,522 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:NetCDF'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,523 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:DAA'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,523 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:RMA6'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,523 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:DMND'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,523 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:BafTar'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,523 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:TdfTar'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,524 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:MassHunterTar'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,524 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:MassLynxTar'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,524 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:YepTar'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,524 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:WiffTar'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,524 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Fast5ArchiveGz'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,524 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Fast5ArchiveBz2'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,525 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Fast5Archive'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,525 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:PostgresqlArchive'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,525 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:ICM'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,525 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Idat'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,525 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Trr'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,526 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Dcd'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,526 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Xtc'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,526 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Cpt'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,526 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:Vel'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,526 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.annotation:Augustus'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,526 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.triples:Rdf'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,527 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.blast:BlastXml'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,527 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.xml:Phyloxml'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,527 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.xml:Owl'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,527 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.xml:Sbml'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,527 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:MzML'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,528 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:NmrML'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,528 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:TandemXML'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,528 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:PepXml'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,528 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:Mgf'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,528 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:ProtXML'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,529 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:MzXML'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,529 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:MzData'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,529 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:TraML'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,529 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:MzIdentML'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,530 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:MzQuantML'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,530 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:UniProtXML'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,530 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:Msp'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,530 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:SPLib'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,530 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.proteomics:ThermoRAW'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,530 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.molecules:CML'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,531 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.xml:GenericXml'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,531 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.triples:HDT'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,531 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.triples:Turtle'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,531 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.triples:NTriples'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,532 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.triples:Jsonld'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,532 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:Maf'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,532 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:Lav'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,532 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:MemePsp'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,532 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:Fastg'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,532 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:csFasta'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,533 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.qualityscore:QualityScoreSOLiD'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,533 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.qualityscore:QualityScore454'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,533 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.molecules:SDF'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,533 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.molecules:PDB'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,533 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.molecules:MOL2'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,534 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.molecules:InChI'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,534 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.molecules:FPS'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,534 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.molecules:PQR'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,534 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.phylip:Phylip'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,534 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:Fasta'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,535 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:FastqCSSanger'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,535 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:FastqSanger'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,535 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:Fastq'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,535 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.interval:Wiggle'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,535 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.text:Html'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,536 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Pdf'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,536 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:Axt'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,536 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:Genbank'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,536 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.interval:Bed'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,536 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.interval:CustomTrack'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,537 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.interval:Gtf'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,537 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.interval:Gff'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,537 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.interval:Gff3'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,537 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.tabular:Pileup'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,538 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.interval:Interval'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,538 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.tabular:Sam'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,538 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.data:Newick'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,538 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.data:Nexus'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,538 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.text:IQTree'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,539 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.text:Obo'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,539 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.text:Arff'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,539 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.text:Ipynb'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,539 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.text:Biom1'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,539 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.text:ImgtJson'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,540 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.text:GeoJson'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,540 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.text:Json'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,540 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.genetics:GenotypeMatrix'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,540 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.genetics:DataIn'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,540 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.genetics:MarkerMap'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,541 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.genetics:AllegroLOD'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,541 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:RNADotPlotMatrix'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,541 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.sequence:DotBracket'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,541 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.tabular:ConnectivityTable'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,541 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.tabular:CSV'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,542 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.tabular:TSV'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,542 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.tabular:MatrixMarket'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,542 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.msa:Hmmer2'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,542 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.msa:Hmmer3'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,542 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.msa:Stockholm_1_0'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,543 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.msa:MauveXmfa'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,543 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.msa:InfernalCM'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,543 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.annotation:SnapHmm'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,543 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.microarrays:Cel'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,544 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.microarrays:Gpr'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,544 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.microarrays:Gal'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,544 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:RData'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,544 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Jpg'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,544 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Png'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,545 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Tiff'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,545 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Bmp'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,545 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Gif'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,545 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Im'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,545 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Pcd'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,546 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Pcx'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,546 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Ppm'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,546 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Psd'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,546 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Xbm'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,546 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Rgb'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,547 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Pbm'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,547 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Pgm'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,547 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Xpm'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,547 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Eps'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,548 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.images:Rast'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,548 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:OxliCountGraph'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,548 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:OxliNodeGraph'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,548 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:OxliTagSet'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,548 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:OxliStopTags'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,549 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:OxliSubset'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,549 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.binary:OxliGraphLabels'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,549 [p:17865,w:0,m:0] [MainThread] Loaded sniffer for datatype 'galaxy.datatypes.neo4j:Neo4jDBzip'
+galaxy.datatypes.registry DEBUG 2020-03-04 14:14:55,549 [p:17865,w:0,m:0] [MainThread] No build sites source located.
+galaxy.tools.data INFO 2020-03-04 14:14:55,557 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/all_fasta.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,557 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/all_fasta.loc.sample' for 'all_fasta'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,557 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'all_fasta' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,558 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/bfast_indexes.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,558 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/bfast_indexes.loc.sample' for 'bfast_indexes'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,558 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'bfast_indexes' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,558 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/blastdb.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,558 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/blastdb.loc.sample' for 'blastdb'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,559 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'blastdb' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,559 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/blastdb_p.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,559 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/blastdb_p.loc.sample' for 'blastdb_p'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,559 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'blastdb_p' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,559 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/blastdb_d.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,560 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/blastdb_d.loc.sample' for 'blastdb_d'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,560 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'blastdb_d' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data WARNING 2020-03-04 14:14:55,560 [p:17865,w:0,m:0] [MainThread] Cannot find index file 'bwa_index.loc' for tool data table 'bwa_indexes'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,560 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'bwa_indexes' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data WARNING 2020-03-04 14:14:55,560 [p:17865,w:0,m:0] [MainThread] Cannot find index file 'bwa_index_color.loc' for tool data table 'bwa_indexes_color'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,560 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'bwa_indexes_color' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,561 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/maf_index.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,561 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/maf_index.loc.sample' for 'indexed_maf_files'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,561 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'indexed_maf_files' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,561 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/ngs_sim_fasta.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,562 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/ngs_sim_fasta.loc.sample' for 'ngs_sim_fasta'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,562 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'ngs_sim_fasta' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,562 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/perm_base_index.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,562 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/perm_base_index.loc.sample' for 'perm_base_indexes'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,562 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'perm_base_indexes' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,563 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/perm_color_index.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,563 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/perm_color_index.loc.sample' for 'perm_color_indexes'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,563 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'perm_color_indexes' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,563 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/picard_index.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,563 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/picard_index.loc.sample' for 'picard_indexes'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,563 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'picard_indexes' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,564 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/picard_index.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,564 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/picard_index.loc.sample' for 'srma_indexes'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,564 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'srma_indexes' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,564 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/mosaik_index.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,564 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/mosaik_index.loc.sample' for 'mosaik_indexes'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,565 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'mosaik_indexes' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,565 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/twobit.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,565 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/twobit.loc.sample' for 'twobit'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,565 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'twobit' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+urllib3.connectionpool DEBUG 2020-03-04 14:14:55,569 [p:17865,w:0,m:0] [MainThread] Starting new HTTP connection (1): igv.broadinstitute.org:80
+urllib3.connectionpool DEBUG 2020-03-04 14:14:55,698 [p:17865,w:0,m:0] [MainThread] http://igv.broadinstitute.org:80 "GET /genomes/genomes.txt HTTP/1.1" 200 15787
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,704 [p:17865,w:0,m:0] [MainThread] Loading Data Table URL "http://igv.broadinstitute.org/genomes/genomes.txt" as filename "/home/manager/Dev/galaxy/database/tmp/TTDT_URL_igv_broad_genomes-SOvImN".
+galaxy.tools.data WARNING 2020-03-04 14:14:55,704 [p:17865,w:0,m:0] [MainThread] Line 1 in tool data table 'igv_broad_genomes' is invalid (HINT: '<TAB>' characters must be used to separate fields):
+<Server-Side Genome List>
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,706 [p:17865,w:0,m:0] [MainThread] Loaded 156 lines from '/home/manager/Dev/galaxy/database/tmp/TTDT_URL_igv_broad_genomes-SOvImN' for 'igv_broad_genomes'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,706 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'igv_broad_genomes' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,706 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/liftOver.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,707 [p:17865,w:0,m:0] [MainThread] Loaded 0 lines from '/home/manager/Dev/galaxy/tool-data/liftOver.loc.sample' for 'liftOver'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,707 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'liftOver' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,707 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/bam_iobio.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,707 [p:17865,w:0,m:0] [MainThread] Loaded 1 lines from '/home/manager/Dev/galaxy/tool-data/bam_iobio.loc.sample' for 'bam_iobio'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,707 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'bam_iobio' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,708 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/vcf_iobio.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,708 [p:17865,w:0,m:0] [MainThread] Loaded 1 lines from '/home/manager/Dev/galaxy/tool-data/vcf_iobio.loc.sample' for 'vcf_iobio'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,708 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'vcf_iobio' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,708 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/biom_simple_display.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,708 [p:17865,w:0,m:0] [MainThread] Loaded 1 lines from '/home/manager/Dev/galaxy/tool-data/biom_simple_display.loc.sample' for 'biom_simple_display'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,708 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'biom_simple_display' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,709 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/intermine_simple_display.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,709 [p:17865,w:0,m:0] [MainThread] Loaded 1 lines from '/home/manager/Dev/galaxy/tool-data/intermine_simple_display.loc.sample' for 'intermine_simple_display'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,709 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'intermine_simple_display' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.tools.data INFO 2020-03-04 14:14:55,709 [p:17865,w:0,m:0] [MainThread] Could not find tool data /home/manager/Dev/galaxy/tool-data/icn3d_simple_display.loc, reading sample
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,710 [p:17865,w:0,m:0] [MainThread] Loaded 1 lines from '/home/manager/Dev/galaxy/tool-data/icn3d_simple_display.loc.sample' for 'icn3d_simple_display'
+galaxy.tools.data DEBUG 2020-03-04 14:14:55,710 [p:17865,w:0,m:0] [MainThread] Loaded tool data table 'icn3d_simple_display' from file '/home/manager/Dev/galaxy/lib/galaxy/config/sample/tool_data_table_conf.xml.sample'
+galaxy.jobs ERROR 2020-03-04 14:14:55,766 [p:17865,w:0,m:0] [MainThread] Problem parsing the XML in file /home/manager/Dev/galaxy/config/job_conf.xml, please correct the indicated portion of the file and restart Galaxy. not well-formed (invalid token): line 1, column 8
+Traceback (most recent call last):
+  File "lib/galaxy/jobs/__init__.py", line 320, in __init__
+    tree = load(job_config_file)
+  File "lib/galaxy/util/xml_macros.py", line 32, in load
+    tree, _ = load_with_references(path)
+  File "lib/galaxy/util/xml_macros.py", line 15, in load_with_references
+    tree = raw_xml_tree(path)
+  File "lib/galaxy/util/xml_macros.py", line 52, in raw_xml_tree
+    tree = _parse_xml(path)
+  File "lib/galaxy/util/xml_macros.py", line 309, in _parse_xml
+    tree = ElementTree.parse(fname)
+  File "/usr/lib/python2.7/xml/etree/ElementTree.py", line 1182, in parse
+    tree.parse(source, parser)
+  File "/usr/lib/python2.7/xml/etree/ElementTree.py", line 656, in parse
+    parser.feed(data)
+  File "/usr/lib/python2.7/xml/etree/ElementTree.py", line 1659, in feed
+    self._raiseerror(v)
+  File "/usr/lib/python2.7/xml/etree/ElementTree.py", line 1523, in _raiseerror
+    raise err
+ParseError: not well-formed (invalid token): line 1, column 8
+Traceback (most recent call last):
+  File "lib/galaxy/webapps/galaxy/buildapp.py", line 49, in app_factory
+    app = galaxy.app.UniverseApplication(global_conf=global_conf, **kwargs)
+  File "lib/galaxy/app.py", line 127, in __init__
+    self.job_config = jobs.JobConfiguration(self)
+  File "lib/galaxy/jobs/__init__.py", line 339, in __init__
+    raise config_exception(e, job_config_file)
+Exception: Problem parsing the XML in file /home/manager/Dev/galaxy/config/job_conf.xml, please correct the indicated portion of the file and restart Galaxy. not well-formed (invalid token): line 1, column 8

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_fragment-insertion_filter-features" name="qiime fragment-insertion filter-features" version="2019.7">
-	<description> - Filter fragments in tree from table.</description>
+	<description>Filter fragments in tree from table.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_gneiss_dendrogram-heatmap" name="qiime gneiss dendrogram-heatmap" version="2019.7">
-	<description> - Dendrogram heatmap.</description>
+	<description>Dendrogram heatmap.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_longitudinal_pairwise-distances" name="qiime longitudinal pairwise-distances" version="2019.7">
-	<description> - Paired pairwise distance testing and boxplots</description>
+	<description>Paired pairwise distance testing and boxplots</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

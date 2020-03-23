@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_longitudinal_nmit" name="qiime longitudinal nmit" version="2019.7">
-	<description> - Nonparametric microbial interdependence test</description>
+	<description>Nonparametric microbial interdependence test</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

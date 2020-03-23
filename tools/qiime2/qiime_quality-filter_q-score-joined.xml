@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_quality-filter_q-score-joined" name="qiime quality-filter q-score-joined" version="2019.7">
-	<description> - Quality filter based on joined sequence quality scores.</description>
+	<description>Quality filter based on joined sequence quality scores.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

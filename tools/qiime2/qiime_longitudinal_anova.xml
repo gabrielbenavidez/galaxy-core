@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_longitudinal_anova" name="qiime longitudinal anova" version="2019.7">
-	<description> - ANOVA test</description>
+	<description>ANOVA test</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_beta-rarefaction" name="qiime diversity beta-rarefaction" version="2019.7">
-	<description> - Beta diversity rarefaction</description>
+	<description>Beta diversity rarefaction</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

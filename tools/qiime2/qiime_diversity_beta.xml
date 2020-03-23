@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_beta" name="qiime diversity beta" version="2019.7">
-	<description> - Beta diversity</description>
+	<description>Beta diversity</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

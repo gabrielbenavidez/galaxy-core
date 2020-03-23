@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_demux_filter-samples" name="qiime demux filter-samples" version="2019.7">
-	<description> - Filter samples out of demultiplexed data.</description>
+	<description>Filter samples out of demultiplexed data.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

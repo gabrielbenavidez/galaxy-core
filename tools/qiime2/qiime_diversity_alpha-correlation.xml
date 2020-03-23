@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_alpha-correlation" name="qiime diversity alpha-correlation" version="2019.7">
-	<description> - Alpha diversity correlation</description>
+	<description>Alpha diversity correlation</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

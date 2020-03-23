@@ -3,6 +3,7 @@
         <div v-if="category.model_class.endsWith('ToolSection')" class="toolSectionWrapper">
             <div class="toolSectionTitle">
                 <a @click="opened = !opened" href="javascript:void(0)">
+                        <i style="padding-right:5px;" :id="category.id" :class="category.icon" ></i>
                     <span>
                         {{ category.name }}
                     </span>

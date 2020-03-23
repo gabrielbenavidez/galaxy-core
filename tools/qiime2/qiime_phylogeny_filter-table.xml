@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_phylogeny_filter-table" name="qiime phylogeny filter-table" version="2019.7">
-	<description> - Remove features from table if they're not present in tree.</description>
+	<description>Remove features from table if they're not present in tree.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

@@ -1,6 +1,6 @@
 <tool id="meme_meme" name="MEME" version="1.0.0">
   <requirements><requirement type='package'>meme</requirement></requirements>
-  <description>- Multiple Em for Motif Elicitation</description>
+  <description>ultiple Em for Motif Elicitation</description>
   <command>meme "$input1" -o "${html_outfile.files_path}" 
   -nostatus
   

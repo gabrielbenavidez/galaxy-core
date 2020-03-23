@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_alpha-group-significance" name="qiime diversity alpha-group-significance" version="2019.7">
-	<description> - Alpha diversity comparisons</description>
+	<description>Alpha diversity comparisons</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

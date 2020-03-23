@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_demux_subsample-paired" name="qiime demux subsample-paired" version="2019.7">
-	<description> - Subsample paired-end sequences without replacement.</description>
+	<description>Subsample paired-end sequences without replacement.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

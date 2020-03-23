@@ -118,7 +118,14 @@ class ToolConfItem(object):
         labels = None
         if "labels" in self.attributes:
             labels = [label.strip() for label in self.attributes["labels"].split(",")]
-        return labels
+        return labels 
+
+    @property
+    def icon(self):
+        icon = None
+        if "icon" in self.attributes:
+            icon = self.attributes["icon"]
+        return icon
 
 
 class ToolConfSection(ToolConfItem):

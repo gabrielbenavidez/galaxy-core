@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_longitudinal_plot-feature-volatility" name="qiime longitudinal plot-feature-volatility" version="2019.7">
-	<description> - Plot longitudinal feature volatility and importances</description>
+	<description>Plot longitudinal feature volatility and importances</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

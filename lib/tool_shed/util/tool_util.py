@@ -234,6 +234,6 @@ def panel_entry_per_tool(tool_section_dict):
     if len(tool_section_dict) != 3:
         return True
     for k, v in tool_section_dict:
-        if k not in ['id', 'version', 'name']:
+        if k not in ['id', 'version', 'name', 'icon']:
             return True
     return False

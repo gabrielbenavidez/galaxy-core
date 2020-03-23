@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_quality-control_evaluate-taxonomy" name="qiime quality-control evaluate-taxonomy" version="2019.7">
-	<description> - Evaluate expected vs. observed taxonomic assignments</description>
+	<description>Evaluate expected vs. observed taxonomic assignments</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

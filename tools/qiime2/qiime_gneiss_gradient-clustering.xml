@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_gneiss_gradient-clustering" name="qiime gneiss gradient-clustering" version="2019.7">
-	<description> - Hierarchical clustering using gradient information.</description>
+	<description>Hierarchical clustering using gradient information.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

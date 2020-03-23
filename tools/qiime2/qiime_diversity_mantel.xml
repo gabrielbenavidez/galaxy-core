@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_mantel" name="qiime diversity mantel" version="2019.7">
-	<description> - Apply the Mantel test to two distance matrices</description>
+	<description>Apply the Mantel test to two distance matrices</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

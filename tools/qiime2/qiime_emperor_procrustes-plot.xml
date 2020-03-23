@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_emperor_procrustes-plot" name="qiime emperor procrustes-plot" version="2019.7">
-	<description> - Visualize and Interact with a procrustes plot</description>
+	<description>Visualize and Interact with a procrustes plot</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

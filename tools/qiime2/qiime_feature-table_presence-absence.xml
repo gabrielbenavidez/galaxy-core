@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_feature-table_presence-absence" name="qiime feature-table presence-absence" version="2019.7">
-	<description> - Convert to presence/absence</description>
+	<description>Convert to presence/absence</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

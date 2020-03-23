@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_fragment-insertion_classify-otus-experimental" name="qiime fragment-insertion classify-otus-experimental" version="2019.7">
-	<description> - Experimental: Obtain taxonomic lineages, by finding closest OTU in reference phylogeny.</description>
+	<description>Experimental: Obtain taxonomic lineages, by finding closest OTU in reference phylogeny.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

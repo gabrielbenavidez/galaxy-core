@@ -8,5 +8,5 @@ __all__ = (
     "BaseGalaxyToolBox",
     "panel_item_types",
     "ToolSection",
-    "ToolSectionLabel",
+    "ToolSectionLabel"
 )

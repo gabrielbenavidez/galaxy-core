@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_metadata_tabulate" name="qiime metadata tabulate" version="2019.7">
-	<description> - Interactively explore Metadata in an HTML table</description>
+	<description>Interactively explore Metadata in an HTML table</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

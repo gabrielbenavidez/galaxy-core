@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_phylogeny_align-to-tree-mafft-fasttree" name="qiime phylogeny align-to-tree-mafft-fasttree" version="2019.7">
-	<description> - Build a phylogenetic tree using fasttree and mafft alignment</description>
+	<description>Build a phylogenetic tree using fasttree and mafft alignment</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

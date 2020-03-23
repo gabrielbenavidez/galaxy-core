@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_adonis" name="qiime diversity adonis" version="2019.7">
-	<description> - adonis PERMANOVA test for beta group significance</description>
+	<description>adonis PERMANOVA test for beta group significance</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_longitudinal_linear-mixed-effects" name="qiime longitudinal linear-mixed-effects" version="2019.7">
-	<description> - Linear mixed effects modeling</description>
+	<description>Linear mixed effects modeling</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

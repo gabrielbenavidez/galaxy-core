@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_diversity_alpha-phylogenetic-alt" name="qiime diversity alpha-phylogenetic-alt" version="2019.7">
-	<description> - Alpha diversity (phylogenetic) - alternative implementation</description>
+	<description>Alpha diversity (phylogenetic) - alternative implementation</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

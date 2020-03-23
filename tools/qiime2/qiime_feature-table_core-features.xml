@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_feature-table_core-features" name="qiime feature-table core-features" version="2019.7">
-	<description> - Identify core features in table</description>
+	<description>Identify core features in table</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>

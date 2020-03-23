@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_demux_emp-single" name="qiime demux emp-single" version="2019.7">
-	<description> - Demultiplex sequence data generated with the EMP protocol.</description>
+	<description>Demultiplex sequence data generated with the EMP protocol.</description>
 	<requirements>
 		<requirement type="package" version="2019.7">qiime2</requirement>
 	</requirements>

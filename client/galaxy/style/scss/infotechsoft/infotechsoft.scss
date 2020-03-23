@@ -1,4 +1,4 @@
-
+@import "/tools/tools.scss";
 
 html{
     height: 100%;
@@ -44,8 +44,8 @@ html{
     flex-direction: column;
     align-items:center;
     margin-top: -3vh;
-    width: 35%;
-    height: 10vh;
+    width: fit-content;
+    height: fit-content;
 }
 
 .infotechsoft_logo
@@ -62,16 +62,10 @@ html{
     height: 5vh;
     font-size:1.3em;
     width: fit-content;
+    height: fit-content;
 }
 
-.interactive_tour a{
-    background-color:#ce2e38;
-    color:white;
-    font-weight:400;
-    margin-top: 0vh;
-    width: fit-content;
-    font-family: 'Montserrat';
-}
+
 
 #tour-button
 {
@@ -87,6 +81,10 @@ html{
 {
     background-color:#eb2a36;
     color:white;
+}
+
+.history-options-button-menu > a:hover{
+    color: #5a5a5a;
 }
 
 

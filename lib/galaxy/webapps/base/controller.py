@@ -310,7 +310,7 @@ class JSAppLauncher(BaseUIController):
             'tool_shed_urls'                : list(trans.app.tool_shed_registry.tool_sheds.values()) if trans.app.tool_shed_registry else [],
             'tool_dynamic_configs'          : list(trans.app.toolbox.dynamic_conf_filenames())
         }
-
+        
         # TODO: move to user
         stored_workflow_menu_entries = config['stored_workflow_menu_entries'] = []
         for menu_item in getattr(trans.user, 'stored_workflow_menu_entries', []):

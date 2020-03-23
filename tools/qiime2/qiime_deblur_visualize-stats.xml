@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <tool id="qiime_deblur_visualize-stats" name="qiime deblur visualize-stats" version="2019.7">
-	<description> - Visualize Deblur stats per sample.</description>
+	<description>Visualize Deblur stats per sample.</description>
 	<requirements>
 		<container type="docker">qiime2/core</container>
 	</requirements>
