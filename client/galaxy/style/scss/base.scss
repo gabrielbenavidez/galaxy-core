@@ -410,10 +410,10 @@ body {
                 .dropdown-item{
                     &:hover{
                         background-color: $brand-primary;
-                        color: white;
+                        color: #f0f0f1;
                     }
                     &:focus{
-                        background-color: #f0f0f1;
+                        background-color: $brand-primary-bright;
                     }
                 }
             }
@@ -545,6 +545,11 @@ div.metadataHelpBody {
 
 // Forms
 
+//Added by Gabriel
+.toolFormTitle.unselectable > div > a{
+    color: $brand-dark
+}
+
 div.toolFormBody div.toolFormTitle {
     background: transparent;
     border: none;
@@ -579,10 +584,10 @@ div.toolFormRow {
     @extend .card;
     z-index: 100;
     position: absolute;
-    border-color: $brand-primary;
+    border-color: $brand-dark;
     &.toolForm-active {
         z-index: 1001;
-        box-shadow: 0 0 0 2px $brand-primary;
+        box-shadow: 0 0 0 2px $brand-dark;
     }
     .toolFormTitle {
         @extend .card-header;
@@ -798,6 +803,10 @@ div.form-row-input label {
 
 .infomessagesmall a{
     color: $brand-text;
+}
+
+.empty-message.infomessagesmall{
+    border-color: $brand-dark
 }
 
 .errormark,
@@ -1182,6 +1191,11 @@ a.action-button {
 
     a {
         text-decoration: none;
+    }
+
+    //added by Gabriel
+    .dbKey > a {
+        color: $brand-dark
     }
 
     .menubutton-label,

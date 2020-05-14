@@ -11,9 +11,6 @@
 
         <title>
             Infotechsoft
-            %if app.config.brand:
-            | ${app.config.brand}
-            %endif
         </title>
         
         ## relative href for site root

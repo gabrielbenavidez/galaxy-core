@@ -15,9 +15,6 @@
 
         <title>
             Infotechsoft
-            %if app.config.brand:
-            | ${app.config.brand}
-            %endif
             | ${self.title()}
         </title>
 

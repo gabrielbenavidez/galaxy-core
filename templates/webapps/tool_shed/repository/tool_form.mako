@@ -12,10 +12,7 @@
 <html>
     <head>
         <title>
-            Galaxy
-            %if app.config.brand:
-            | ${app.config.brand}
-            %endif
+            Infotechsoft
             | Tool Preview
         </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

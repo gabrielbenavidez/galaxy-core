@@ -329,7 +329,7 @@ var FolderRowView = Backbone.View.extend({
 
     templateRowFile: function() {
         return _.template(
-            `<tr class="dataset_row library-row" data-id="<%- content_item.id %>">
+            `<tr style="display: table-row;" class="dataset_row library-row" data-id="<%- content_item.id %>">
                 <td class="mid">
                     <span title="Dataset" class="fa fa-file-o"></span>
                 </td>

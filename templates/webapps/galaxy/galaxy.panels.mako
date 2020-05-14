@@ -34,10 +34,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
 
         <title>
-            Galaxy
-            %if app.config.brand:
-            | ${app.config.brand}
-            %endif
+            Infotechsoft
             %if self.galaxy_config['title']:
             | ${self.galaxy_config['title']}
             %endif

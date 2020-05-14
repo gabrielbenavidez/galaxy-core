@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>
-            Galaxy
+            Infotechsoft
             %if app.config.brand:
             | ${app.config.brand}
             %endif
