@@ -56,7 +56,17 @@ const TOURPAGE_TEMPLATE = `
     </div>
 </div>`;
 
-var microbiome_tour_opts = {
+var tour_opts = {
+    storage: window.sessionStorage,
+    onEnd: function() {
+        window.sessionStorage.removeItem("activeGalaxyTour");
+    },
+    delay: 150, // Attempts to make it look natural
+    orphan: true
+};
+
+var microbiome_tour = {
+    name: "microbiome_tour",
     steps: [
         {
             title: "Welcome to the Microbiome Tour!",
@@ -87,7 +97,7 @@ var microbiome_tour_opts = {
         },
         {
             title: "Microbiome Input Data",
-            element: "a[href='#folders/F33b43b4e7093c91f']",
+            element: 'a[href="#folders/F33b43b4e7093c91f"]',
             content: "Select <b>Microbiome Input Data</b>.",
             placement: "right",
             path: "/library/list"
@@ -174,7 +184,7 @@ var microbiome_tour_opts = {
         },
         {
             title: "Export Microbiome Supporting Data",
-            element: "#library_list_body > tr:nth-child(2) > td:nth-child(1) > a",
+            element: 'a[href="#folders/F1cd8e2f6b131e891"]',
             content: "Export the <b>Microbiome Supporting Data</b> to your history.",
             placement: "right",
             path: "/library/list/",
@@ -191,7 +201,7 @@ var microbiome_tour_opts = {
             }
         }, 
         {
-            title: " Microbiome Supporting Data",
+            title: "Microbiome Supporting Data",
             element: "#center > div > div:nth-child(1) > div > form > div:nth-child(4) > button",
             content: "To export the Microbiome Supporting Data <br>select the <b>Export to History</b> dropdown menu.",
             placement: "left",
@@ -255,14 +265,19 @@ var microbiome_tour_opts = {
             delay: 1200
         },
         {
-            title: "Run Workflow",
+            title: "Workflow Input",
             element: "#grid-f09437b8822035f7-popup-menu > a:nth-child(1)",
-            content: "Select <b>Run</b>.",
+            content: "Select <b>Run</b> to begin selecting input for the Workflow.",
             placement: "right",
             onShow: function(tour){
+                var offset = $("#grid-f09437b8822035f7-popup").offset();
+                var target_top = offset.top;
+                var target_left = offset.left;
+                var top = target_top+20;
+                var left = target_left+10;
                 $("#grid-f09437b8822035f7-popup").click();
-                $("body > div.popmenu-wrapper").css('top','33%');
-                $("body > div.popmenu-wrapper").css('left','32%');
+                $("body > div.popmenu-wrapper").css('top',top);
+                $("body > div.popmenu-wrapper").css('left',left);
             }
         },
         {
@@ -315,7 +330,10 @@ var microbiome_tour_opts = {
             title: "Subject ID",
             element: "#uid-51 > div.portlet-header > div.portlet-title > span",
             content: "The correct Subject ID input <b>midas-mapping-group_subjectID.txt</b> is not selected.",
-            placement: "top"
+            placement: "top",
+            onShow: function(){
+                $('#center > div > div > div > div.ui-steps').animate({scrollTop: ($('#uid-18 > div.portlet-header > div.portlet-title > span').offset().top)},1000);
+            }
         },
         {
             title: "Subject ID",
@@ -392,7 +410,7 @@ var microbiome_tour_opts = {
         {
             title : "Run Workflow",
             element: "#run-workflow",
-            content: "Click the <b>Run Workflow</b> button to start running the Workflow.<br> This is the end of the tour!, you may click <b>End Tour</b> to exit.",
+            content: "Click the <b>Run Workflow</b> button to start running the Workflow.<br> This is the end of the tour! you may click <b>End Tour</b> to exit.",
             onHide: function(){
                 $("#run-workflow").click();
             }
@@ -438,16 +456,16 @@ var hooked_tour_from_data = data => {
             };
         }
         
-        // if (step.path) {
-        //     // Galaxy does *not* support automagic path navigation right now in
-        //     // Tours -- too many ways to get your client 'stuck' in automatic
-        //     // navigation loops.  We can probably re-enable this as our client
-        //     // routing matures.
-        //     console.warn(
-        //         "This Galaxy Tour is attempting to use path navigation.  This is known to be unstable and can possibly get the Galaxy client 'stuck' in a tour, and at this time is not allowed."
-        //     );
-        //     delete step.path;
-        // }
+        if (step.path) {
+            // Galaxy does *not* support automagic path navigation right now in
+            // Tours -- too many ways to get your client 'stuck' in automatic
+            // navigation loops.  We can probably re-enable this as our client
+            // routing matures.
+            console.warn(
+                "This Galaxy Tour is attempting to use path navigation.  This is known to be unstable and can possibly get the Galaxy client 'stuck' in a tour, and at this time is not allowed."
+            );
+            delete step.path;
+        }
     });
     return data;
 };
@@ -552,10 +570,10 @@ export var ToursView = Backbone.View.extend({
 });
 
 export function giveTourWithData(data) {
-    //const hookedTourData = hooked_tour_from_data(data);
+    const hookedTourData = hooked_tour_from_data(data);
     window.sessionStorage.setItem("activeGalaxyTour", JSON.stringify(data));
     // Store tour steps in sessionStorage to easily persist w/o hackery.
-    const tour = new Tour(microbiome_tour_opts);
+    const tour = new Tour(_.extend({ steps: hookedTourData.steps }, tour_opts));
     // Always clean restart, since this is a new, explicit execution.
     tour.init();
     tour.goTo(0);
@@ -567,27 +585,64 @@ export function giveTourWithData(data) {
 
 export function giveTourById(tour_id) {
     var url = `${gxy_root}api/tours/${tour_id}`;
-    if(tour_id == "microbiome"){
-        console.log("microbiome tour!")
+    if(tour_id == 'microbiome_tour'){
+        giveMicrobiomeTour(microbiome_tour);
     }
-    $.getJSON(url, data => {
-        giveTourWithData(data);
-    });
+    else{
+        $.getJSON(url, data => {
+            giveTourWithData(data);
+        });
+    }
+}
+
+function giveMicrobiomeTour(data){
+    window.sessionStorage.setItem("activeGalaxyTour", JSON.stringify(data));
+    // Store tour steps in sessionStorage to easily persist w/o hackery.
+    const tour = new Tour(microbiome_tour);
+    // Always clean restart, since this is a new, explicit execution.
+    tour.init();
+    tour.goTo(0);
+    tour.restart();
+    return tour;
+}
+
+function restartMicrobiomeTour(){
+    if (window && window.self === window.top) {
+        // Only kick off a new tour if this is the toplevel window (non-iframe).  This
+        // functionality actually *could* be useful, but we'd need to handle it better and
+        // come up with some design guidelines for tours jumping between windows.
+        // Disabling for now.
+        var tour = new Tour(microbiome_tour);
+        tour.init();
+        tour.restart();
+    }
 }
 
 export function activeGalaxyTourRunner() {
     var et = JSON.parse(window.sessionStorage.getItem("activeGalaxyTour"));
     if (et) {
-        et = hooked_tour_from_data(et);
-        if (et && et.steps) {
-            if (window && window.self === window.top) {
-                // Only kick off a new tour if this is the toplevel window (non-iframe).  This
-                // functionality actually *could* be useful, but we'd need to handle it better and
-                // come up with some design guidelines for tours jumping between windows.
-                // Disabling for now.
-                var tour = new Tour(microbiome_tour_opts);
-                tour.init();
-                tour.restart();
+        if(et.name === 'microbiome_tour'){
+            restartMicrobiomeTour();
+        }
+        else{
+            et = hooked_tour_from_data(et);
+            if (et && et.steps) {
+                if (window && window.self === window.top) {
+                    // Only kick off a new tour if this is the toplevel window (non-iframe).  This
+                    // functionality actually *could* be useful, but we'd need to handle it better and
+                    // come up with some design guidelines for tours jumping between windows.
+                    // Disabling for now.
+                    var tour = new Tour(
+                        _.extend(
+                            {
+                                steps: et.steps
+                            },
+                            tour_opts
+                        )
+                    );
+                    tour.init();
+                    tour.restart();
+                }
             }
         }
     }

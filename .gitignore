@@ -176,3 +176,7 @@ packages/*/*.egg-info
 
 # Plugin build artifacts -- TODO make this more generic as a part of the standard plugin interface
 config/plugins/visualizations/**/static/script.js
+
+#added by gabriel
+.cache/
+test_manifest/
