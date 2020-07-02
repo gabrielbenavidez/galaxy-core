@@ -1,0 +1,14 @@
+<?xml version="1.0" ?> 
+<tool id="manifest_generator_tool" name="Manifest Generator">
+	<description>Convert a csv file into a TSV manifest file</description>
+	<requirements>
+		<container type="docker">infotechsoft/tools</container>
+	</requirements>
+	<command><![CDATA[ python '/tools/manifest_generator_tool.py' -i '$inputCsvFile' -o '$outputManifestFile' ]]></command>
+	<inputs>
+		<param name="inputCsvFile" type="data" format="csv" label="Input file" />
+	</inputs>
+	<outputs>
+		<data name="outputManifestFile" format="tsv" label="${tool.name} on ${on_string}: manifest-file.tsv" />
+	</outputs>
+</tool>

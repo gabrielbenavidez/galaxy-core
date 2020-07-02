@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='utf-8'?>
+<toolbox monitor="true">
+  <section id="getext" name="Get Data" icon="fa fa-database" >
+    <tool file="data_source/genetegra_query.xml" icon="genetegra-icon" />
+    <tool file="data_source/upload.xml" icon="fa fa-upload" />
+  </section>
+  <section id="collection_operations" name="Collection Operations" icon="fa fa-folder" >
+    <tool file="${model_tools_path}/unzip_collection.xml" icon="fa fa-file-archive-o" />
+    <tool file="${model_tools_path}/zip_collection.xml"  icon="fa fa-file-archive-o" />
+    <tool file="${model_tools_path}/filter_failed_collection.xml" icon="fa fa-filter" />
+    <tool file="${model_tools_path}/filter_empty_collection.xml" icon="fa fa-filter" />
+    <tool file="${model_tools_path}/flatten_collection.xml" icon="fa fa-list"/>
+    <tool file="${model_tools_path}/merge_collection.xml" icon="fa fa-compress" />
+    <tool file="${model_tools_path}/relabel_from_file.xml" icon="fa fa-pencil" />
+    <tool file="${model_tools_path}/filter_from_file.xml" icon="fa fa-filter" />
+    <tool file="${model_tools_path}/sort_collection_list.xml" icon="fa fa-sort" />
+    <tool file="${model_tools_path}/tag_collection_from_file.xml" icon="fa fa-tag" />
+    <tool file="${model_tools_path}/apply_rules.xml" icon="fa fa-th" />
+    <tool file="${model_tools_path}/build_list.xml" icon="fa fa-gavel" />
+    <tool file="${model_tools_path}/extract_dataset.xml" icon="fa fa-hand-rock-o" />
+  </section>
+  <section id="textutil" name="Text Manipulation" icon="fa fa-pencil-square-o">
+   	<tool file="swap_ids/swap_ids.xml" icon="fa fa-random" />
+    <tool file="filters/fixedValueColumn.xml" icon="fa fa-plus" />
+    <tool file="filters/catWrapper.xml" icon="fa fa-link" />
+    <tool file="filters/cutWrapper.xml" icon="fa fa-scissors" />
+    <tool file="filters/mergeCols.xml" icon="fa fa-compress" />
+    <tool file="filters/convert_characters.xml" icon="fa fa-exchange" />
+    <tool file="filters/CreateInterval.xml" icon="fa fa-plus-square" />
+    <tool file="filters/cutWrapper.xml" icon="fa fa-scissors" />
+    <tool file="filters/changeCase.xml" icon="fa fa-text-height" />
+    <tool file="filters/pasteWrapper.xml" icon="fa fa-clipboard" />
+    <tool file="filters/remove_beginning.xml" icon="fa fa-minus-circle" />
+    <tool file="filters/randomlines.xml" icon="fa fa-mouse-pointer" />
+    <tool file="filters/headWrapper.xml" icon="fa fa-mouse-pointer" />
+    <tool file="filters/tailWrapper.xml" icon="fa fa-mouse-pointer" />
+    <tool file="filters/trimmer.xml" icon="fa fa-scissors" />
+    <tool file="filters/wc_gnu.xml" icon="fa fa-list-ol" />
+    <tool file="filters/secure_hash_message_digest.xml" icon="fa fa-lock" />
+  </section>
+  <section id="convert" name="Convert Formats" icon="fa fa-exchange">
+    <tool  file="/home/manager/Dev/galaxy/database/shed_tools/toolshed.g2.bx.psu.edu/repos/iuc/biom_convert/biom_convert/2.1.5.2/biom_convert.xml" icon="fa fa-exchange" />
+    <tool file="manifest_generator_tool/manifest_generator_tool.xml" icon="fa fa-exchange" />
+  </section>
+  <section id="filter" name="Filter and Sort" icon="fa fa-filter">
+    <tool file="stats/filtering.xml" icon="fa fa-filter" />
+    <tool file="filters/sorter.xml" icon="fa fa-sort" />
+    <tool file="filters/grep.xml" icon="fa fa-search" />
+    <tool file="filters/gff/extract_GFF_Features.xml" icon="fa fa-hand-rock-o" />
+    <tool file="filters/gff/gff_filter_by_attribute.xml" icon="fa fa-filter" />
+    <tool file="filters/gff/gff_filter_by_feature_count.xml" icon="fa fa-filter" />
+    <tool file="filters/gff/gtf_filter_by_attribute_values_list.xml" icon="fa fa-filter" />
+  </section>
+  <section id="group" name="Join, Subtract and Group" icon="fa fa-th">
+    <tool file="filters/joiner.xml" icon="fa fa-random" />
+    <tool file="filters/compare.xml" icon="fa fa-balance-scale" />
+    <tool file="stats/grouping.xml" icon="fa fa-th" />
+  </section>
+  <section id="stats" name="Statistics" icon="fa fa-bar-chart">
+    <tool file="percent_abundance/percent_abundance.xml" icon="fa fa-percent" />
+    <tool file="stats/gsummary.xml" icon="fa fa-bar-chart" />
+    <tool file="filters/uniq.xml" icon="fa fa-list-ol" />
+  </section>
+  <section id="qiime2" name="Qiime2" icon="qiime2-icon">
+    <tool file="qiime2/merge_feature_table_and_taxonomy.xml" />
+    <tool file="qiime2/qiime_alignment_mafft.xml" />
+    <tool file="qiime2/qiime_alignment_mask.xml" />
+    <tool file="qiime2/qiime_composition_add-pseudocount.xml" />
+    <tool file="qiime2/qiime_composition_ancom.xml" />
+    <tool file="qiime2/qiime_cutadapt_demux-paired.xml" />
+    <tool file="qiime2/qiime_cutadapt_demux-single.xml" />
+    <tool file="qiime2/qiime_cutadapt_trim-paired.xml" />
+    <tool file="qiime2/qiime_cutadapt_trim-single.xml" />
+    <tool file="qiime2/qiime_dada2_denoise-paired.xml" />
+    <tool file="qiime2/qiime_dada2_denoise-pyro.xml" />
+    <tool file="qiime2/qiime_dada2_denoise-single.xml" />
+    <tool file="qiime2/qiime_deblur_denoise-16S.xml" />
+    <tool file="qiime2/qiime_deblur_denoise-other.xml" />
+    <tool file="qiime2/qiime_deblur_visualize-stats.xml" />
+    <tool file="qiime2/qiime_demux_emp-paired.xml" />
+    <tool file="qiime2/qiime_demux_emp-single.xml" />
+    <tool file="qiime2/qiime_demux_filter-samples.xml" />
+    <tool file="qiime2/qiime_demux_subsample-paired.xml" />
+    <tool file="qiime2/qiime_demux_subsample-single.xml" />
+    <tool file="qiime2/qiime_demux_summarize.xml" />
+    <tool file="qiime2/qiime_diversity_adonis.xml" />
+    <tool file="qiime2/qiime_diversity_alpha-correlation.xml" />
+    <tool file="qiime2/qiime_diversity_alpha-group-significance.xml" />
+    <tool file="qiime2/qiime_diversity_alpha-phylogenetic-alt.xml" />
+    <tool file="qiime2/qiime_diversity_alpha-phylogenetic.xml" />
+    <tool file="qiime2/qiime_diversity_alpha-rarefaction.xml" />
+    <tool file="qiime2/qiime_diversity_alpha.xml" />
+    <tool file="qiime2/qiime_diversity_beta-correlation.xml" />
+    <tool file="qiime2/qiime_diversity_beta-group-significance.xml" />
+    <tool file="qiime2/qiime_diversity_beta-phylogenetic.xml" />
+    <tool file="qiime2/qiime_diversity_beta-rarefaction.xml" />
+    <tool file="qiime2/qiime_diversity_beta.xml" />
+    <tool file="qiime2/qiime_diversity_bioenv.xml" />
+    <tool file="qiime2/qiime_diversity_core-metrics-phylogenetic.xml" />
+    <tool file="qiime2/qiime_diversity_core-metrics.xml" />
+    <tool file="qiime2/qiime_diversity_filter-distance-matrix.xml" />
+    <tool file="qiime2/qiime_diversity_mantel.xml" />
+    <tool file="qiime2/qiime_diversity_pcoa-biplot.xml" />
+    <tool file="qiime2/qiime_diversity_pcoa.xml" />
+    <tool file="qiime2/qiime_diversity_procrustes-analysis.xml" />
+    <tool file="qiime2/qiime_emperor_biplot.xml" />
+    <tool file="qiime2/qiime_emperor_plot.xml" />
+    <tool file="qiime2/qiime_emperor_procrustes-plot.xml" />
+    <tool file="qiime2/qiime_feature-classifier_classify-consensus-blast.xml" />
+    <tool file="qiime2/qiime_feature-classifier_classify-consensus-vsearch.xml" />
+    <tool file="qiime2/qiime_feature-classifier_classify-hybrid-vsearch-sklearn.xml" />
+    <tool file="qiime2/qiime_feature-classifier_classify-sklearn.xml" />
+    <tool file="qiime2/qiime_feature-classifier_extract-reads.xml" />
+    <tool file="qiime2/qiime_feature-classifier_fit-classifier-naive-bayes.xml" />
+    <tool file="qiime2/qiime_feature-classifier_fit-classifier-sklearn.xml" />
+    <tool file="qiime2/qiime_feature-table_core-features.xml" />
+    <tool file="qiime2/qiime_feature-table_filter-features.xml" />
+    <tool file="qiime2/qiime_feature-table_filter-samples.xml" />
+    <tool file="qiime2/qiime_feature-table_filter-seqs.xml" />
+    <tool file="qiime2/qiime_feature-table_group.xml" />
+    <tool file="qiime2/qiime_feature-table_heatmap.xml" />
+    <tool file="qiime2/qiime_feature-table_merge-seqs.xml" />
+    <tool file="qiime2/qiime_feature-table_merge-taxa.xml" />
+    <tool file="qiime2/qiime_feature-table_merge.xml" />
+    <tool file="qiime2/qiime_feature-table_presence-absence.xml" />
+    <tool file="qiime2/qiime_feature-table_rarefy.xml" />
+    <tool file="qiime2/qiime_feature-table_relative-frequency.xml" />
+    <tool file="qiime2/qiime_feature-table_subsample.xml" />
+    <tool file="qiime2/qiime_feature-table_summarize.xml" />
+    <tool file="qiime2/qiime_feature-table_tabulate-seqs.xml" />
+    <tool file="qiime2/qiime_feature-table_transpose.xml" />
+    <tool file="qiime2/qiime_fragment-insertion_classify-otus-experimental.xml" />
+    <tool file="qiime2/qiime_fragment-insertion_filter-features.xml" />
+    <tool file="qiime2/qiime_fragment-insertion_sepp.xml" />
+    <tool file="qiime2/qiime_gneiss_assign-ids.xml" />
+    <tool file="qiime2/qiime_gneiss_balance-taxonomy.xml" />
+    <tool file="qiime2/qiime_gneiss_correlation-clustering.xml" />
+    <tool file="qiime2/qiime_gneiss_dendrogram-heatmap.xml" />
+    <tool file="qiime2/qiime_gneiss_gradient-clustering.xml" />
+    <tool file="qiime2/qiime_gneiss_ilr-hierarchical.xml" />
+    <tool file="qiime2/qiime_gneiss_ilr-phylogenetic.xml" />
+    <tool file="qiime2/qiime_gneiss_lme-regression.xml" />
+    <tool file="qiime2/qiime_gneiss_ols-regression.xml" />
+    <tool file="qiime2/qiime_longitudinal_anova.xml" />
+    <tool file="qiime2/qiime_longitudinal_feature-volatility.xml" />
+    <tool file="qiime2/qiime_longitudinal_first-differences.xml" />
+    <tool file="qiime2/qiime_longitudinal_first-distances.xml" />
+    <tool file="qiime2/qiime_longitudinal_linear-mixed-effects.xml" />
+    <tool file="qiime2/qiime_longitudinal_maturity-index.xml" />
+    <tool file="qiime2/qiime_longitudinal_nmit.xml" />
+    <tool file="qiime2/qiime_longitudinal_pairwise-differences.xml" />
+    <tool file="qiime2/qiime_longitudinal_pairwise-distances.xml" />
+    <tool file="qiime2/qiime_longitudinal_plot-feature-volatility.xml" />
+    <tool file="qiime2/qiime_longitudinal_volatility.xml" />
+    <tool file="qiime2/qiime_metadata_distance-matrix.xml" />
+    <tool file="qiime2/qiime_metadata_tabulate.xml" />
+    <tool file="qiime2/qiime_phylogeny_align-to-tree-mafft-fasttree.xml" />
+    <tool file="qiime2/qiime_phylogeny_fasttree.xml" />
+    <tool file="qiime2/qiime_phylogeny_filter-table.xml" />
+    <tool file="qiime2/qiime_phylogeny_iqtree-ultrafast-bootstrap.xml" />
+    <tool file="qiime2/qiime_phylogeny_iqtree.xml" />
+    <tool file="qiime2/qiime_phylogeny_midpoint-root.xml" />
+    <tool file="qiime2/qiime_phylogeny_raxml-rapid-bootstrap.xml" />
+    <tool file="qiime2/qiime_phylogeny_raxml.xml" />
+    <tool file="qiime2/qiime_quality-control_evaluate-composition.xml" />
+    <tool file="qiime2/qiime_quality-control_evaluate-seqs.xml" />
+    <tool file="qiime2/qiime_quality-control_evaluate-taxonomy.xml" />
+    <tool file="qiime2/qiime_quality-control_exclude-seqs.xml" />
+    <tool file="qiime2/qiime_quality-filter_q-score-joined.xml" />
+    <tool file="qiime2/qiime_quality-filter_q-score.xml" />
+    <tool file="qiime2/qiime_sample-classifier_classify-samples-from-dist.xml" />
+    <tool file="qiime2/qiime_sample-classifier_classify-samples-ncv.xml" />
+    <tool file="qiime2/qiime_sample-classifier_classify-samples.xml" />
+    <tool file="qiime2/qiime_sample-classifier_confusion-matrix.xml" />
+    <tool file="qiime2/qiime_sample-classifier_fit-classifier.xml" />
+    <tool file="qiime2/qiime_sample-classifier_fit-regressor.xml" />
+    <tool file="qiime2/qiime_sample-classifier_heatmap.xml" />
+    <tool file="qiime2/qiime_sample-classifier_metatable.xml" />
+    <tool file="qiime2/qiime_sample-classifier_predict-classification.xml" />
+    <tool file="qiime2/qiime_sample-classifier_predict-regression.xml" />
+    <tool file="qiime2/qiime_sample-classifier_regress-samples-ncv.xml" />
+    <tool file="qiime2/qiime_sample-classifier_regress-samples.xml" />
+    <tool file="qiime2/qiime_sample-classifier_scatterplot.xml" />
+    <tool file="qiime2/qiime_sample-classifier_split-table.xml" />
+    <tool file="qiime2/qiime_sample-classifier_summarize.xml" />
+    <tool file="qiime2/qiime_taxa_barplot.xml" />
+    <tool file="qiime2/qiime_taxa_collapse.xml" />
+    <tool file="qiime2/qiime_taxa_filter-seqs.xml" />
+    <tool file="qiime2/qiime_taxa_filter-table.xml" />
+    <tool file="qiime2/qiime_tools_export_collection.xml" />
+    <tool file="qiime2/qiime_tools_export_paired_collection.xml" />
+    <tool file="qiime2/qiime_tools_export.xml" />
+    <tool file="qiime2/qiime_tools_export_biom2.xml" />
+    <tool file="qiime2/qiime_tools_import.xml" />
+    <tool file="qiime2/qiime_vsearch_cluster-features-closed-reference.xml" />
+    <tool file="qiime2/qiime_vsearch_cluster-features-de-novo.xml" />
+    <tool file="qiime2/qiime_vsearch_cluster-features-open-reference.xml" />
+    <tool file="qiime2/qiime_vsearch_dereplicate-sequences.xml" />
+    <tool file="qiime2/qiime_vsearch_join-pairs.xml" />
+    <tool file="qiime2/qiime_vsearch_uchime-denovo.xml" />
+    <tool file="qiime2/qiime_vsearch_uchime-ref.xml" /> 
+  </section>
+</toolbox>

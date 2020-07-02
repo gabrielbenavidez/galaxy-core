@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<job_conf>
+    <plugins>
+        <plugin id="local" type="runner" load="galaxy.jobs.runners.local:LocalJobRunner" workers="4"/>
+    </plugins>
+    <destinations default="local">
+        <destination id="local" runner="local"/>
+        <destination id="docker_local" runner="local">
+            <param id="docker_enabled">true</param>
+            <param id="docker_sudo">false</param>
+        </destination>
+    </destinations>
+    <tools>	
+    <tool id="qiime_tools_import" destination="docker_local" />                           
+	<tool id="merge_feature_table_and_taxonomy" destination="docker_local" />
+    <tool id="qiime_diversity_core-metrics-phylogenetic" destination="docker_local" />
+    <tool id="qiime_fragment-insertion_sepp" destination="docker_local" />
+    <tool id="qiime_quality-control_exclude-seqs" destination="docker_local" />
+    <tool id="qiime_alignment_mafft" destination="docker_local" />
+    <tool id="qiime_diversity_core-metrics" destination="docker_local" />
+    <tool id="qiime_gneiss_assign-ids" destination="docker_local" />
+    <tool id="qiime_quality-filter_q-score-joined" destination="docker_local" />
+    <tool id="qiime_alignment_mask" destination="docker_local" />
+    <tool id="qiime_diversity_filter-distance-matrix" destination="docker_local" />
+    <tool id="qiime_gneiss_balance-taxonomy" destination="docker_local" />    
+    <tool id="qiime_quality-filter_q-score" destination="docker_local" />                                                                  
+    <tool id="qiime_diversity_mantel" destination="docker_local" /> 
+    <tool id="qiime_gneiss_correlation-clustering" destination="docker_local" />     
+    <tool id="qiime_sample-classifier_classify-samples-from-dist" destination="docker_local" />      
+    <tool id="qiime_composition_add-pseudocount" destination="docker_local" />                                           
+    <tool id="qiime_diversity_pcoa-biplot" destination="docker_local" />  
+    <tool id="qiime_gneiss_dendrogram-heatmap" destination="docker_local" />   
+    <tool id="qiime_sample-classifier_classify-samples-ncv" destination="docker_local" /> 
+    <tool id="qiime_composition_ancom" destination="docker_local" />                                                                  
+    <tool id="qiime_diversity_pcoa" destination="docker_local" /> 
+    <tool id="qiime_gneiss_gradient-clustering" destination="docker_local" /> 
+    <tool id="qiime_sample-classifier_classify-samples" destination="docker_local" />                                                 
+    <tool id="qiime_cutadapt_demux-paired" destination="docker_local" />   
+    <tool id="qiime_diversity_procrustes-analysis" destination="docker_local" />
+    <tool id="qiime_gneiss_ilr-hierarchical" destination="docker_local" />
+    <tool id="qiime_sample-classifier_confusion-matrix" destination="docker_local" />                                                                
+    <tool id="qiime_cutadapt_demux-single" destination="docker_local" />
+    <tool id="qiime_emperor_biplot" destination="docker_local" />
+    <tool id="qiime_gneiss_ilr-phylogenetic" destination="docker_local" />
+    <tool id="qiime_sample-classifier_fit-classifier" destination="docker_local" />
+    <tool id="qiime_cutadapt_trim-paired" destination="docker_local" />                                                  
+    <tool id="qiime_emperor_plot" destination="docker_local" /> 
+    <tool id="qiime_gneiss_lme-regression" destination="docker_local" />  
+    <tool id="qiime_sample-classifier_fit-regressor" destination="docker_local" />                                                               
+    <tool id="qiime_cutadapt_trim-single" destination="docker_local" />
+    <tool id="qiime_emperor_procrustes-plot" destination="docker_local" />
+    <tool id="qiime_gneiss_ols-regression" destination="docker_local" />
+    <tool id="qiime_sample-classifier_heatmap" destination="docker_local" />
+    <tool id="qiime_dada2_denoise-paired" destination="docker_local" />
+    <tool id="qiime_feature-classifier_classify-consensus-blast" destination="docker_local" />
+    <tool id="qiime_gneiss_ols-regression.save" destination="docker_local" />
+    <tool id="qiime_sample-classifier_metatable" destination="docker_local" />
+    <tool id="qiime_dada2_denoise-pyro" destination="docker_local" /> 
+    <tool id="qiime_feature-classifier_classify-consensus-vsearch" destination="docker_local" />
+    <tool id="qiime_longitudinal_anova" destination="docker_local" />
+    <tool id="qiime_sample-classifier_predict-classification" destination="docker_local" />
+    <tool id="qiime_dada2_denoise-single" destination="docker_local" />
+    <tool id="qiime_feature-classifier_classify-hybrid-vsearch-sklearn" destination="docker_local" />
+    <tool id="qiime_longitudinal_feature-volatility" destination="docker_local" />   
+    <tool id="qiime_sample-classifier_predict-regression" destination="docker_local" />                                        
+    <tool id="qiime_deblur_denoise-16S" destination="docker_local" />  
+    <tool id="qiime_feature-classifier_classify-sklearn" destination="docker_local" />     
+    <tool id="qiime_longitudinal_first-differences" destination="docker_local" />  
+    <tool id="qiime_sample-classifier_regress-samples-ncv" destination="docker_local" />             
+    <tool id="qiime_deblur_denoise-other" destination="docker_local" />  
+    <tool id="qiime_feature-classifier_extract-reads" destination="docker_local" />
+    <tool id="qiime_longitudinal_first-distances" destination="docker_local" />  
+    <tool id="qiime_sample-classifier_regress-samples" destination="docker_local" />                                      
+    <tool id="qiime_deblur_visualize-stats" destination="docker_local" /> 
+    <tool id="qiime_feature-classifier_fit-classifier-naive-bayes" destination="docker_local" />  
+    <tool id="qiime_longitudinal_linear-mixed-effects" destination="docker_local" /> 
+    <tool id="qiime_sample-classifier_scatterplot" destination="docker_local" />                                        
+    <tool id="qiime_demux_emp-paired" destination="docker_local" />  
+    <tool id="qiime_feature-classifier_fit-classifier-sklearn" destination="docker_local" />   
+    <tool id="qiime_longitudinal_maturity-index" destination="docker_local" /> 
+    <tool id="qiime_sample-classifier_split-table" destination="docker_local" />                 
+    <tool id="qiime_demux_emp-single" destination="docker_local" />   
+    <tool id="qiime_feature-table_core-features" destination="docker_local" />    
+    <tool id="qiime_longitudinal_nmit" destination="docker_local" />  
+    <tool id="qiime_sample-classifier_summarize" destination="docker_local" />                          
+    <tool id="qiime_demux_filter-samples" destination="docker_local" />  
+    <tool id="qiime_feature-table_filter-features" destination="docker_local" /> 
+    <tool id="qiime_longitudinal_pairwise-differences" destination="docker_local" /> 
+    <tool id="qiime_taxa_barplot" destination="docker_local" />                                                            
+    <tool id="qiime_demux_subsample-paired" destination="docker_local" /> 
+    <tool id="qiime_feature-table_filter-samples" destination="docker_local" /> 
+    <tool id="qiime_longitudinal_pairwise-distances" destination="docker_local" /> 
+    <tool id="qiime_taxa_collapse" destination="docker_local" />                                        
+    <tool id="qiime_demux_subsample-single" destination="docker_local" />   
+    <tool id="qiime_feature-table_filter-seqs" destination="docker_local" />  
+    <tool id="qiime_longitudinal_plot-feature-volatility" destination="docker_local" />     
+    <tool id="qiime_taxa_filter-seqs" destination="docker_local" />                                
+    <tool id="qiime_demux_summarize" destination="docker_local" />      
+    <tool id="qiime_feature-table_group" destination="docker_local" />    
+    <tool id="qiime_longitudinal_volatility" destination="docker_local" />   
+    <tool id="qiime_taxa_filter-table" destination="docker_local" />                            
+    <tool id="qiime_diversity_adonis" destination="docker_local" /> 
+    <tool id="qiime_feature-table_heatmap" destination="docker_local" />   
+    <tool id="qiime_metadata_distance-matrix" destination="docker_local" />   
+    <tool id="qiime_tools_export_biom2" destination="docker_local" />                                                            
+    <tool id="qiime_diversity_alpha-correlation" destination="docker_local" />    
+    <tool id="qiime_feature-table_merge-seqs" destination="docker_local" />    
+    <tool id="qiime_metadata_tabulate" destination="docker_local" />      
+    <tool id="qiime_tools_export_collection" destination="docker_local" />                                                    
+    <tool id="qiime_diversity_alpha-group-significance" destination="docker_local" />    
+    <tool id="qiime_feature-table_merge-taxa" destination="docker_local" />    
+    <tool id="qiime_phylogeny_align-to-tree-mafft-fasttree" destination="docker_local" />   
+    <tool id="qiime_tools_export_paired_collection" destination="docker_local" />                                             
+    <tool id="qiime_diversity_alpha-phylogenetic-alt" destination="docker_local" /> 
+    <tool id="qiime_feature-table_merge" destination="docker_local" />
+    <tool id="qiime_phylogeny_fasttree" destination="docker_local" />
+    <tool id="qiime_tools_export" destination="docker_local" />
+    <tool id="qiime_diversity_alpha-phylogenetic" destination="docker_local" />
+    <tool id="qiime_feature-table_presence-absence" destination="docker_local" /> 
+    <tool id="qiime_phylogeny_filter-table" destination="docker_local" />                                                       
+    <tool id="qiime_diversity_alpha-rarefaction" destination="docker_local" /> 
+    <tool id="qiime_feature-table_rarefy" destination="docker_local" />   
+    <tool id="qiime_phylogeny_iqtree-ultrafast-bootstrap" destination="docker_local" />     
+    <tool id="qiime_vsearch_cluster-features-closed-reference" destination="docker_local" />                                     
+    <tool id="qiime_diversity_alpha" destination="docker_local" />  
+    <tool id="qiime_feature-table_relative-frequency" destination="docker_local" /> 
+    <tool id="qiime_phylogeny_iqtree" destination="docker_local" /> 
+    <tool id="qiime_vsearch_cluster-features-de-novo" destination="docker_local" />                                     
+    <tool id="qiime_diversity_beta-correlation" destination="docker_local" />    
+    <tool id="qiime_feature-table_subsample" destination="docker_local" /> 
+    <tool id="qiime_phylogeny_midpoint-root" destination="docker_local" /> 
+    <tool id="qiime_vsearch_cluster-features-open-reference" destination="docker_local" />                                                       
+    <tool id="qiime_diversity_beta-group-significance" destination="docker_local" />   
+    <tool id="qiime_feature-table_summarize" destination="docker_local" />    
+    <tool id="qiime_phylogeny_r-rapid-bootstrap" destination="docker_local" />     
+    <tool id="qiime_vsearch_dereplicate-sequences" destination="docker_local" />                                        
+    <tool id="qiime_diversity_beta-phylogenetic" destination="docker_local" /> 
+    <tool id="qiime_feature-table_tabulate-seqs" destination="docker_local" />   
+    <tool id="qiime_phylogeny_r" destination="docker_local" />  
+    <tool id="qiime_vsearch_join-pairs" destination="docker_local" />                               
+    <tool id="qiime_diversity_beta-rarefaction" destination="docker_local" />  
+    <tool id="qiime_feature-table_transpose" destination="docker_local" />   
+    <tool id="qiime_quality-control_evaluate-composition" destination="docker_local" /> 
+    <tool id="qiime_vsearch_uchime-denovo" destination="docker_local" />   
+    <tool id="qiime_diversity_beta" destination="docker_local" />                                              
+    <tool id="qiime_fragment-insertion_classify-otus-experimental" destination="docker_local" />    
+    <tool id="qiime_quality-control_evaluate-seqs" destination="docker_local" />     
+    <tool id="qiime_vsearch_uchime-ref" destination="docker_local" /> 
+    <tool id="qiime_diversity_bioenv" destination="docker_local" /> 
+    <tool id="qiime_fragment-insertion_filter-features" destination="docker_local" />                             
+    <tool id="qiime_quality-control_evaluate-taxonomy" destination="docker_local" />                                    
+    <tool id="percent_abundance" destination="docker_local" /> 
+    <tool id="swap_ids" destination="docker_local" />
+    <tool id="manifest_generator_tool" destination="docker_local" />
+</tools>
+</job_conf>
+
+
